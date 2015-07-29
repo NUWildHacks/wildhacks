@@ -62,6 +62,10 @@ body {
   font-size: 5em;
 }
 
+.about-section {
+  height: 50%;
+}
+
 .about-header h2 {
   color: #faa629;
 }
@@ -76,7 +80,15 @@ body {
   background-image: url('../images/city.svg'); background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
-  min-height: 325vh;
+  min-height: 250vh;
+}
+
+.apply-section input {
+  margin-bottom: 40px;
+}
+
+.submit-button-container {
+  text-align: center;
 }
 
 .below-ground-1 {
@@ -117,4 +129,17 @@ td h3 {
 
 .faq p {
   color: #d7ede8;
+}
+
+@media (max-width: 767px) {
+
+  .logo {
+    height: 200px;
+  }
+
+  .content {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
 }
