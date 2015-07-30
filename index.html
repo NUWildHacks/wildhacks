@@ -32,8 +32,31 @@
   <script src="js/main.js"></script>
 </head>
 
-<body>
-  <section class='landing-section'>
+<body data-spy="scroll" data-target=".navbar" data-offset="12" id='scroll'>
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#landing-section"></a>
+      </li>
+      <li>
+        <a href="#about-section"></a>
+      </li>
+      <li>
+        <a href="#apply-section"></a>
+      </li>
+      <li>
+        <a href="#sponsors-section"></a>
+      </li>
+      <li>
+        <a href="#schedule-section"></a>
+      </li>
+      <li>
+        <a href="#faq-section"></a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class='landing-section' id='landing-section'>
     <div class="content">
       <div class="logo-container">
         <img class='logo' src="images/wildhacks-logo.svg" />
@@ -53,7 +76,7 @@
   </section>
   <section class='above-ground' id='first-section'>
     <div class="content">
-      <div class="about-section mini-section">
+      <div class="about-section mini-section" id='about-section'>
         <div class="row">
           <div class="col-md-5 header about-header">
             <h2>ABOUT</h2>
@@ -61,11 +84,12 @@
         </div>
         <div class="row">
           <div class="col-md-6 description">
-            <p>Here’s a paragraph about WildHacks. I don’t really know how long this thing is supposed to be. What’s a reasonable length for this thing? Like twenty words? Thirty? How many words does it take to explain a concept like WildHacks? It’s really not that hard to understand.</p>
+            <p>Here’s a paragraph about WildHacks. I don’t really know how long this thing is supposed to be. What’s a reasonable length for this thing? Like twenty words? Thirty? How many words does it take to explain a concept like WildHacks? It’s really
+              not that hard to understand.</p>
           </div>
         </div>
       </div>
-      <div class="apply-section mini-section">
+      <div class="apply-section mini-section" id='apply-section'>
         <div class="row">
           <div class="col-md-5 header apply-header">
             <h2>APPLY</h2>
@@ -102,7 +126,7 @@
   </section>
   <section class='below-ground-1'>
     <div class="content">
-      <div class="sponsors-section mini-section">
+      <div class="sponsors-section mini-section" id='sponsors-section'>
         <div class="row">
           <div class="col-md-5 header sponsors-header">
             <h2>SPONSORS</h2>
@@ -129,7 +153,7 @@
   </section>
   <section class='below-ground-2'>
     <div class="content">
-      <div class="schedule-section mini-section">
+      <div class="schedule-section mini-section" id='schedule-section'>
         <div class="row">
           <div class="col-md-5 header schedule-header">
             <h2>SCHEDULE</h2>
@@ -235,7 +259,7 @@
   </section>
   <section class='below-ground-3'>
     <div class="content">
-      <div class="about-section mini-section faq-header">
+      <div class="faq-section mini-section faq-header" id='faq-section'>
         <div class="row">
           <div class="col-md-5 header">
             <h2>FAQ</h2>

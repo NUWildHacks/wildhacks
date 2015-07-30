@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
+  $('#scroll').scrollspy();​
+
     var cloudStart = [600, 900, 300, 0, 1200];
-    
+
     var actualStart = -200;
 
     var leftBound = window.innerWidth;
@@ -9,10 +11,10 @@ $(document).ready(function () {
 
     for (var i = 0; i < cloudStart.length; i++) {
         if (cloudStart[i] > leftBound) {
-            cloudStart[i] = cloudStart[i] % leftBound;   
+            cloudStart[i] = cloudStart[i] % leftBound;
         }
     }
-    
+
     function moveClouds() {
         $('#cloud1').css({
             right: cloudStart[0]
@@ -82,11 +84,11 @@ $(document).ready(function () {
                 .done(function (result) {
                     console.log(result);
                 });
-            
+
             $('#submit-button').attr('disabled', 'true');
             $('#submit-button').html('Thanks for signing up!');
         } else {
-            
+
             $('.illustration-container').animate({
                 backgroundColor: '#EF9A9A'
             });
