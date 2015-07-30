@@ -104,6 +104,10 @@ body {
   text-align: center;
 }
 
+.sponsors-header {
+  text-align: left;
+}
+
 .below-ground-2 {
   background-color: #f37046;
 }
@@ -209,29 +213,58 @@ td h3 {
   background-color: none !important;
 }
 
-@media (max-width: 767px) {
+@media handheld, screen and (max-width: 767px) {
+
   .logo {
-    height: 200px;
+    height: 40%;
+    margin-top: 20%;
   }
 
   .landing-section h1 {
-    font-size: 2em;
+    font-size: 6em;
     margin-top: 10px;
   }
 
   .landing-section h2 {
-    font-size: 1em;
+    font-size: 3em;
     font-weight: 300;
     margin-top: 10px;
+  }
+
+  .sponsor-button, .submit-button {
+    font-size: 2em;
+    letter-spacing: 4px;
+  }
+
+  .header {
+    font-size: 3em;
+  }
+
+  .description p, .sponsor-row, .schedule, .faq .question{
+    font-size: 3em;
+  }
+
+  .schedule p {
+    font-size: 1em;
+  }
+
+  .time {
+    padding-right: 50px;
+  }
+
+  .faq-item p {
+    font-size: 2em;
+  }
+
+  .application input {
+    line-height: 80px;
+    height: 80px;
+    font-size: 40px;
   }
 
   .content {
     padding-right: 10%;
     padding-left: 10%;
-  }
-
-  .navbar {
-    right: 0px;
   }
 
   .header h2 {
