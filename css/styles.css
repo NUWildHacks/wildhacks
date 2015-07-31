@@ -139,6 +139,7 @@ td h3 {
 
 .time {
   vertical-align: top;
+  padding-right: 50px;
 }
 
 .faq {
@@ -246,10 +247,6 @@ td h3 {
 
   .schedule p {
     font-size: 1em;
-  }
-
-  .time {
-    padding-right: 50px;
   }
 
   .faq-item p {
