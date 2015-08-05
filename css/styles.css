@@ -15,6 +15,11 @@ body {
   overflow-x: hidden;
 }
 
+.content {
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
 .landing-section {
   position: relative;
   overflow: hidden;
@@ -35,17 +40,25 @@ body {
 }
 
 .logo {
-  height: 300px;
+  height: 40%;
+  margin-top: 20%;
 }
 
 .landing-section h1 {
-  font-size: 3.5em;
+  font-size: 6em;
+  margin-top: 10px;
 }
 
 .landing-section h2 {
-  font-size: 1.5em;
+  font-size: 3em;
   font-weight: 300;
-  padding-top: -20px;
+  margin-top: 10px;
+}
+
+.sponsor-button,
+.submit-button {
+  font-size: 2em;
+  letter-spacing: 4px;
 }
 
 .mini-section {
@@ -62,8 +75,7 @@ body {
 }
 
 .header h2 {
-  font-size: 5em;
-  font-weight: 700;
+  font-size: 6em;
 }
 
 .about-section {
@@ -75,8 +87,8 @@ body {
 }
 
 .content {
-  padding-right: 5%;
-  padding-left: 5%;
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 .above-ground {
@@ -88,7 +100,10 @@ body {
   background-size: cover;
 }
 
-.apply-section input {
+.application input {
+  font-size: 40px;
+  line-height: 80px;
+  height: 80px;
   margin-bottom: 40px;
 }
 
@@ -118,6 +133,10 @@ body {
   padding: 0 0 0 0;
 }
 
+.schedule p {
+  font-size: 1em;
+}
+
 td h3 {
   margin-top: 15px;
   margin-bottom: 5px;
@@ -144,6 +163,10 @@ td h3 {
 
 .faq {
   width: auto;
+}
+
+.faq-item p {
+  font-size: 2em;
 }
 
 .question {
@@ -214,60 +237,46 @@ td h3 {
   background-color: none !important;
 }
 
-@media screen, handheld and (max-width: 1000px){
+.description p,
+.sponsor-row,
+.schedule,
+.faq .question {
+  font-size: 3em;
+}
+
+@media screen and (min-device-width: 480px) {
   .logo {
-    height: 40%;
-    margin-top: 20%;
+    margin-top: 5%;
+    height: 300px;
   }
 
   .landing-section h1 {
-    font-size: 6em;
-    margin-top: 10px;
+    font-size: 3em;
   }
 
   .landing-section h2 {
-    font-size: 3em;
-    font-weight: 300;
-    margin-top: 10px;
+    font-size: 1.5em;
   }
 
-  .sponsor-button,
-    .submit-button {
-    font-size: 2em;
-    letter-spacing: 4px;
-  }
-
-  .header {
-    font-size: 3em;
+  .sponsor-button, .submit-button {
+font-size: 1em;
   }
 
   .description p,
-    .sponsor-row,
-    .schedule,
-    .faq .question {
-    font-size: 3em;
+  .sponsor-row,
+  .schedule,
+  .faq .question {
+    font-size: 1.5em;
   }
 
-  .schedule p {
-    font-size: 1em;
-  }
-
-  .faq-item p {
-    font-size: 2em;
+  .faq p {
+    font-size: 1.2em;
   }
 
   .application input {
-    font-size: 40px;
-    line-height: 80px;
-    height: 80px;
-  }
-
-  .content {
-    padding-right: 10%;
-    padding-left: 10%;
-  }
-
-  .header h2 {
-    font-size: 2.5em;
+    font-size: 20px;
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 20px;
   }
 }
