@@ -1,0 +1,36 @@
+{
+  "name": "wildhacks",
+  "version": "1.0.0",
+  "description": "WildHacks 2015 Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehandsomepanther/wildhacks.git"
+  },
+  "keywords": [
+    "wildhacks",
+    "2015",
+    "hackathon",
+    "northwestern",
+    "university",
+    "wildcats",
+    "dog"
+  ],
+  "author": "WildHacks Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thehandsomepanther/wildhacks/issues"
+  },
+  "homepage": "https://github.com/thehandsomepanther/wildhacks#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.3",
+    "express": "^4.13.3",
+    "favicon": "0.0.2",
+    "morgan": "^1.6.1",
+    "path": "^0.11.14"
+  }
+}
