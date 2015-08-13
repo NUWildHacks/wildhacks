@@ -27,12 +27,14 @@
   <meta name="theme-color" content="#ffffff">
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
   <script src="js/radiocheck.js"></script>
   <script src="js/flat-ui.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/controllers/wildhacks.js"></script>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="12" id='scroll'>
+<body ng-app="wildhacks" data-spy="scroll" data-target=".navbar" data-offset="12" id='scroll'>
   <nav class="navbar navbar-inverse navbar-static-top">
     <ul class="nav navbar-nav">
       <li>
@@ -55,7 +57,7 @@
       </li>
     </ul>
   </nav>
-
+  
   <section class='landing-section' id='landing-section'>
     <div class="content">
       <div class="logo-container">
@@ -74,8 +76,10 @@
       </a>
     </div>
   </section>
+  
   <section class='above-ground' id='first-section'>
     <div class="content">
+      
       <div class="about-section mini-section" id='about-section'>
         <div class="row">
           <div class="col-md-5 header about-header">
@@ -88,6 +92,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- APPLICATION FORM -->
       <div class="apply-section mini-section" id='apply-section'>
         <div class="row">
           <div class="col-md-5 header apply-header">
@@ -99,20 +105,26 @@
             <p>Let's get the basics first:</p>
           </div>
         </div>
-        <form class="application" action="index.html" method="post">
+        <form ng-controller="FormCtrl" class="application" action="index.html" method="post">
+          
+          {{text}}
           <div class='row'>
             <div class="col-md-6">
               <input type="text" class="form-control input-hg" name="name" placeholder="Name" />
             </div>
+            
             <div class="col-md-6">
               <input type="text" class="form-control input-hg" name="name" placeholder="School">
             </div>
+            
             <div class="col-md-6">
               <input type="text" class="form-control input-hg" name="name" placeholder="Year">
             </div>
+            
             <div class="col-md-6">
               <input type="text" class="form-control input-hg" name="name" placeholder="Dog">
             </div>
+            
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 submit-button-container">
@@ -121,8 +133,10 @@
           </div>
         </form>
       </div>
+      
     </div>
   </section>
+  
   <section class='below-ground-1'>
     <div class="content">
       <div class="sponsors-section mini-section" id='sponsors-section'>
