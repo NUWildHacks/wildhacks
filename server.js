@@ -23,5 +23,9 @@ app.get('/', function(req, res) {
     res.render('index.html');
 });
 
+app.get('/signup', function(req, res) {
+    res.render('signup.html');
+});
+
 app.listen(port);
 console.log('LISTENING ON PORT: ' + port);
