@@ -122,6 +122,17 @@ body {
 .sponsors-header {
   text-align: left;
   padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.sponsor-row,
+.partner-row{
+  height: 100px;  
+}
+
+.sponsor-row,
+.partner-row img{
+  max-height: 100px;
 }
 
 .below-ground-2 {
