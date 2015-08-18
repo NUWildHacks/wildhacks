@@ -121,6 +121,7 @@ body {
 
 .sponsors-header {
   text-align: left;
+  padding-top: 1.5em;
 }
 
 .below-ground-2 {
@@ -262,6 +263,12 @@ td h3 {
   .sponsor-button, .submit-button {
 font-size: 1em;
   }
+  
+  .above-ground {
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+}
 
   .description p,
   .sponsor-row,
