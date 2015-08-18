@@ -195,6 +195,7 @@ td h3 {
   width: 20px;
   min-height: 0;
   margin-bottom: 0;
+  -webkit-transform: translateY(-50%);
   transform: translate(0%, -50%);
   background-color: rgba(0, 0, 0, 0);
 }
