@@ -128,11 +128,17 @@ body {
 .sponsor-row,
 .partner-row{
   height: 100px;  
+  margin-bottom: 25px;
 }
 
 .sponsor-row,
 .partner-row img{
   max-height: 100px;
+  max-width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
 }
 
 .below-ground-2 {
