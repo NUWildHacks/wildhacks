@@ -2,7 +2,7 @@ var wildhacks = angular.module('wildhacks', []);
 
 wildhacks.controller('RegisterCtrl', ['$scope', function($scope) {
   $scope.submit = function() {
-    alert("goteeeem");
+    alert("client-side checks passed");
   };
   
 }]);
