@@ -112,28 +112,32 @@
             <div class="col-md-6">
               <input ng-model="user.email" type="email" class="form-control input-hg" name="email" placeholder="Email" required/>
               <span class="error" ng-show="register.email.$dirty && register.email.$invalid">
-                <span ng-show="register.email.$error.required">An email is required.</span>
-                <span ng-show="register.email.$error.email">Invalid email address.</span>
+                <span class="text-danger" ng-show="register.email.$error.required">An email is required.</span>
+                <span class="text-danger" ng-show="register.email.$error.email">Invalid email address.</span>
               </span>
             </div>
+          </div>
             
           <div class='row input-container'>
             <div class="col-md-6">
-              <input type="password" ng-model="user.password" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password">
+              <input type="password" ng-model="user.password" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password" required>
             </div>
           </div>
           
           <div class='row input-container'>  
             <div class="col-md-6">
-              <input type="password" ng-model="user.password2" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password">
-              <span ng-show="register.password.$error.equals || register.confirmPassword.$error.equals">Passwords not equal.</span>
+              <input type="password" ng-model="user.password2" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password" required>
+              <span class="error" ng-show="register.confirmPassword.$dirty && register.confirmPassword.$invalid">
+                <span class="text-danger" ng-show="register.password.$error.required && register.confirmPassword.$error.required">Password required.</span>
+                <span class="text-danger" ng-show="register.password.$error.equals && register.confirmPassword.$error.equals">Passwords not equal.</span>
+              </span>
             </div>
-            
           </div>
+          
           <div class="row">
             <div class="col-md-6 submit-button-container">
               <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'
-                      ng-disabled="register.email.$dirty && register.email.$invalid || register.password.$error.equals || register.confirmPassword.$error.equals">
+                      ng-disabled="register.email.$invalid || register.password.$invalid || register.confirmPassword.$invalid">
                      SUBMIT
               </button>
             </div>
