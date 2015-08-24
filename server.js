@@ -20,15 +20,14 @@ app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
- 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+// Using the flash middleware provided by connect-flash to store messages in session
+// and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
+
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
 
 // view engine setup
 app.set('views', __dirname + '/public/views');
@@ -41,9 +40,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-app.get('/', function(req, res) {
-  res.render('index.html');
-});
+var routes = require('./routes/index.js')(passport);
+app.use('/', routes);
 
 app.get('/signup', function(req, res) {
   res.render('signup.html');
