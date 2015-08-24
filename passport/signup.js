@@ -1,6 +1,6 @@
-// passport/register.js
+// passport/signup.js
 
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 

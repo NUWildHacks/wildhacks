@@ -1,15 +1,28 @@
 var wildhacks = angular.module('wildhacks', []);
 
-wildhacks.controller('RegisterCtrl', ['$scope', function($scope) {
+wildhacks.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
   // if true, display the login page, otherwise display the registration page
   $scope.showRegister = true;
   
   $scope.register = function() {
-    alert("client-side checks passed for registration");
+    $http.post('/signup', $scope.user)
+      .success(function(data) {
+        console.log($scope.user);
+        console.log("success");
+      })
+      .error(function(data, status, headers, config) {
+        console.log(status);
+      });
   };
   
   $scope.login = function() {
-    alert("client-side checks passed for login");
+    $http.post('/login', $scope.user)
+      .success(function(data) {
+        console.log("success");
+      })
+      .error(function(data, status, headers, config) {
+        console.log(status);
+      });
   };
   
 }]);
