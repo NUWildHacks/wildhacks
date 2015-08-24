@@ -1,13 +1,21 @@
 var wildhacks = angular.module('wildhacks', []);
 
 wildhacks.controller('RegisterCtrl', ['$scope', function($scope) {
-  $scope.submit = function() {
-    alert("client-side checks passed");
+  // if true, display the login page, otherwise display the registration page
+  $scope.showRegister = true;
+  
+  $scope.register = function() {
+    alert("client-side checks passed for registration");
+  };
+  
+  $scope.login = function() {
+    alert("client-side checks passed for login");
   };
   
 }]);
 
-angular.module('wildhacks').directive('equals', function() {
+// Used for password validation on registration page
+wildhacks.directive('equals', function() {
   return {
     //restrict: 'A',  // attribute only
     require: '?ngModel',  // get ngModelController
