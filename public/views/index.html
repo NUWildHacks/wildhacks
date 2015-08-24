@@ -58,7 +58,17 @@
       </li>
     </ul>
   </nav>
-  
+
+  <div class='clouds-container'>
+      <img id='cloud1' class='cloud' src='images/cloud1.svg'>
+      <img id='cloud2' class='cloud' src='images/cloud2.svg'>
+      <img id='cloud3' class='cloud' src='images/cloud1.svg'>
+      <img id='cloud4' class='cloud' src='images/cloud2.svg'>
+      <img id='cloud5' class='cloud' src='images/cloud1.svg'>
+      <img id='cloud6' class='cloud' src='images/cloud2.svg'>
+      <img id='cloud7' class='cloud' src='images/cloud1.svg'>
+  </div>
+
   <section class='landing-section' id='landing-section'>
     <div class="content">
       <div class="logo-container">
@@ -77,10 +87,10 @@
       </a>
     </div>
   </section>
-  
+
   <section class='above-ground' id='first-section'>
     <div class="content">
-      
+
       <div class="about-section mini-section" id='about-section'>
         <div class="row">
           <div class="col-md-5 header about-header">
@@ -93,7 +103,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- APPLICATION FORM -->
       <div class="apply-section mini-section" id='apply-section'>
         <div class="row">
@@ -115,16 +125,16 @@
                 <span ng-show="register.email.$error.email">Invalid email address.</span>
               </span>
             </div>
-            
+
             <div class="col-md-6">
               <input type="password" ng-model="user.password" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password">
             </div>
-            
+
             <div class="col-md-6">
               <input type="password" ng-model="user.password2" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password">
               <span ng-show="register.password.$error.equals || register.confirmPassword.$error.equals">Passwords not equal.</span>
             </div>
-            
+
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 submit-button-container">
@@ -133,15 +143,15 @@
                      SUBMIT
               </button>
             </div>
-            
+
           </div>
-          
+
         </form>
       </div>
-      
+
     </div>
   </section>
-  
+
   <section class='below-ground-1'>
     <div class="content">
       <div class="sponsors-section mini-section" id='sponsors-section'>
