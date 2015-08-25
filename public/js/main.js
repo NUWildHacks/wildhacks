@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
     $('#cloud2').animate({
       right: leftBound,
-    }, 100000, 'linear', function() {
+    }, 10000, 'linear', function() {
       moveClouds();
     });
     cloudStart[1] = actualStart;
@@ -50,7 +50,7 @@ $(document).ready(function() {
     });
     $('#cloud4').animate({
       right: leftBound,
-    }, 80000, 'linear', function() {
+    }, 8000, 'linear', function() {
       moveClouds();
     });
     cloudStart[3] = actualStart;
@@ -80,7 +80,7 @@ $(document).ready(function() {
     });
     $('#cloud7').animate({
       right: leftBound,
-    }, 12000, 'linear', function() {
+    }, 15000, 'linear', function() {
       moveClouds();
     });
     cloudStart[6] = actualStart;

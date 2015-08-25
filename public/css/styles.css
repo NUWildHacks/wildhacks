@@ -23,34 +23,35 @@ body {
 .cloud {
   position: absolute;
   z-index: 99;
+  opacity: .6;
 }
 
 #cloud1 {
-  top: 200px;
+  top: 25vh;
 }
 
 #cloud2 {
-  top: 50px;
+  top: 150vh;
 }
 
 #cloud3 {
-  top: 600px;
+  top: 60vh;
 }
 
 #cloud4 {
-  top: 900px;
+  top: 110vh;
 }
 
 #cloud5 {
-  top: 1500px;
+  top: 200vh;
 }
 
 #cloud6 {
-  top: 1800px;
+  top: 5vh;
 }
 
 #cloud7 {
-  top: 700px;
+  top: 90vh;
 }
 
 .landing-section {
