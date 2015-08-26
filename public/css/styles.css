@@ -11,13 +11,16 @@ h2 {
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
-body {
-  overflow-x: hidden;
-}
-
 .content {
   padding-right: 10%;
   padding-left: 10%;
+}
+
+.clouds-container {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
 .cloud {
