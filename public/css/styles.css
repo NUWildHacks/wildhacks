@@ -334,13 +334,19 @@ font-size: 1em;
   .faq p {
     font-size: 1.2em;
   }
-
+  
+  .application .input-container {
+    height: 70px;
+  }
+  
   .application input {
     font-size: 20px;
     line-height: 40px;
     height: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
+  
+  
 }
 
 .error {

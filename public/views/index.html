@@ -105,7 +105,7 @@
       </div>
 
       <!-- APPLICATION FORM -->
-      <div class="apply-section mini-section" id='apply-section'>
+      <div ng-controller="RegisterCtrl" class="apply-section mini-section" id='apply-section'>
         <div class="row">
           <div class="col-md-5 header apply-header">
             <h2>APPLY</h2>
@@ -116,41 +116,87 @@
             <p>Let's get you registered!</p>
           </div>
         </div>
-        <form ng-controller="RegisterCtrl" class="application" name="register" novalidate>
-          <div class='row'>
+        
+        <!-- REGISTRATION PAGE -->
+        <form ng-show="showRegister" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && register()">
+          <div class='row input-container'>
             <div class="col-md-6">
-              <input ng-model="user.email" type="email" class="form-control input-hg" name="email" placeholder="Email" required/>
-              <span class="error" ng-show="register.email.$dirty && register.email.$invalid">
-                <span ng-show="register.email.$error.required">An email is required.</span>
-              <span ng-show="register.email.$error.email">Invalid email address.</span>
+              <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email*" autocomplete="off" required/>
+              <span class="error" ng-show="registerForm.email.$touched && registerForm.email.$invalid">
+                <span class="text-danger" ng-show="registerForm.email.$error.required">An email is required.</span>
+                <span class="text-danger" ng-show="registerForm.email.$error.email">Invalid email address.</span>
               </span>
             </div>
-
-            <div class="col-md-6">
-              <input type="password" ng-model="user.password" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password">
-            </div>
-
-            <div class="col-md-6">
-              <input type="password" ng-model="user.password2" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password">
-              <span ng-show="register.password.$error.equals || register.confirmPassword.$error.equals">Passwords not equal.</span>
-            </div>
-
           </div>
+            
+          <div class='row input-container'>
+            <div class="col-md-6">
+              <input type="password" ng-model="user.password" ng-model-options="{ updateOn: 'blur' }" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password*" required>
+              <span class="error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
+                <span class="text-danger" ng-show="registerForm.password.$error.required">Field is required.</span>
+              </span>
+            </div>
+          </div>
+          
+          <div class='row input-container'>  
+            <div class="col-md-6">
+              <input type="password" ng-model="user.password2" ng-model-options="{ updateOn: 'blur' }" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password*" required>
+              <span class="error" ng-show="registerForm.confirmPassword.$touched && registerForm.confirmPassword.$invalid">
+                <span class="text-danger" ng-show="registerForm.confirmPassword.$error.required">Field is required.</span>
+                <span class="text-danger" ng-show="registerForm.password.$error.equals && registerForm.confirmPassword.$error.equals">Passwords not equal.</span>
+              </span>
+            </div>
+          </div>
+          
+          <!-- TOGGLE BETWEEN THE TWO -->
+          <a ng-click="showRegister = !showRegister">Already registered?</a>
+          
           <div class="row">
-            <div class="col-md-6 col-md-offset-3 submit-button-container">
-              <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary' ng-disabled="register.email.$dirty && register.email.$invalid || register.password.$error.equals || register.confirmPassword.$error.equals">
-                SUBMIT
+            <div class="col-md-6 submit-button-container">
+              <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'>
+                     SUBMIT
               </button>
             </div>
-
           </div>
-
         </form>
+        
+        <!-- LOGIN PAGE -->
+        <form ng-hide="showRegister" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && login()">
+          <div class='row input-container'>
+            <div class="col-md-6">
+              <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email" autocomplete="off" required/>
+              <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
+                <span class="text-danger" ng-show="loginForm.email.$error.required">An email is required.</span>
+                <span class="text-danger" ng-show="loginForm.email.$error.email">Invalid email address.</span>
+              </span>
+            </div>
+          </div>
+            
+          <div class='row input-container'>
+            <div class="col-md-6">
+              <input type="password" ng-model="user.password" ng-model-options="{ updateOn: 'blur' }" class="form-control input-hg" name="password" placeholder="Password" required>
+              <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
+                <span class="text-danger" ng-show="loginForm.password.$error.required">Field is required.</span>
+              </span>
+            </div>
+          </div>
+          
+          <!-- TOGGLE BETWEEN THE TWO -->
+          <a ng-click="showRegister = !showRegister">No wait, I wasn't registered</a>
+          
+          <div class="row">
+            <div class="col-md-6 submit-button-container">
+              <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'>
+                     SUBMIT
+              </button>
+            </div>
+          </div>
+        </form>
+        
       </div>
-
     </div>
   </section>
-
+  
   <section class='below-ground-1'>
     <div class="content">
       <div class="sponsors-section mini-section" id='sponsors-section'>
