@@ -3,25 +3,25 @@ var express = require('express');
 var path = require('path');
 var favicon = require('favicon');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 
-var app = express();
+var dbConfig = require('./config/db.js');
+var mongoose = require('mongoose');
+
+// set up DB
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost:27017')
+
+// app
 var port = process.env.PORT || 9000;
+var app = express();
 
-// view engine setup
-app.set('views', __dirname + '/public/views');
-app.engine('.html', require('ejs').renderFile);
-
-// app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+// config
+require('./config/app.js')(app);
 
 // routes
-app.get('/', function(req, res) {
-    res.render('index.html');
-});
+app.use(require('./routes')())
 
 app.listen(port);
 console.log('LISTENING ON PORT: ' + port);

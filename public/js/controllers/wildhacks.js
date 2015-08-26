@@ -1,13 +1,34 @@
 var wildhacks = angular.module('wildhacks', []);
 
-wildhacks.controller('RegisterCtrl', ['$scope', function($scope) {
-  $scope.submit = function() {
-    alert("goteeeem");
+wildhacks.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
+  // if true, display the login page, otherwise display the registration page
+  $scope.showRegister = true;
+  
+  $scope.register = function() {
+    $http.post('/signup', $scope.user)
+      .success(function(data) {
+        console.log($scope.user);
+        console.log("success");
+      })
+      .error(function(data, status, headers, config) {
+        console.log(status);
+      });
+  };
+  
+  $scope.login = function() {
+    $http.post('/login', $scope.user)
+      .success(function(data) {
+        console.log("success");
+      })
+      .error(function(data, status, headers, config) {
+        console.log(status);
+      });
   };
   
 }]);
 
-angular.module('wildhacks').directive('equals', function() {
+// Used for password validation on registration page
+wildhacks.directive('equals', function() {
   return {
     //restrict: 'A',  // attribute only
     require: '?ngModel',  // get ngModelController
