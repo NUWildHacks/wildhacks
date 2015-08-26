@@ -12,8 +12,8 @@ h2 {
 }
 
 .content {
-  padding-right: 10%;
-  padding-left: 10%;
+  padding-right: 12%;
+  padding-left: 12%;
 }
 
 .clouds-container {
@@ -112,7 +112,7 @@ h2 {
 }
 
 .header h2 {
-  font-size: 6em;
+  font-size: 5.5em;
 }
 
 .about-section {
@@ -121,11 +121,6 @@ h2 {
 
 .about-header h2 {
   color: #faa629;
-}
-
-.content {
-  padding-right: 10%;
-  padding-left: 10%;
 }
 
 .above-ground {
@@ -162,15 +157,18 @@ h2 {
   padding-bottom: 1.5em;
 }
 
-.sponsor-row,
-.partner-row{
-  height: 100px;  
-  margin-top: 30px;
+.sponsor-row p {
+  font-size: 2em;
+}
+.sponsor-row div,
+.partner-row div {
+  height: 125px;
+  margin-top: 40px;
 }
 
 .sponsor-row img,
-.partner-row img{
-  max-height: 100px;
+.partner-row img {
+  max-height: 100%;
   max-width: 100%;
   position: relative;
   top: 50%;
@@ -239,7 +237,6 @@ td h3 {
 .faq p {
   color: #d7ede8;
 }
-
 /* Navbar */
 
 .navbar {
@@ -294,7 +291,6 @@ td h3 {
 }
 
 .description p,
-.sponsor-row,
 .schedule,
 .faq .question {
   font-size: 3em;
@@ -305,36 +301,29 @@ td h3 {
     margin-top: 5%;
     height: 300px;
   }
-
   .landing-section h1 {
     font-size: 3em;
   }
-
   .landing-section h2 {
     font-size: 1.5em;
   }
-
-  .sponsor-button, .submit-button {
-font-size: 1em;
+  .sponsor-button,
+  .submit-button {
+    font-size: 1em;
   }
-  
   .above-ground {
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-}
-
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+  }
   .description p,
-  .sponsor-row,
   .schedule,
   .faq .question {
     font-size: 1.5em;
   }
-
   .faq p {
     font-size: 1.2em;
   }
-
   .application input {
     font-size: 20px;
     line-height: 40px;
