@@ -122,7 +122,7 @@
               <input ng-model="user.email" type="email" class="form-control input-hg" name="email" placeholder="Email" required/>
               <span class="error" ng-show="register.email.$dirty && register.email.$invalid">
                 <span ng-show="register.email.$error.required">An email is required.</span>
-                <span ng-show="register.email.$error.email">Invalid email address.</span>
+              <span ng-show="register.email.$error.email">Invalid email address.</span>
               </span>
             </div>
 
@@ -138,9 +138,8 @@
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 submit-button-container">
-              <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'
-                      ng-disabled="register.email.$dirty && register.email.$invalid || register.password.$error.equals || register.confirmPassword.$error.equals">
-                     SUBMIT
+              <button type="submit" class='submit-button btn btn-hg btn-embossed btn-primary' ng-disabled="register.email.$dirty && register.email.$invalid || register.password.$error.equals || register.confirmPassword.$error.equals">
+                SUBMIT
               </button>
             </div>
 
@@ -160,17 +159,66 @@
             <h2>SPONSORS</h2>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 sponsor-row">
-            Numba wun sponer
+        <div class="row sponsor-row" id="tier4">
+          <div class="col-xs-12 col-md-6">
+            <img src="../images/logos/sponsors/tier4/braintree.png">
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <img src="../images/logos/sponsors/tier4/paypal.png">
           </div>
         </div>
-        <div class="row sponsor-row">
-          <div class="col-xs-6">
-            Nummer too sponnor
+        <div class="row sponsor-row" id="tier3">
+          <div class="col-xs-12 col-md-4 col-md-offset-4">
+            <img src="../images/logos/sponsors/tier3/tanvas.png">
           </div>
-          <div class="col-xs-6">
-            Nummer too sponnor
+        </div>
+        <div class="row sponsor-row" id="tier2">
+          <div class="col-xs-12 col-md-3">
+            <img src="../images/logos/sponsors/tier2/3red.png">
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <img src="../images/logos/sponsors/tier2/belvedere.png">
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <img src="../images/logos/sponsors/tier2/twilio.png">
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <img src="../images/logos/sponsors/tier2/walgreens.png">
+          </div>
+        </div>
+        <div class="row sponsor-row" id="tier1">
+          <div class="col-xs-12 col-md-2 col-md-offset-3">
+            <img src="../images/logos/sponsors/tier1/google.png">
+          </div>
+          <div class="col-xs-12 col-md-2">
+            <img src="../images/logos/sponsors/tier1/pariveda.png">
+          </div>
+          <div class="col-xs-12 col-md-2">
+            <img src="../images/logos/sponsors/tier1/vfa.png">
+          </div>
+        </div>
+        
+        <div class="row">
+          <p>Interested in sponsoring? Email <a href='mailto:sponsor@wildhacks.org'>sponsor@wildhacks.org</a>!</p>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-5 header sponsors-header">
+            <h2>PARTNERS</h2>
+          </div>
+        </div>
+        <div class="row partner-row">
+          <div class="col-xs-3 col-md-3">
+            <a href="http://nuisepic.com"><img src="../images/logos/partners/epic.png"></a>
+          </div>
+          <div class="col-xs-3 col-md-3">
+            <a href="https://www.facebook.com/HackNorthwestern"><img src="../images/logos/partners/hacknorthwestern.png"</a>
+          </div>
+          <div class="col-xs-3 col-md-3">
+            <a href="http://fcei.northwestern.edu"><img src="../images/logos/partners/farley.png"</a>
+          </div>
+          <div class="col-xs-3 col-md-3">
+            <a href="http://mlh.io"><img src="../images/logos/partners/mlh.png"></a>
           </div>
         </div>
       </div>

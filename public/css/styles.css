@@ -158,6 +158,24 @@ h2 {
 
 .sponsors-header {
   text-align: left;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.sponsor-row,
+.partner-row{
+  height: 100px;  
+  margin-top: 30px;
+}
+
+.sponsor-row img,
+.partner-row img{
+  max-height: 100px;
+  max-width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
 }
 
 .below-ground-2 {
@@ -232,6 +250,7 @@ td h3 {
   width: 20px;
   min-height: 0;
   margin-bottom: 0;
+  -webkit-transform: translateY(-50%);
   transform: translate(0%, -50%);
   background-color: rgba(0, 0, 0, 0);
 }
@@ -298,6 +317,12 @@ td h3 {
   .sponsor-button, .submit-button {
 font-size: 1em;
   }
+  
+  .above-ground {
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+}
 
   .description p,
   .sponsor-row,

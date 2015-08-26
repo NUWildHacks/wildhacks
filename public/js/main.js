@@ -1,6 +1,21 @@
 $(document).ready(function() {
   $('#scroll').scrollspy();
 
+  $(function smoothScroll() {
+    $('a[href*=#]:not([href=#])').click(function () {
+      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 750);
+          return false;
+        }
+      }
+    });
+  });
+  
   var cloudStart = [600, 900, 300, 0, 1200];
 
   var actualStart = -200;
@@ -88,4 +103,6 @@ $(document).ready(function() {
 
   moveClouds();
 
-})
+  
+  
+});
