@@ -23,17 +23,9 @@ module.exports = function() {
     res.render('index.html')
   });
 
-  router.get('/login', function (req, res) {
-    res.render('login.html');
-  })
-
   // GET application page
   router.get('/apply', isAuthenticated, function(req, res) {
     res.render('apply.html', { user: req.user });
-  });
-
-  router.get('/signup', function(req, res) {
-    res.render('signup.html');
   });
 
   var handleError = function (res, success) {
