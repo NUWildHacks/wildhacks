@@ -1,13 +1,5 @@
 // server.js
 var express = require('express');
-var path = require('path');
-var favicon = require('favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var methodOverride = require('method-override');
-var bodyParser = require('body-parser');
-
-var dbConfig = require('./config/db.js');
 var mongoose = require('mongoose');
 
 // set up DB
