@@ -11,44 +11,17 @@ var dbConfig = require('./config/db.js');
 var mongoose = require('mongoose');
 
 // set up DB
-mongoose.connect(dbConfig.url);
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost:27017')
 
 // app
 var port = process.env.PORT || 9000;
 var app = express();
 
-// view engine setup
-app.set('views', __dirname + '/public/views');
-app.engine('html', require('ejs').renderFile);
-
-// app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(methodOverride());
-
-// Configuring Passport
-var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Using the flash middleware provided by connect-flash to store messages in session
-// and displaying in templates
-var flash = require('connect-flash');
-app.use(flash());
-
-// Initialize Passport
-var initPassport = require('./passport/init');
-initPassport(passport);
+// config
+require('./config/app.js')(app);
 
 // routes
-var routes = require('./routes/index')(passport);
-app.use('/', routes);
-
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./routes')())
 
 app.listen(port);
 console.log('LISTENING ON PORT: ' + port);

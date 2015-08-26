@@ -1,9 +1,10 @@
 // models/user.js
 var mongoose = require('mongoose');
+var Schema   = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
-module.exports = mongoose.model('User', {
+var userSchema = new Schema({
   email: String,
-  password: String,
   cell: String,
   dietaryRestrictions: String,
   shirtSize: String,
@@ -43,3 +44,7 @@ module.exports = mongoose.model('User', {
   favoriteProject: String,
   other: String
 });
+
+userSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('User', userSchema);
