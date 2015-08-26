@@ -20,6 +20,40 @@ body {
   padding-left: 10%;
 }
 
+.cloud {
+  position: absolute;
+  z-index: 99;
+  opacity: .6;
+}
+
+#cloud1 {
+  top: 25vh;
+}
+
+#cloud2 {
+  top: 150vh;
+}
+
+#cloud3 {
+  top: 60vh;
+}
+
+#cloud4 {
+  top: 110vh;
+}
+
+#cloud5 {
+  top: 200vh;
+}
+
+#cloud6 {
+  top: 5vh;
+}
+
+#cloud7 {
+  top: 90vh;
+}
+
 .landing-section {
   position: relative;
   overflow: hidden;
