@@ -20,7 +20,7 @@ module.exports = function() {
 
   // GET main page
   router.get('/', function(req, res) {
-    res.render('index.html', { message: req.flash('message') });
+    res.render('index.html')
   });
 
   router.get('/login', function (req, res) {

@@ -11,42 +11,17 @@ var dbConfig = require('./config/db.js');
 var mongoose = require('mongoose');
 
 // set up DB
-mongoose.connect(dbConfig.url);
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost:27017')
 
 // app
 var port = process.env.PORT || 9000;
 var app = express();
 
-// view engine setup
-app.set('views', __dirname + '/public/views');
-app.engine('html', require('ejs').renderFile);
-
-// app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(methodOverride());
-
-// Configuring Passport
-var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+// config
+require('./config/app.js')(app);
 
 // routes
-var routes = require('./routes/index')(passport);
+var routes = require('./routes/index');
 app.use('/', routes);
 
 app.use(express.static(path.join(__dirname, 'public')));

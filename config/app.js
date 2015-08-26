@@ -7,7 +7,6 @@ var passport       = require('passport')
   , logger         = require('morgan')
   , bodyParser     = require('body-parser')
   , express        = require('express')
-  , flash          = require('connect-flash')
   , User           = require('../models/user.js')
 
 module.exports = function (app) {
@@ -28,8 +27,6 @@ module.exports = function (app) {
   app.use(expressSession({secret: 'mySecretKey'}));
   app.use(passport.initialize());
   app.use(passport.session());
-
-  app.use(flash());
 
   // Initialize Passport
   passport.use(User.createStrategy());
