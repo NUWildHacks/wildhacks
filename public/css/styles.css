@@ -168,7 +168,7 @@ h2 {
 .sponsor-row div,
 .partner-row div {
   height: 125px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .sponsor-row img,
@@ -247,6 +247,11 @@ td h3 {
 .faq p {
   color: #d7ede8;
 }
+
+.faq-bottom {
+  height: 200px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -327,13 +332,14 @@ td h3 {
     background-size: contain;
   }
   .description p,
+  .sponsor-row p,
   .schedule,
   .faq .question {
-    font-size: 1.3em;
-  }
-  .sponsor-row p,
-  .faq p {
     font-size: 1.2em;
+  }
+
+  .faq p {
+    font-size: 1em;
   }
   
   .application .input-container {
