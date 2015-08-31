@@ -18,14 +18,14 @@ h2 {
 
 .clouds-container {
   overflow: hidden;
-  height: 100%;
+  height: 200%;
   width: 100%;
   position: absolute;
 }
 
 .cloud {
   position: absolute;
-  z-index: 99;
+  z-index: 9999;
   opacity: .6;
 }
 
@@ -46,7 +46,7 @@ h2 {
 }
 
 #cloud5 {
-  top: 200vh;
+  top: 175vh;
 }
 
 #cloud6 {
@@ -163,7 +163,7 @@ h2 {
 }
 
 .sponsor-row p {
-  font-size: 2em;
+  font-size: 2rem;
 }
 .sponsor-row div,
 .partner-row div {
@@ -194,7 +194,7 @@ h2 {
 }
 
 .schedule p {
-  font-size: 1em;
+  font-size: 2rem;
 }
 
 .schedule-row p {
