@@ -103,6 +103,11 @@ h2 {
   min-height: 100vh;
 }
 
+#schedule-section{
+  height: auto;
+  min-height: 10vh;
+}
+
 .above-ground .content {
   position: relative;
   display: table-cell;
@@ -178,6 +183,8 @@ h2 {
 
 .below-ground-2 {
   background-color: #f37046;
+  height: auto;
+  min-height: 10vh;
 }
 
 .schedule tr {
