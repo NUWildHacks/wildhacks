@@ -12,20 +12,20 @@ h2 {
 }
 
 .content {
-  padding-right: 10%;
-  padding-left: 10%;
+  padding-right: 12%;
+  padding-left: 12%;
 }
 
 .clouds-container {
   overflow: hidden;
-  height: 100%;
+  height: 200%;
   width: 100%;
   position: absolute;
 }
 
 .cloud {
   position: absolute;
-  z-index: 99;
+  z-index: 9999;
   opacity: .6;
 }
 
@@ -46,7 +46,7 @@ h2 {
 }
 
 #cloud5 {
-  top: 200vh;
+  top: 175vh;
 }
 
 #cloud6 {
@@ -103,6 +103,11 @@ h2 {
   min-height: 100vh;
 }
 
+#schedule-section{
+  height: auto;
+  min-height: 10vh;
+}
+
 .above-ground .content {
   position: relative;
   display: table-cell;
@@ -112,7 +117,7 @@ h2 {
 }
 
 .header h2 {
-  font-size: 6em;
+  font-size: 5.5em;
 }
 
 .about-section {
@@ -121,11 +126,6 @@ h2 {
 
 .about-header h2 {
   color: #faa629;
-}
-
-.content {
-  padding-right: 10%;
-  padding-left: 10%;
 }
 
 .above-ground {
@@ -158,19 +158,22 @@ h2 {
 
 .sponsors-header {
   text-align: left;
-  padding-top: 1.5em;
+  padding-top: 2em;
   padding-bottom: 1.5em;
 }
 
-.sponsor-row,
-.partner-row{
-  height: 100px;  
+.sponsor-row p {
+  font-size: 2rem;
+}
+.sponsor-row div,
+.partner-row div {
+  height: 125px;
   margin-top: 30px;
 }
 
 .sponsor-row img,
-.partner-row img{
-  max-height: 100px;
+.partner-row img {
+  max-height: 100%;
   max-width: 100%;
   position: relative;
   top: 50%;
@@ -180,6 +183,8 @@ h2 {
 
 .below-ground-2 {
   background-color: #f37046;
+  height: auto;
+  min-height: 10vh;
 }
 
 .schedule tr {
@@ -189,7 +194,12 @@ h2 {
 }
 
 .schedule p {
-  font-size: 1em;
+  font-size: 2rem;
+}
+
+.schedule-row p {
+  text-align: center;
+  margin-top: 30px;
 }
 
 td h3 {
@@ -224,9 +234,7 @@ td h3 {
   font-size: 2em;
 }
 
-.question {
-  width: 33%;
-}
+
 
 .faq-header .header {
   color: #d7ede8;
@@ -238,6 +246,10 @@ td h3 {
 
 .faq p {
   color: #d7ede8;
+}
+
+.faq-bottom {
+  height: 200px;
 }
 
 /* Navbar */
@@ -294,7 +306,6 @@ td h3 {
 }
 
 .description p,
-.sponsor-row,
 .schedule,
 .faq .question {
   font-size: 3em;
@@ -305,34 +316,30 @@ td h3 {
     margin-top: 5%;
     height: 300px;
   }
-
   .landing-section h1 {
     font-size: 3em;
   }
-
   .landing-section h2 {
     font-size: 1.5em;
   }
-
-  .sponsor-button, .submit-button {
-font-size: 1em;
+  .sponsor-button,
+  .submit-button {
+    font-size: 1em;
   }
-  
   .above-ground {
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-}
-
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+  }
   .description p,
-  .sponsor-row,
+  .sponsor-row p,
   .schedule,
   .faq .question {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .faq p {
-    font-size: 1.2em;
+    font-size: 1em;
   }
   
   .application .input-container {
@@ -346,9 +353,21 @@ font-size: 1em;
     margin-bottom: 0px;
   }
   
-  
 }
 
 .error {
   color: red;
 }
+
+@media (min-width: 992px) {
+/*  Custom column width for 5 column row*/
+  .col-md-2-4 {
+    width: 20%;
+    float: left;
+  }
+  .col-md-offset-2-4 {
+    margin-left: 20%;
+  }
+}
+
+
