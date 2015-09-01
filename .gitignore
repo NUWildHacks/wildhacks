@@ -55,6 +55,6 @@ node_modules
 # Debug log from npm
 npm-debug.log
 
-# Don't push database credentials to the world
-config/db.js
+# Hide environment variables
+.env
 

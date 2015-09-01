@@ -27,6 +27,7 @@
   "homepage": "https://github.com/thehandsomepanther/wildhacks#readme",
   "dependencies": {
     "body-parser": "^1.13.3",
+    "dotenv": "^1.2.0",
     "ejs": "^2.3.3",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
