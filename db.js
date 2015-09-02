@@ -1,12 +1,12 @@
-var leveup = require('level')
+var levelup = require('level')
 
 var env = process.env.NODE_ENV
   , db
 
 if (env == 'production') {
-  db = levelup('../db/prod')
+  db = levelup('db/prod')
 } else {
-  db = levelup('../db/dev')
+  db = levelup('db/dev')
 }
 
 module.exports = db

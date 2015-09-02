@@ -19,8 +19,5 @@ module.exports = function (app) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  // Configuring Passport
-  app.use(expressSession({ secret: process.env.SESSION_SECRET }));
-
   app.use(express.static(path.join(__dirname, '../public')));
 }
