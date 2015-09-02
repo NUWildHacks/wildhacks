@@ -58,3 +58,6 @@ npm-debug.log
 # Hide environment variables
 .env
 
+# Hide the development db
+db/development
+
