@@ -1,60 +1,45 @@
 // routes/server.js
-var express  = require('express');
-var passport = require('passport');
-var router   = express.Router();
-var User     = require('../models/user.js');
-var _        = require('lodash');
+var express   = require('express')
+  , router    = express.Router()
+  , db        = require('../db.js')
+  , basicAuth = require('basic-auth-connect')
 
-var isAuthenticated = function (req, res, next) {
-  // if user is authenticated in the session, call the next() to call the next request handler
-  // Passport adds this method to request object. A middleware is allowed to add properties to
-  console.log('isAuthenticated being called')
-  // request and response objects
-  if (req.isAuthenticated())
-    return next();
-  // if the user is not authenticated then redirect him to the login page
-  res.redirect('/login');
-};
+router.get('/', function(req, res) {
+  res.render('index.html')
+});
 
-module.exports = function() {
+router.get('/apply', function (req, res) {
+  res.render('application.html')
+});
 
-  // GET main page
-  router.get('/', function(req, res) {
-    res.render('index.html')
+router.get('/applications',
+           basicAuth('wh-team', process.env.REVIEW_PASSWORD),
+           function (req, res) {
+  var applications = { };
+  db.createReadStream()
+    .on('data', function (data) {
+    applications[data.value[data.key]] = data.value;
+  }).on('end', function () {
+    res.json(applications);
   });
+});
 
-  // GET application page
-  router.get('/apply', isAuthenticated, function(req, res) {
-    res.render('apply.html', { user: req.user });
-  });
-
-  var handleError = function (res, success) {
-    return function (err, resp) {
-      if (err) res.send(err);
-      else success(resp);
-    }
-  }
-
-  var LogIn = passport.authenticate('local');
-
-  // Handle registration POST
-  router.post('/signup', function (req, res) {
-    var user = _.pick(req.body, [ 'username' ])
-    User.register(user, req.body.password,
-                  handleError(res, function (user) {
-      LogIn(req, res, function ( ) {
-        // req.isAuthenticated() => true
-        res.send('Registration Successful. See you at WH 2015!');
-      })
-    }))
+router.get('/application-session/:hash', function (req, res) {
+  var key = req.params.hash
+  db.get(key, function (err, value) {
+    console.log(value);
+    if (err) res.json({})
+    else res.json(value);
   })
+});
 
-  router.get('/user/:username', function (req, res) {
-    User.find({ username: req.params.username },
-              handleError(res, function (user) {
-      res.send(user)
-    }))
+router.put('/application-session/:hash', function (req, res) {
+  var key = req.params.hash
+  console.log(req.body)
+  db.put(key, req.body, function (err) {
+    if(err) res.json(err)
+    else res.send('okay!')
   })
+});
 
-  return router;
-};
+module.exports = router;
