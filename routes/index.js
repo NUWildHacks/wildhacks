@@ -14,15 +14,17 @@ router.get('/apply', function (req, res) {
 router.get('/application-session/:hash', function (req, res) {
   var key = req.params.hash
   db.get(key, function (err, value) {
-    if (err) res.send({})
-    else res.send(value);
+    console.log(value);
+    if (err) res.json({})
+    else res.json(value);
   })
 });
 
 router.put('/application-session/:hash', function (req, res) {
   var key = req.params.hash
-  db.put(key, req.body, function (err, value) {
-    if(err) console.error(err)
+  console.log(req.body)
+  db.put(key, req.body, function (err) {
+    if(err) res.json(err)
     else res.send('okay!')
   })
 });
