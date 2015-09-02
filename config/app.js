@@ -13,6 +13,12 @@ module.exports = function (app) {
 
   app.use(logger('dev'));
 
+  app.use(function (req, res, next) {
+    console.log(req.body)
+    if (req.method == 'OPTIONS') res.send(200)
+    else next()
+  });
+
   // NOTE(Jordan): Request data parsing
   app.use(cookieParser())
   app.use(methodOverride())
