@@ -1,30 +1,20 @@
 var wildhacks = angular.module('wildhacks', []);
 
-wildhacks.controller('RegisterCtrl', ['$scope', '$http', function($scope, $http) {
+wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
   $scope.showRegister = true;
   
-  $scope.register = function() {
-    $http.post('/signup', $scope.user)
-      .success(function(data) {
-        console.log($scope.user);
-        console.log("success");
-      })
-      .error(function(data, status, headers, config) {
-        console.log(status);
-      });
+  $scope.authenticate = function() {
+    var email = $scope.user.email;
+    
+    var key = sjcl.codec.utf8String.toBits($scope.user.password);
+    var out = (new sjcl.misc.hmac(key, sjcl.hash.sha256)).mac($scope.user.email);
+    var hmac = sjcl.codec.hex.fromBits(out)
+    
+    var url = "#" + email + ":" + hmac;
+    $window.location.href = url;
+    
   };
-  
-  $scope.login = function() {
-    $http.post('/login', $scope.user)
-      .success(function(data) {
-        console.log("success");
-      })
-      .error(function(data, status, headers, config) {
-        console.log(status);
-      });
-  };
-  
 }]);
 
 // Used for password validation on registration page
