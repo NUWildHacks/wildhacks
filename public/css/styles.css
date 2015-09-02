@@ -120,6 +120,10 @@ h2 {
   font-size: 5.5em;
 }
 
+.description strong {
+  color: #faa629;
+}
+
 .about-section {
   height: 50%;
 }
@@ -142,6 +146,14 @@ h2 {
   line-height: 80px;
   height: 80px;
   margin-bottom: 40px;
+}
+
+.already-registered {
+  color: #34495e;
+}
+
+.already-registered:hover {
+  cursor: pointer;
 }
 
 .submit-button-container {
@@ -185,6 +197,10 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
+}
+
+.schedule-header {
+  color: #fdd59c;
 }
 
 .schedule tr {
@@ -341,18 +357,18 @@ td h3 {
   .faq p {
     font-size: 1em;
   }
-  
+
   .application .input-container {
     height: 70px;
   }
-  
+
   .application input {
     font-size: 20px;
     line-height: 40px;
     height: 40px;
     margin-bottom: 0px;
   }
-  
+
 }
 
 .error {
@@ -369,5 +385,3 @@ td h3 {
     margin-left: 20%;
   }
 }
-
-
