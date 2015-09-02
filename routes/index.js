@@ -1,7 +1,8 @@
 // routes/server.js
-var express = require('express')
-  , router  = express.Router()
-  , db      = require('../db.js')
+var express   = require('express')
+  , router    = express.Router()
+  , db        = require('../db.js')
+  , basicAuth = require('basic-auth-connect')
 
 router.get('/', function(req, res) {
   res.render('index.html')
@@ -9,6 +10,18 @@ router.get('/', function(req, res) {
 
 router.get('/apply', function (req, res) {
   res.render('application.html')
+});
+
+router.get('/applications',
+           basicAuth('wh-team', process.env.REVIEW_PASSWORD),
+           function (req, res) {
+  var applications = { };
+  db.createReadStream()
+    .on('data', function (data) {
+    applications[data.value[data.key]] = data.value;
+  }).on('end', function () {
+    res.json(applications);
+  });
 });
 
 router.get('/application-session/:hash', function (req, res) {
