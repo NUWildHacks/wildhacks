@@ -173,7 +173,7 @@ h2 {
 .below-ground-1 {
   background-color: #fdd59c;
   position: relative;
-  background-image: url('../images/rock.svg');
+  /*background-image: url('../images/rock.svg');*/
 }
 
 .sponsors-section {
@@ -209,12 +209,15 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
+  background-image: none;
+  background-position: top right;
+  background-repeat: no-repeat;
 }
 
 .dino-skull {
   position: absolute;
-  height: 300px;
-  right: 1%;
+  height: 500px;
+  left: 20%;
   margin-top: 5%;
 }
 
@@ -272,8 +275,6 @@ td h3 {
 .faq-item p {
   font-size: 2em;
 }
-
-
 
 .faq-header .header {
   color: #d7ede8;
@@ -376,6 +377,10 @@ td h3 {
   .schedule,
   .faq .question {
     font-size: 1.2em;
+  }
+
+  .below-ground-2 {
+    background-image: url('../images/cave.svg');
   }
 
   .already-registered,
