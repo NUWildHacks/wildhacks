@@ -122,7 +122,7 @@ h2 {
 }
 
 .header h2 {
-  font-size: 5.5em;
+  font-size: 4em;
 }
 
 .description strong {
@@ -147,7 +147,7 @@ h2 {
 }
 
 .apply-header {
-  color: #faa629;
+  color: #34495e;
 }
 
 .application input {
@@ -172,6 +172,8 @@ h2 {
 
 .below-ground-1 {
   background-color: #fdd59c;
+  position: relative;
+  background-image: url('../images/rock.svg');
 }
 
 .sponsors-section {
@@ -207,6 +209,13 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
+}
+
+.dino-skull {
+  position: absolute;
+  height: 300px;
+  right: 1%;
+  margin-top: 5%;
 }
 
 .schedule-header {
@@ -342,6 +351,7 @@ td h3 {
 }
 
 @media screen and (min-device-width: 480px) {
+
   .logo {
     margin-top: 5%;
     height: 300px;
