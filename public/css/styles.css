@@ -375,7 +375,7 @@ td h3 {
   color: red;
 }
 
-@media (min-width: 992px) {
+@media (min-device-width: 992px) {
 /*  Custom column width for 5 column row*/
   .col-md-2-4 {
     width: 20%;
@@ -383,5 +383,8 @@ td h3 {
   }
   .col-md-offset-2-4 {
     margin-left: 20%;
+  }
+  .col-md-offset-1-2 {
+    margin-left: 10%;
   }
 }
