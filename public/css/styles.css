@@ -11,6 +11,11 @@ h2 {
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
+.glyphicon {
+  margin-top: 10px;
+  font-size: 3rem;
+}
+
 .content {
   padding-right: 12%;
   padding-left: 12%;
@@ -137,8 +142,12 @@ h2 {
   background-color: #d7ede8;
   background-image: url('../images/city.svg');
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: 65% bottom;
   background-size: cover;
+}
+
+.apply-header {
+  color: #faa629;
 }
 
 .application input {
@@ -148,11 +157,12 @@ h2 {
   margin-bottom: 40px;
 }
 
-.already-registered {
+.already-registered, .no-wait {
   color: #34495e;
+  font-size: 2em;
 }
 
-.already-registered:hover {
+.already-registered:hover, .no-wait:hover {
   cursor: pointer;
 }
 
@@ -216,6 +226,10 @@ h2 {
 .schedule-row p {
   text-align: center;
   margin-top: 30px;
+}
+
+.schedule p{
+  text-align: left !important;
 }
 
 td h3 {
@@ -352,6 +366,11 @@ td h3 {
   .schedule,
   .faq .question {
     font-size: 1.2em;
+  }
+
+  .already-registered,
+  .no-wait {
+    font-size: 1em;
   }
 
   .faq p {
