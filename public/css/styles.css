@@ -373,6 +373,10 @@ td h3 {
   color: #34495e;
   font-size: 2em;
 }
+.register-status:hover {
+  color: #34495e;
+  text-decoration: underline;
+}
 
 @media screen and (min-device-width: 480px) {
 
