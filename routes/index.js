@@ -1,4 +1,4 @@
-// routes/server.js
+// routes/index.js
 var express   = require('express')
   , router    = express.Router()
   , db        = require('../db.js')
@@ -18,16 +18,23 @@ router.get('/applications',
   var applications = { };
   db.createReadStream()
     .on('data', function (data) {
-    applications[data.value[data.key]] = data.value;
+    applications[data.key] = data.value;
   }).on('end', function () {
     res.json(applications);
   });
 });
 
+router.get('/application-session/exists/:email', function (req, res) {
+  var email = req.params.email
+  db.get(email, function (err, value) {
+    if (err) res.json(false)
+    else res.json(value)
+  })
+});
+
 router.get('/application-session/:hash', function (req, res) {
   var key = req.params.hash
   db.get(key, function (err, value) {
-    console.log(value);
     if (err) res.json({})
     else res.json(value);
   })
@@ -35,10 +42,16 @@ router.get('/application-session/:hash', function (req, res) {
 
 router.put('/application-session/:hash', function (req, res) {
   var key = req.params.hash
+    , email = req.body.email
   console.log(req.body)
   db.put(key, req.body, function (err) {
     if(err) res.json(err)
-    else res.send('okay!')
+    else {
+      db.put(email, key, function (err) {
+        if (err) res.json(err);
+        else res.send('okay!')
+      })
+    }
   })
 });
 

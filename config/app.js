@@ -1,5 +1,4 @@
 var expressSession = require('express-session')
-  , cookieParser   = require('cookie-parser')
   , methodOverride = require('method-override')
   , path           = require('path')
   , logger         = require('morgan')
@@ -20,7 +19,6 @@ module.exports = function (app) {
   });
 
   // NOTE(Jordan): Request data parsing
-  app.use(cookieParser())
   app.use(methodOverride())
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

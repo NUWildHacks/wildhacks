@@ -5,16 +5,27 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
   $scope.showRegister = true;
 
   $scope.authenticate = function() {
-    var email = $scope.user.email;
+    var email = $scope.user.email
 
-    var key = sjcl.codec.utf8String.toBits($scope.user.password);
-    var out = (new sjcl.misc.hmac(key, sjcl.hash.sha256)).mac($scope.user.email);
-    var hmac = sjcl.codec.hex.fromBits(out)
+    var key = sjcl.codec.utf8String.toBits($scope.user.email);
+    var out = (new sjcl.misc.hmac(key, sjcl.hash.sha256)).mac($scope.user.password);
+    var hash = sjcl.codec.hex.fromBits(out)
 
-    var url = "/apply#" + email + ":" + hmac;
-    $window.location.href = url;
-
+    $http.get('/application-session/exists/' + email)
+      .then(function success (res) {
+        var data = res.data
+        if (data && data != hash) {
+          // There's already an application
+          alert('It looks like you already have an application! Check your password and try again. If you are certain this is a mistake, email us at tech@nuisepic.com and we\'ll get you figured.');
+        } else {
+          var url = "/apply#" + email + ":" + hash;
+          $window.location.href = url;
+        }
+      }, function failure (err) {
+        alert('Whoops, something is very wrong. Try refreshing the page and trying again.');
+      });
   };
+
 }]);
 
 // Used for password validation on registration page
