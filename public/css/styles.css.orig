@@ -209,7 +209,7 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
-  background-image: none;
+  background-image: url("../images/dino-skull.svg");
   background-position: top right;
   background-repeat: no-repeat;
 }
@@ -383,8 +383,13 @@ td h3 {
     font-size: 1.2em;
   }
 
+<<<<<<< HEAD
   .register-status {
     font-size: 1em;
+=======
+  .below-ground-2 {
+/*    background-image: url('../images/cave.svg');*/
+>>>>>>> 44421cf28ae4221d50db3e3b2500998cc7eb4f2a
   }
 
   .already-registered,

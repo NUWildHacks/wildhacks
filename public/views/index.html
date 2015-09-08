@@ -152,7 +152,7 @@
             </div>
 
             <!-- TOGGLE BETWEEN THE TWO -->
-            <a class="application-toggle" ng-click="showRegister = !showRegister">I have an application in progress!</a>
+            <a ng-click="showRegister = !showRegister" class='register-status'>I have an application in progress!</a>
 
             <div class="row">
               <div class="col-md-6 submit-button-container">
@@ -185,7 +185,7 @@
             </div>
 
             <!-- TOGGLE BETWEEN THE TWO -->
-            <a class="application-toggle" ng-click="showRegister = !showRegister">No wait, I haven't started an application yet.</a>
+            <a ng-click="showRegister = !showRegister" class='register-status'>No wait, I haven't started an application yet.</a>
 
             <div class="row">
               <div class="col-md-6 submit-button-container">
@@ -287,6 +287,8 @@
       </div>
     </section>
     <section class='below-ground-2'>
+
+      <img class='dino-skull' src="../images/dino-skull.svg"/>
       <div class="content">
         <div class="schedule-section mini-section" id='schedule-section'>
           <div class="row">
@@ -313,7 +315,6 @@
               <h2>FAQ</h2>
             </div>
           </div>
-<!--          <img class='dino-skull' src="../images/dino-skull.svg"/>-->
           <div class="row faq">
             <div class="col-md-4 col-sm-12 faq-item">
               <h3 class='question'>What is WildHacks?</h3>
