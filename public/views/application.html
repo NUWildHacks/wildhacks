@@ -6,8 +6,8 @@
     <meta name="description" content="Apply to WildHacks 2015, Northwestern's ONLY Hackathon!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- vendor.css is currently empty-->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/formula.css">
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/formula.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -52,9 +52,17 @@
             <div class="forcefield">
               <h2>Some Basic Info</h2>
               <div class="input-group">
-                <input id="year" type="text" required>
-                <label>Class Year (eg: 2017)*</label>
-                <div class="glance"></div>
+                <select id="year" required>
+                  <option value="">Select your year</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="highschool">High School Student</option>
+                  <option value="grad">Grad Student</option>
+                  <option value="other">Other</option>
+                </select>
+                <label>Class Year*</label>
               </div>
               <div class="input-group">
                 <input id="major" type="text" required>
@@ -98,16 +106,16 @@
           <div class="primary-window page">
             <div class="place">5/7</div><i class="back-btn">Back</i>
             <div class="forcefield">
-              <h2>Some Boring Stuff</h2>
+              <h2>Let's get to know you</h2>
               <div class="input-group">
-                <select id="gender">
+                <select id="gender" required>
                   <option value="">Please Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                   <option value="Prefer not to specify">Prefer not to specify</option>
                 </select>
-                <label>Gender</label>
+                <label>Gender*</label>
               </div>
               <div class="input-group">
                 <select id="shirt" required>
@@ -130,9 +138,9 @@
           <div class="primary-window page">
             <div class="place">6/7</div><i class="back-btn">Back</i>
             <div class="forcefield">
-              <h2>Some Housekeeping</h2>
-              <p>Will you be at least 18 by Nov. 21, 2015?</p>
-              <div class="input-group age-verify">
+              <h2>Let's get to know you pt. II</h2>
+              <p>Will you be 18+ on Nov. 26th?</p>
+              <div class="input-group">
                 <!-- (jordan) it works like this-->
                 <input type="radio" name="18yet" value="yes" required>
                 <label>Yes</label>
@@ -172,10 +180,10 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-43952603-6', 'auto');
+      
+      ga('create', 'UA-67298926-1', 'auto');
       ga('send', 'pageview');
-
+      
     </script>
     <!-- begin olark code-->
     <script data-cfasync="false">
@@ -200,8 +208,8 @@
     </script>
     <noscript><a href="https://www.olark.com/site/2927-692-10-4152/contact" title="Contact us" target="_blank">Questions? Feedback?</a>powered by<a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
     <!-- end olark code-->
-    <script src="js/formula-vendor.js"></script>
+    <script src="scripts/formula-vendor.js"></script>
     <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
-    <script src="js/formula.js"></script>
+    <script src="scripts/formula.js"></script>
   </body>
 </html>
