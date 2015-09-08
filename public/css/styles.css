@@ -11,6 +11,11 @@ h2 {
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
+.glyphicon {
+  margin-top: 10px;
+  font-size: 3rem;
+}
+
 .content {
   padding-right: 12%;
   padding-left: 12%;
@@ -117,7 +122,11 @@ h2 {
 }
 
 .header h2 {
-  font-size: 5.5em;
+  font-size: 4em;
+}
+
+.description strong {
+  color: #faa629;
 }
 
 .about-section {
@@ -133,8 +142,12 @@ h2 {
   background-color: #d7ede8;
   background-image: url('../images/city.svg');
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: 65% bottom;
   background-size: cover;
+}
+
+.apply-header {
+  color: #34495e;
 }
 
 .application input {
@@ -144,12 +157,23 @@ h2 {
   margin-bottom: 40px;
 }
 
+.already-registered, .no-wait {
+  color: #34495e;
+  font-size: 2em;
+}
+
+.already-registered:hover, .no-wait:hover {
+  cursor: pointer;
+}
+
 .submit-button-container {
   text-align: center;
 }
 
 .below-ground-1 {
   background-color: #fdd59c;
+  position: relative;
+  /*background-image: url('../images/rock.svg');*/
 }
 
 .sponsors-section {
@@ -185,6 +209,20 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
+  background-image: none;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.dino-skull {
+  position: absolute;
+  height: 500px;
+  left: 20%;
+  margin-top: 5%;
+}
+
+.schedule-header {
+  color: #fdd59c;
 }
 
 .schedule tr {
@@ -200,6 +238,10 @@ h2 {
 .schedule-row p {
   text-align: center;
   margin-top: 30px;
+}
+
+.schedule p{
+  text-align: left !important;
 }
 
 td h3 {
@@ -233,8 +275,6 @@ td h3 {
 .faq-item p {
   font-size: 2em;
 }
-
-
 
 .faq-header .header {
   color: #d7ede8;
@@ -312,6 +352,7 @@ td h3 {
 }
 
 @media screen and (min-device-width: 480px) {
+
   .logo {
     margin-top: 5%;
     height: 300px;
@@ -338,21 +379,30 @@ td h3 {
     font-size: 1.2em;
   }
 
+  .below-ground-2 {
+    background-image: url('../images/cave.svg');
+  }
+
+  .already-registered,
+  .no-wait {
+    font-size: 1em;
+  }
+
   .faq p {
     font-size: 1em;
   }
-  
+
   .application .input-container {
     height: 70px;
   }
-  
+
   .application input {
     font-size: 20px;
     line-height: 40px;
     height: 40px;
     margin-bottom: 0px;
   }
-  
+
 }
 
 .error {
@@ -369,5 +419,3 @@ td h3 {
     margin-left: 20%;
   }
 }
-
-
