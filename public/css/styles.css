@@ -209,7 +209,7 @@ h2 {
   background-color: #f37046;
   height: auto;
   min-height: 10vh;
-  background-image: none;
+  background-image: url("../images/dino-skull.svg");
   background-position: top right;
   background-repeat: no-repeat;
 }
@@ -380,7 +380,7 @@ td h3 {
   }
 
   .below-ground-2 {
-    background-image: url('../images/cave.svg');
+/*    background-image: url('../images/cave.svg');*/
   }
 
   .already-registered,
@@ -409,7 +409,7 @@ td h3 {
   color: red;
 }
 
-@media (min-width: 992px) {
+@media (min-device-width: 992px) {
 /*  Custom column width for 5 column row*/
   .col-md-2-4 {
     width: 20%;
@@ -418,4 +418,11 @@ td h3 {
   .col-md-offset-2-4 {
     margin-left: 20%;
   }
+  .col-md-offset-1-2 {
+    margin-left: 10%;
+  }
+}
+
+.application-toggle{
+  color: #34495e;
 }
