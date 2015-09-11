@@ -11,6 +11,24 @@ h2 {
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
+.social-links {
+  position: fixed;
+  z-index: 99;
+  right: 1%;
+  top: 5%;
+}
+
+.social-links a i {
+  margin-left: 2%;
+  color: #f4f4f4;
+  transition: all .5s ease;
+}
+
+.social-links a i:hover {
+  margin-left: 2%;
+  color: #16a085;
+}
+
 .glyphicon {
   margin-top: 10px;
   font-size: 3rem;
@@ -352,7 +370,12 @@ td h3 {
 }
 
 .register-status {
+  color: #34495e;
   font-size: 2em;
+}
+.register-status:hover {
+  color: #34495e;
+  text-decoration: underline;
 }
 
 @media screen and (min-device-width: 480px) {
