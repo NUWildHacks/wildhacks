@@ -173,13 +173,6 @@ h2 {
   color: #34495e;
 }
 
-.application input {
-  font-size: 40px;
-  line-height: 80px;
-  height: 80px;
-  margin-bottom: 40px;
-}
-
 .already-registered, .no-wait {
   color: #34495e;
   font-size: 2em;
@@ -434,7 +427,7 @@ td h3 {
 
   .application input {
     font-size: 20px;
-    line-height: 40px;
+    line-height: 18px;
     height: 40px;
     margin-bottom: 0px;
   }
