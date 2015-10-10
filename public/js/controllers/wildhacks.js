@@ -58,12 +58,19 @@ wildhacks.directive('equals', function() {
 wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
   $http.get('./js/controllers/applications.json')
     .then(function success(res) {
-      $scope.data = res.data;
-      // $scope.data = [];
-      // angular.forEach(res.data, function(element) {
-      //   $scope.data.push(element);
-      // });
+      $scope.data = [];
+      id = 0;
+      angular.forEach(res.data, function(element, key) {
+        element.hash = key;
+        $scope.data.push(element);
+      });
     }, function error(res) {
       console.log("failure");
     });
+
+  $scope.searchTerm = "";
+  $scope.toggle = function(applicant) {
+    console.log(applicant);
+  };
+
 }]);
