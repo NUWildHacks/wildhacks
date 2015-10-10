@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+    <script src="js/controllers/wildhacks.js"></script>
+  </head>
+  <body ng-app="wildhacks">
+    <div ng-controller="DashboardCtrl">
+      <!-- <div ng-repeat="applicant in data">
+        {{applicant.email}}
+      </div> -->
+      <h1>Applicants</h1>
+      <table id="applicants">
+        <th>
+          <!-- <td>Email</td> -->
+          <td>School</td>
+          <td>Year</td>
+          <td>Travel</td>
+          <td>Major</td>
+          <td>Links</td>
+          <td>Gender</td>
+          <td>#</td>
+          <td>Blurb</td>
+          <td>Teammates</td>
+        </th>
+        <tr ng-repeat="applicant in data">
+          <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
+          <!-- <td>{{applicant.email}}</td> -->
+          <td>{{applicant.school}}</td>
+          <td>{{applicant.year}}</td>
+          <td>{{applicant.travel}}</td>
+          <td>{{applicant.major}}</td>
+          <td><a href="{{applicant.github}}">GitHub</a>|<a href="{{applicant.website}}">Website</a></td>
+          <td>{{applicant.gender}}</td>
+          <td>{{applicant.hackathons}}</td>
+          <td class="blurb">{{applicant['why-do-you-want-to-come']}}</td>
+          <td>{{applicant.teammates}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

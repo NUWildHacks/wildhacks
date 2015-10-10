@@ -5,11 +5,11 @@ var express   = require('express')
   , basicAuth = require('basic-auth-connect')
 
 router.get('/', function(req, res) {
-  res.render('index.html')
+  res.render('index.html');
 });
 
 router.get('/apply', function (req, res) {
-  res.render('application.html')
+  res.render('application.html');
 });
 
 router.get('/applications',
@@ -24,35 +24,39 @@ router.get('/applications',
   });
 });
 
+router.get('/dashboard', function(req, res) {
+  res.render('dashboard.html');
+});
+
 router.get('/application-session/exists/:email', function (req, res) {
-  var email = req.params.email
+  var email = req.params.email;
   db.get(email, function (err, value) {
-    if (err) res.json(false)
-    else res.json(value)
-  })
+    if (err) res.json(false);
+    else res.json(value);
+  });
 });
 
 router.get('/application-session/:hash', function (req, res) {
-  var key = req.params.hash
+  var key = req.params.hash;
   db.get(key, function (err, value) {
-    if (err) res.json({})
+    if (err) res.json({});
     else res.json(value);
-  })
+  });
 });
 
 router.put('/application-session/:hash', function (req, res) {
   var key = req.params.hash
     , email = req.body.email
-  console.log(req.body)
+  console.log(req.body);
   db.put(key, req.body, function (err) {
-    if(err) res.json(err)
+    if(err) res.json(err);
     else {
       db.put(email, key, function (err) {
         if (err) res.json(err);
-        else res.send('okay!')
-      })
+        else res.send('okay!');
+      });
     }
-  })
+  });
 });
 
 module.exports = router;
