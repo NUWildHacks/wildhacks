@@ -153,19 +153,24 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope,
     data.rsvp = status
     $http.put('/user/' + params.hash, data)
       .then(function success(response) {
-        console.log('RSVPed!')
+        console.log('RSVPed!');
+        if (status === 'not coming') {
+          alert('We\'ll miss you!');
+          $window.location.href = '/';
+        }
       }, function error(response) {
-        console.log('RSVP failed!')
+        console.log('RSVP failed!');
       }
     );
   }
 
   $scope.submitDietaryRestrictions = function(restrictions) {
-    console.log(restrictions);
     var data = user;
     data.dietaryRestrictions = restrictions;
     $http.put('/user/' + params.hash, data)
       .then(function success(response) {
+        alert('Thanks! Looking forward to seeing you!');
+        $window.location.href = '/';
         console.log('Dietary restrictions saved!');
       }, function error(response) {
         console.log('Dietary restrictions not saved!');
