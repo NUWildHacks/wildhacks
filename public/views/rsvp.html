@@ -17,6 +17,7 @@
 
 <body ng-app='wildhacks'>
   <div ng-controller='RsvpCtrl'>
+    <!-- ng-if='status === "accepted"' -->
     <div class='rsvp-page accepted' ng-if='status === "accepted"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>You're in!</h1>
       <div class="rsvp-blurb">
@@ -27,7 +28,7 @@
           <button type="button" name="apply" ng-click='submitRsvp("coming")' class='rsvp-button btn btn-embossed btn-primary'>YES, I'M COMING!</button>
         </a>
         <a ng-click='rsvp = false' target='_blank'>
-          <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-primary'>NO, I CAN'T MAKE IT</button>
+          <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-danger' ng-hide=''>NO, I CAN'T MAKE IT</button>
         </a>
       </div>
       <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='rsvp'>
@@ -94,7 +95,7 @@
           <button type="button" name="apply" ng-click='submitRsvp("on waitlist")' class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
         </a>
         <a ng-click='rsvp = false' target='_blank'>
-          <button type="button" name="sponsor" ng-click='submitRsvp("off waitlist")' class='rsvp-button btn btn-embossed btn-primary'>NO THANKS</button>
+          <button type="button" name="sponsor" ng-click='submitRsvp("off waitlist")' class='rsvp-button btn btn-embossed btn-danger'>NO THANKS</button>
         </a>
       </div>
       <div class="info" ng-if='rsvp'>

@@ -19,7 +19,7 @@ router.get('/rsvp', function (req, res) {
   if (!req.query || typeof req.query.email === 'undefined' || typeof req.query.key === 'undefined') {
     res.redirect('/');
   }
-  res.render('rsvp.html')
+  res.render('rsvp.html');
 });
 
 router.get('/applications',
