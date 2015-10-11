@@ -70,12 +70,13 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
 
   $scope.searchTerm = "";
   $scope.toggle = function(applicant) {
-    console.log(applicant);
+    console.log(applicant['first-name'] + " is " + applicant.status);
   };
 
   $scope.acceptAll = function() {
     angular.forEach($scope.subset, function(element, key) {
       element.status = "accepted";
+      $scope.toggle(element);
     });
   };
 }]);
