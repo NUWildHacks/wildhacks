@@ -28,7 +28,7 @@ function parseUrlParams(url) {
 
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
-  $scope.showRegister = true;
+  $scope.showLogin = true;
 
   $scope.authenticate = function() {
     var email = $scope.user.email;

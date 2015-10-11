@@ -129,13 +129,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 description">
+          <div ng-show='showLogin' class="col-md-6 description">
+            <p>Let's get you logged in!</p>
+          </div>
+          <div ng-hide='showLogin' class="col-md-6 description">
             <p>Let's get you registered!</p>
           </div>
         </div>
 
         <!-- REGISTRATION PAGE -->
-        <form ng-show="showRegister" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && authenticate()">
+        <form ng-hide="showLogin" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && authenticate()">
           <div class='row input-container'>
             <div class="col-md-6">
               <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email*" autocomplete="off" required/>
@@ -167,7 +170,7 @@
 
 
           <!-- TOGGLE BETWEEN THE TWO -->
-          <a ng-click="showRegister = !showRegister" class='register-status'>Login</a>
+          <a ng-click="showLogin = !showLogin" class='register-status'>Login</a>
 
           <div class="row">
             <div class="col-md-6 submit-button-container">
@@ -179,7 +182,7 @@
         </form>
 
         <!-- LOGIN PAGE -->
-        <form ng-hide="showRegister" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && authenticate()">
+        <form ng-show="showLogin" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && authenticate()">
           <div class='row input-container'>
             <div class="col-md-6">
               <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email" autocomplete="off" required/>
@@ -200,7 +203,7 @@
           </div>
 
           <!-- TOGGLE BETWEEN THE TWO -->
-          <a ng-click="showRegister = !showRegister" class='register-status'>Register</a>
+          <a ng-click="showLogin = !showLogin" class='register-status'>Register</a>
 
           <div class="row">
             <div class="col-md-6 submit-button-container">
