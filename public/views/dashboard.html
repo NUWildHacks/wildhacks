@@ -13,29 +13,35 @@
       <table id="applicants">
         <th>
           <td>Name</td>
+          <td>Submission Date</td>
           <td>School</td>
           <td>Year</td>
           <td>Travel</td>
           <td>Major</td>
           <td>Links</td>
+          <td>Over 18?</td>
           <td>Gender</td>
           <td>Hackathons</td>
           <td>Blurb</td>
           <td>Teammates</td>
         </th>
-        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | orderBy:'toString()' | filter:{ school:searchTerm })) track by $index">
+        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | orderBy:'last_cache_time':true | filter:{ '18yet':'yes' } | filter:{ school:searchTerm })) track by $index">
           <td>
             <form action="">
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="accepted">Accept</br>
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="rejected">Reject</br>
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="waitlisted">Waitlist</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="unfinished">Mark Unfinished</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="roundtwo">Round Two</br>
             </form>
           <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
+          <td>{{applicant['last_cache_time'] | date:'MM/dd h:mm a' }}</td>
           <td>{{applicant.school}}</td>
           <td>{{applicant.year}}</td>
           <td>{{applicant.travel}}</td>
           <td>{{applicant.major}}</td>
           <td><a href="{{applicant.github}}">GitHub</a>|<a href="{{applicant.website}}">Website</a></td>
+          <td>{{applicant['18yet']}}</td>
           <td>{{applicant.gender}}</td>
           <td>{{applicant.hackathons}}</td>
           <td class="blurb">{{applicant['why-do-you-want-to-come']}}</td>

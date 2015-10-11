@@ -64,6 +64,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
         element.hash = key;
         $scope.data.push(element);
       });
+      console.log($scope.data);
     }, function error(res) {
       console.log("failure");
     });
@@ -71,12 +72,31 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
   $scope.searchTerm = "";
   $scope.toggle = function(applicant) {
     console.log(applicant['first-name'] + " is " + applicant.status);
+    var data = {
+      'users': [applicant.hash],
+      'status': applicant.status
+    };
+    $http.put('/update-many/', data)
+      .then(function success(res) {
+        console.log('updated!');
+      }, function error(res) {
+        console.log('error in update.');
+      });
   };
 
   $scope.acceptAll = function() {
-    angular.forEach($scope.subset, function(element, key) {
-      element.status = "accepted";
-      $scope.toggle(element);
+    var data = {
+      'users': [],
+      'status': 'accepted'
+    };
+    angular.forEach($scope.subset, function(applicant, index) {
+      data.users.push(applicant.hash);
     });
+    $http.put('/update-many/', data)
+      .then(function success(res) {
+        console.log('updated!');
+      }, function error(res) {
+        console.log('error in update.');
+      });
   };
 }]);

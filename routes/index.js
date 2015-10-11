@@ -62,7 +62,7 @@ router.put('/application-session/:hash', function (req, res) {
 router.put('/update-many/', function(req, res) {
   var status = req.body.status;
   var keyList = req.body.users;
-  for (var i = 0; i < list.length; i++) {
+  for (var i = 0; i < keyList.length; i++) {
     db.get(keyList[i], function(err, object) {
       if (err) res.json(err);
       else {
