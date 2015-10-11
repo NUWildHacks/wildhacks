@@ -1,5 +1,31 @@
 var wildhacks = angular.module('wildhacks', []);
 
+function parseUrlParams(url) {
+  var index = url.indexOf('email') + 6;
+  var email = '';
+  for (var i = index; i < url.length; i++) {
+    if (url[i] === '&') {
+      break;
+    }
+    email += url[i];
+  }
+
+
+  index = url.indexOf('key') + 4;
+  var hash = '';
+  for (var i = index; i < url.length; i++) {
+    if (url[i] == '#') {
+      break;
+    }
+    hash += url[i]
+  }
+
+  return {
+    'email': email,
+    'hash': hash
+  };
+}
+
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
   $scope.showRegister = true;
@@ -18,7 +44,15 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
           // There's already an application
           alert('It looks like you already have an application! Check your password and try again. If you are certain this is a mistake, email us at tech@nuisepic.com and we\'ll get you figured.');
         } else {
-          var url = "/apply#" + email + ":" + hash;
+          var urlRoot;
+          var user = $http.get('/application-session/' + hash);
+          // if (user.status === 'accepted' || user.status === 'rejected' || user.status === 'waitlist') {
+          //   urlRoot = '/rsvp';
+          // } else {
+          //   urlRoot = '/apply';
+          // }
+          var urlRoot = '/rsvp'
+          var url = urlRoot + '?email=' + email + '&key=' + hash;
           $window.location.href = url;
         }
       }, function failure (err) {
@@ -98,4 +132,17 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
         console.log('error in update.');
       });
   };
+}]);
+
+wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  var url = $window.location.href;
+  var params = parseUrlParams(url);
+  $http.get('/application-session/' + params.hash)
+    .then(function success(response) {
+      var user = response.data;
+      $scope.status = user.status;
+      console.log($scope.status);
+    }, function error(response) {
+      $scope.status = 'waitlist';
+    });
 }]);

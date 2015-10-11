@@ -9,7 +9,18 @@ router.get('/', function(req, res) {
 });
 
 router.get('/apply', function (req, res) {
+  console.log(req.query);
+  if (!req.query || typeof req.query.email === 'undefined' || typeof req.query.key === 'undefined') {
+    res.redirect('/');
+  }
   res.render('application.html');
+});
+
+router.get('/rsvp', function (req, res) {
+  if (!req.query || typeof req.query.email === 'undefined' || typeof req.query.key === 'undefined') {
+    res.redirect('/');
+  }
+  res.render('rsvp.html')
 });
 
 router.get('/applications',
@@ -24,7 +35,7 @@ router.get('/applications',
   });
 });
 
-router.get('/dashboard', function(req, res) {
+router.get('/dashboard', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
   res.render('dashboard.html');
 });
 
@@ -47,7 +58,7 @@ router.get('/application-session/:hash', function (req, res) {
 router.put('/application-session/:hash', function (req, res) {
   var key = req.params.hash
     , email = req.body.email
-  console.log(req.body);
+  req.body.status = 'pending';
   db.put(key, req.body, function (err) {
     if(err) res.json(err);
     else {
@@ -63,17 +74,31 @@ router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), f
   var status = req.body.status;
   var keyList = req.body.users;
   for (var i = 0; i < keyList.length; i++) {
+    var key = keyList[i];
     db.get(keyList[i], function(err, object) {
       if (err) res.json(err);
       else {
-        object.status = status;
-        db.put(keyList[i], object, function(err) {
-          if (err) res.json(err);
-          else res.json({'status': 'ok'});
+        object['status'] = status;
+        db.put(key, object, function(err) {
+          if (err) {
+            res.json(err);
+          } else {
+            res.json({'status': 'ok'});
+          }
         });
       }
     });
   }
+});
+
+router.get('/user/', function(req, res) {
+  var key = req.body.key;
+  db.get(key, function(err, user) {
+    if (err) res.json(err);
+    else {
+      res.json(user);
+    }
+  });
 });
 
 module.exports = router;

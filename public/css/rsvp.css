@@ -1,0 +1,116 @@
+body {
+  margin: 0 0 0 0;
+}
+
+h1, h2 {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin-top: 0 !important;
+}
+
+.rsvp-button {
+  font-size: 2em;
+}
+
+.rsvp-button:hover {
+  cursor: pointer;
+}
+
+.rsvp-button-container {
+  padding-top: 2%;
+  text-align: center;
+}
+
+.rsvp-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.rsvp-page h1 {
+  font-size: 5em;
+  padding-top: 15%;
+  text-align: center;
+  transition: all .5s ease;
+}
+
+.rsvp-page form {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.rsvp-page .page-clicked {
+  padding-top: 5%;
+}
+
+.accepted {
+  background-color: #d7ede8;
+}
+
+.accepted h1 {
+  color: #16a085;
+}
+
+.reimbursement-wrapper {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.reimbursement {
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.reimbursement td {
+  width: 150px;
+  font-size: 15px;
+}
+
+.waitlist {
+  background-color: #fdd59c;
+}
+
+.waitlist h1 {
+  color: #f37046;
+}
+
+.declined {
+  background-color: #16a085;
+}
+
+.declined h1 {
+  color: #d7ede8;
+}
+
+.rsvp-blurb {
+  text-align: center;
+}
+
+.declined .rsvp-blurb {
+  color: #d7ede8;
+}
+
+.edit-link {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  width: 100vw;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.info {
+  padding-top: 2%;
+  text-align: center;
+}
+
+.diet {
+  height: 41px;
+  border-radius: 5px;
+  width: 250px;
+  border-style: none;
+  text-align: center;
+  font-size: 14px;
+}
