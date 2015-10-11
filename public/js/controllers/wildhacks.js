@@ -77,6 +77,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
     };
     $http.put('/update-many/', data)
       .then(function success(res) {
+        console.log(res);
         console.log('updated!');
       }, function error(res) {
         console.log('error in update.');

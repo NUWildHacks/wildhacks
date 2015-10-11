@@ -24,7 +24,7 @@ router.get('/applications',
   });
 });
 
-router.get('/dashboard', function(req, res) {
+router.get('/dashboard', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
   res.render('dashboard.html');
 });
 
