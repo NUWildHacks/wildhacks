@@ -80,7 +80,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
         if (element.status === "accepted") {
           $scope.acceptedCounter += 1;
         }
-        
+
         $scope.data.push(element);
       });
       console.log($scope.data);
@@ -109,6 +109,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
       'status': 'accepted'
     };
     angular.forEach($scope.subset, function(applicant, index) {
+      applicant.status = "accepted";
       data.users.push(applicant.hash);
     });
     $http.put('/update-many/', data)
