@@ -73,4 +73,9 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
     console.log(applicant);
   };
 
+  $scope.acceptAll = function() {
+    angular.forEach($scope.subset, function(element, key) {
+      element.status = "accepted";
+    });
+  };
 }]);

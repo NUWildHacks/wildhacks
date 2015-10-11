@@ -8,7 +8,8 @@
   <body ng-app="wildhacks">
     <div ng-controller="DashboardCtrl">
       <h1>Applicants</h1>
-      <input type="text" ng-model="searchTerm">
+      <input type="text" ng-model="searchTerm" placeholder="School name..." ng-model-options="{ debounce:500 }">
+      <button ng-click="acceptAll()">Accept All</button>
       <table id="applicants">
         <th>
           <td>Name</td>
@@ -22,8 +23,13 @@
           <td>Blurb</td>
           <td>Teammates</td>
         </th>
-        <tr ng-repeat="applicant in data | orderBy:'first-name' | filter:{ school:searchTerm } track by $index">
-          <td><input type="checkbox" ng-model="applicant.status" ng-change="toggle(applicant)"></td>
+        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | orderBy:'toString()' | filter:{ school:searchTerm })) track by $index">
+          <td>
+            <form action="">
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="accepted">Accept</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="rejected">Reject</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="waitlisted">Waitlist</br>
+            </form>
           <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
           <td>{{applicant.school}}</td>
           <td>{{applicant.year}}</td>
