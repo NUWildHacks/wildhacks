@@ -54,7 +54,7 @@ wildhacks.directive('equals', function() {
 });
 
 
-// dashboard controller
+// DASHBOARD CONTROLLER
 wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
   $http.get('/applications')
     .then(function success(res) {
@@ -84,7 +84,6 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($s
 
         $scope.data.push(element);
       });
-      console.log($scope.data);
     }, function error(res) {
       console.log("failure");
     });
@@ -93,6 +92,20 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($s
   $scope.order = function(predicate, reverse) {
     $scope.data = orderBy($scope.data, predicate, reverse);
   };
+
+  $scope.$watch('subset', function(newVal, oldVal) {
+    if (!newVal) {
+      return;
+    }
+
+    $scope.accepted = 0;
+    for (var i = 0; i < newVal.length; i++) {
+      if (newVal[i].status === 'accepted') {
+        $scope.accepted++;
+      }
+    }
+    $scope.applicants = newVal.length;
+  });
 
   $scope.searchTerm = "";
   $scope.toggle = function(applicant) {
