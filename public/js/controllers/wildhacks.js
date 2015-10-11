@@ -71,7 +71,6 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
 
   $scope.searchTerm = "";
   $scope.toggle = function(applicant) {
-    console.log(applicant['first-name'] + " is " + applicant.status);
     var data = {
       'users': [applicant.hash],
       'status': applicant.status

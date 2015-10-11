@@ -59,7 +59,7 @@ router.put('/application-session/:hash', function (req, res) {
   });
 });
 
-router.put('/update-many/', function(req, res) {
+router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
   var status = req.body.status;
   var keyList = req.body.users;
   for (var i = 0; i < keyList.length; i++) {
