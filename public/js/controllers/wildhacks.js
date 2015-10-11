@@ -59,9 +59,28 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
   $http.get('/applications')
     .then(function success(res) {
       $scope.data = [];
-      id = 0;
+      $scope.acceptedCounter = 0;
+
       angular.forEach(res.data, function(element, key) {
+        // assign a temporary variable for if the application is complete
+        var finished = true;
+        var numFinished = 0;
+        if (!(element.email) && (Object.keys(element).length >= 17)) {
+          numFinished += 1;
+        } else if (element.email && (Object.keys(element).length > 17)) {
+          numFinished += 1;
+        } else {
+          finished = false;
+        }
+        element.finished = finished;
+
+        // store the hash in the object, for later
         element.hash = key;
+
+        if (element.status === "accepted") {
+          $scope.acceptedCounter += 1;
+        }
+        
         $scope.data.push(element);
       });
       console.log($scope.data);

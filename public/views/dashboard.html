@@ -7,9 +7,10 @@
   </head>
   <body ng-app="wildhacks">
     <div ng-controller="DashboardCtrl">
-      <h1>Applicants</h1>
+      <h1>Applicants Accepted: {{acceptedCounter}}</h1>
       <input type="text" ng-model="searchTerm" placeholder="School name..." ng-model-options="{ debounce:500 }">
       <button ng-click="acceptAll()">Accept All</button>
+
       <table id="applicants">
         <th>
           <td>Name</td>
@@ -20,6 +21,7 @@
           <td>Major</td>
           <td>Links</td>
           <td>Over 18?</td>
+          <td>Completed?</td>
           <td>Gender</td>
           <td>Hackathons</td>
           <td>Blurb</td>
@@ -31,8 +33,8 @@
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="accepted">Accept</br>
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="rejected">Reject</br>
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="waitlisted">Waitlist</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="unfinished">Mark Unfinished</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="roundtwo">Round Two</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="unfinished">Unfinished</br>
+              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="pending">Pending</br>
             </form>
           <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
           <td>{{applicant['last_cache_time'] | date:'MM/dd h:mm a' }}</td>
@@ -42,6 +44,7 @@
           <td>{{applicant.major}}</td>
           <td><a href="{{applicant.github}}">GitHub</a>|<a href="{{applicant.website}}">Website</a></td>
           <td>{{applicant['18yet']}}</td>
+          <td>{{applicant.finished}}</td>
           <td>{{applicant.gender}}</td>
           <td>{{applicant.hackathons}}</td>
           <td class="blurb">{{applicant['why-do-you-want-to-come']}}</td>
