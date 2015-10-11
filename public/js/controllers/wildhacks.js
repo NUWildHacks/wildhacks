@@ -56,7 +56,7 @@ wildhacks.directive('equals', function() {
 
 // dashboard controller
 wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
-  $http.get('./js/controllers/applications.json')
+  $http.get('/applications')
     .then(function success(res) {
       $scope.data = [];
       id = 0;
