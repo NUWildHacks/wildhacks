@@ -55,11 +55,12 @@ wildhacks.directive('equals', function() {
 
 
 // dashboard controller
-wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
   $http.get('/applications')
     .then(function success(res) {
       $scope.data = [];
       $scope.acceptedCounter = 0;
+      $scope.reverse = false;
 
       angular.forEach(res.data, function(element, key) {
         // assign a temporary variable for if the application is complete
@@ -88,6 +89,11 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
       console.log("failure");
     });
 
+  var orderBy = $filter('orderBy');
+  $scope.order = function(predicate, reverse) {
+    $scope.data = orderBy($scope.data, predicate, reverse);
+  };
+
   $scope.searchTerm = "";
   $scope.toggle = function(applicant) {
     var data = {
@@ -112,6 +118,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
       applicant.status = "accepted";
       data.users.push(applicant.hash);
     });
+
     $http.put('/update-many/', data)
       .then(function success(res) {
         console.log('updated!');

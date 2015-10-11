@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/dashboard.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular.js"></script>
     <script src="js/controllers/wildhacks.js"></script>
   </head>
   <body ng-app="wildhacks">
@@ -13,21 +13,21 @@
 
       <table id="applicants">
         <th>
+          <td>Over 18?</td>
+          <td>Completed?</td>
           <td>Name</td>
-          <td>Submission Date</td>
+          <td ng-click="reverse=!reverse;order('last_cache_time', reverse)">Submission Date</td>
           <td>School</td>
           <td>Year</td>
           <td>Travel</td>
           <td>Major</td>
           <td>Links</td>
-          <td>Over 18?</td>
-          <td>Completed?</td>
           <td>Gender</td>
           <td>Hackathons</td>
           <td>Blurb</td>
           <td>Teammates</td>
         </th>
-        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | orderBy:'last_cache_time':true | filter:{ '18yet':'yes' } | filter:{ school:searchTerm })) track by $index">
+        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | filter:{ school:searchTerm })) track by $index">
           <td>
             <form action="">
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="accepted">Accept</br>
@@ -36,15 +36,15 @@
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="unfinished">Unfinished</br>
               <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="pending">Pending</br>
             </form>
+          <td>{{applicant['18yet']}}</td>
+          <td>{{applicant.finished}}</td>
           <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
           <td>{{applicant['last_cache_time'] | date:'MM/dd h:mm a' }}</td>
           <td>{{applicant.school}}</td>
           <td>{{applicant.year}}</td>
           <td>{{applicant.travel}}</td>
           <td>{{applicant.major}}</td>
-          <td><a href="{{applicant.github}}">GitHub</a>|<a href="{{applicant.website}}">Website</a></td>
-          <td>{{applicant['18yet']}}</td>
-          <td>{{applicant.finished}}</td>
+          <td><a ng-show="'{{applicant.github}}'" href="{{applicant.github}}">GitHub</a>|<a ng-show="'{{applicant.website}}'" href="{{applicant.website}}">Website</a></td>
           <td>{{applicant.gender}}</td>
           <td>{{applicant.hackathons}}</td>
           <td class="blurb">{{applicant['why-do-you-want-to-come']}}</td>
