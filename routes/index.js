@@ -9,7 +9,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/apply', function (req, res) {
-  console.log(req.query);
   if (!req.query || typeof req.query.email === 'undefined' || typeof req.query.key === 'undefined') {
     res.redirect('/');
   }
@@ -99,6 +98,20 @@ router.get('/user/', function(req, res) {
       res.json(user);
     }
   });
+});
+
+router.put('/user/:hash', function(req, res) {
+  var hash = req.params.hash;
+  var user = req.body
+  console.log(user);
+  db.put(hash, user, function(err) {
+    if (err) res.json(err)
+    else {
+      console.log('updated');
+      res.json({'status': 'ok'});
+    }
+  });
+
 });
 
 module.exports = router;

@@ -137,12 +137,38 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
 wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   var url = $window.location.href;
   var params = parseUrlParams(url);
+  $scope.restrictions = '';
+  var user;
   $http.get('/application-session/' + params.hash)
     .then(function success(response) {
-      var user = response.data;
+      user = response.data;
       $scope.status = user.status;
-      console.log($scope.status);
+
     }, function error(response) {
       $scope.status = 'waitlist';
     });
+
+  $scope.submitRsvp = function(status) {
+    var data = user;
+    data.rsvp = status
+    $http.put('/user/' + params.hash, data)
+      .then(function success(response) {
+        console.log('RSVPed!')
+      }, function error(response) {
+        console.log('RSVP failed!')
+      }
+    );
+  }
+
+  $scope.submitDietaryRestrictions = function(restrictions) {
+    console.log(restrictions);
+    var data = user;
+    data.dietaryRestrictions = restrictions;
+    $http.put('/user/' + params.hash, data)
+      .then(function success(response) {
+        console.log('Dietary restrictions saved!');
+      }, function error(response) {
+        console.log('Dietary restrictions not saved!');
+      });
+  }
 }]);

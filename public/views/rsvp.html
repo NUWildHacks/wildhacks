@@ -24,10 +24,10 @@
       </div>
       <div class="rsvp-button-container">
         <a ng-click='rsvp = true' target='_blank'>
-          <button type="button" name="apply" class='rsvp-button btn btn-embossed btn-primary'>YES, I'M COMING!</button>
+          <button type="button" name="apply" ng-click='submitRsvp("coming")' class='rsvp-button btn btn-embossed btn-primary'>YES, I'M COMING!</button>
         </a>
         <a ng-click='rsvp = false' target='_blank'>
-          <button type="button" name="sponsor" class='rsvp-button btn btn-embossed btn-primary'>NO, I CAN'T MAKE IT</button>
+          <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-primary'>NO, I CAN'T MAKE IT</button>
         </a>
       </div>
       <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='rsvp'>
@@ -37,8 +37,8 @@
         <form>
           <h6>Dietary Restrictions</h6>
           <label for='diet'></label>
-          <input type="text" class='diet' name="diet" value="" placeholder="Allergies, special considerations, etc.">
-          <button type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
+          <input type='text' name='restrictions' ng-model='restrictions' class='diet' placeholder="Allergies, special considerations, etc."/>
+          <button ng-click='submitDietaryRestrictions(restrictions)' type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
           <h6>Travel Reimbursements</h6>
           <p>
             If you're traveling, here are the reimbursements we offer:
@@ -90,10 +90,10 @@
       </div>
       <div class="rsvp-button-container">
         <a ng-click='rsvp = true' target='_blank'>
-          <button type="button" name="apply" class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
+          <button type="button" name="apply" ng-click='submitRsvp("on waitlist")' class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
         </a>
         <a ng-click='rsvp = false' target='_blank'>
-          <button type="button" name="sponsor" class='rsvp-button btn btn-embossed btn-primary'>NO THANKS</button>
+          <button type="button" name="sponsor" ng-click='submitRsvp("off waitlist")' class='rsvp-button btn btn-embossed btn-primary'>NO THANKS</button>
         </a>
       </div>
       <div class="info" ng-if='rsvp'>
@@ -103,8 +103,8 @@
         <form>
             <h6>Dietary Restrictions</h6>
             <label for='diet'></label>
-            <input type="text" class='diet' name="diet" value="" placeholder="Allergies, special considerations, etc.">
-            <button type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
+            <input ng-model='restrictions' type="text" class='diet' name="diet" value="" placeholder="Allergies, special considerations, etc.">
+            <button ng-click='submitDietaryRestrictions(restrictions)' type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
         </form>
       </div>
       <div class="edit-link">
