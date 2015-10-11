@@ -63,13 +63,17 @@ router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), f
   var status = req.body.status;
   var keyList = req.body.users;
   for (var i = 0; i < keyList.length; i++) {
+    var key = keyList[i];
     db.get(keyList[i], function(err, object) {
       if (err) res.json(err);
       else {
-        object.status = status;
-        db.put(keyList[i], object, function(err) {
-          if (err) res.json(err);
-          else res.json({'status': 'ok'});
+        object['status'] = status;
+        db.put(key, object, function(err) {
+          if (err) {
+            res.json(err);
+          } else {
+            res.json({'status': 'ok'});
+          }
         });
       }
     });
