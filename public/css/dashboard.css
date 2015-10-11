@@ -1,0 +1,22 @@
+table, th, td {
+  border: 1px solid  gray;
+  border-collapse: collapse;
+}
+
+.accepted {
+  background-color: lightgreen;
+}
+
+.waitlisted {
+  background-color: yellow;
+}
+.unfinished {
+  background-color: yellow;
+}
+.roundtwo {
+  background-color: yellow;
+}
+
+.rejected {
+  background-color: red;
+}
