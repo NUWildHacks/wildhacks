@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WildHacks 2015 Application</title>
+  <meta name="description" content="Apply to WildHacks 2015, Northwestern's ONLY Hackathon!">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- vendor.css is currently empty-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/rsvp.css">
+  <link rel="stylesheet" href="css/flat-ui.css">
+  <script src="js/flat-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+  <script src="js/controllers/wildhacks.js"></script>
+</head>
+
+<body ng-app='wildhacks'>
+  <div ng-controller='RsvpCtrl'>
+    <div class='rsvp-page accepted' ng-if='true'>
+      <h1 ng-class='{"page-clicked" : rsvp}'>You're in!</h1>
+      <div class="rsvp-blurb">
+        We'd love to have you at WildHacks this year! Please RSVP so we can make room for you.
+      </div>
+      <div class="rsvp-button-container">
+        <a ng-click='rsvp = true' target='_blank'>
+          <button type="button" name="apply" class='rsvp-button btn btn-embossed btn-primary'>YES, I'M COMING!</button>
+        </a>
+        <a ng-click='rsvp = false' target='_blank'>
+          <button type="button" name="sponsor" class='rsvp-button btn btn-embossed btn-primary'>NO, I CAN'T MAKE IT</button>
+        </a>
+      </div>
+      <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='rsvp'>
+        <p>
+          Awesome! There are just a few more things we need to know:
+        </p>
+        <form>
+          <h6>Dietary Restrictions</h6>
+          <label for='diet'></label>
+          <input type="text" class='diet' name="diet" value="" placeholder="Allergies, special considerations, etc.">
+          <button type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
+          <h6>Travel Reimbursements</h6>
+          <p>
+            If you're traveling, here are the reimbursements we offer:
+          </p>
+          <p>
+            If you're coming from either <a href="https://www.eventbrite.com/e/wildhacks-2015-purdue-bus-tickets-18926217827?aff=es2">Purdue University</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-michigan-bus-tickets-18926289040?aff=es2">University of Wisconsin-Madison</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-uiuc-bus-tickets-18926007197?aff=es2">UIUC</a>, or <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-wisconsin-madison-bus-tickets-18926303082?aff=es2">Univeristy of Michigan-Ann Arbor</a>, we'll be providing buses for transportation. Limited seats will be given on a first come first serve basis, so follow the appropriate link to your school's Eventbrite page to get your ticket.
+          </p>
+          <p>
+            Check back soon for detailed travel reimbursement details, but for now basic travel reimbursements will be as follows:
+          </p>
+          <div class="reimbursement-wrapper">
+            <table class='reimbursement'>
+              <tr>
+                <td>
+                  Chicagoland
+                </td>
+                <td>
+                  None
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Midwest
+                </td>
+                <td>
+                  Up to $75
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Elsewhere
+                </td>
+                <td>
+                  Up to $200
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+      </div>
+      <div class="edit-link">
+        <a href="#">Continue editing your application >></a>
+      </div>
+    </div>
+    <div class='rsvp-page waitlist' ng-if='true'>
+      <h1 ng-class='{"page-clicked" : rsvp}'>Uh... Give us a few</h1>
+      <div class="rsvp-blurb ">
+        We don't know if we'll have enough room for you right now, but if you'd like you can join the waitlist.
+      </div>
+      <div class="rsvp-button-container">
+        <a ng-click='rsvp = true' target='_blank'>
+          <button type="button" name="apply" class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
+        </a>
+        <a ng-click='rsvp = false' target='_blank'>
+          <button type="button" name="sponsor" class='rsvp-button btn btn-embossed btn-primary'>NO THANKS</button>
+        </a>
+      </div>
+      <div class="info" ng-if='rsvp'>
+        <p>
+          Awesome! There are just a few more things we need to know:
+        </p>
+        <form>
+            <h6>Dietary Restrictions</h6>
+            <label for='diet'></label>
+            <input type="text" class='diet' name="diet" value="" placeholder="Allergies, special considerations, etc.">
+            <button type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
+        </form>
+      </div>
+      <div class="edit-link">
+        <a href="#">Continue editing your application >></a>
+      </div>
+    </div>
+    <div class='rsvp-page declined' ng-if='false'>
+      <h1>Sorry :(</h1>
+      <div class="rsvp-blurb">
+        <p>
+          Unfortunately we've gotten more applicants than we have the capacity to accept. Don't worry, there's always next year!
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-67298926-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>
