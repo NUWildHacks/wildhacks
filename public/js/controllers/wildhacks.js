@@ -45,13 +45,14 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
           alert('It looks like you already have an application! Check your password and try again. If you are certain this is a mistake, email us at tech@nuisepic.com and we\'ll get you figured.');
         } else {
           var urlRoot;
+          console.log(hash);
           var user = $http.get('/application-session/' + hash);
-          // if (user.status === 'accepted' || user.status === 'rejected' || user.status === 'waitlist') {
-          //   urlRoot = '/rsvp';
-          // } else {
-          //   urlRoot = '/apply';
-          // }
-          var urlRoot = '/rsvp'
+          console.log(user)
+          if (user.status === 'accepted' || user.status === 'rejected' || user.status === 'waitlist') {
+            urlRoot = '/rsvp';
+          } else {
+            urlRoot = '/apply';
+          }
           var url = urlRoot + '?email=' + email + '&key=' + hash;
           $window.location.href = url;
         }
