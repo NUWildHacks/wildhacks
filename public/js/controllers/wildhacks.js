@@ -52,3 +52,50 @@ wildhacks.directive('equals', function() {
     }
   };
 });
+
+
+// dashboard controller
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+  $http.get('/applications')
+    .then(function success(res) {
+      $scope.data = [];
+      id = 0;
+      angular.forEach(res.data, function(element, key) {
+        element.hash = key;
+        $scope.data.push(element);
+      });
+      console.log($scope.data);
+    }, function error(res) {
+      console.log("failure");
+    });
+
+  $scope.searchTerm = "";
+  $scope.toggle = function(applicant) {
+    var data = {
+      'users': [applicant.hash],
+      'status': applicant.status
+    };
+    $http.put('/update-many/', data)
+      .then(function success(res) {
+        console.log('updated!');
+      }, function error(res) {
+        console.log('error in update.');
+      });
+  };
+
+  $scope.acceptAll = function() {
+    var data = {
+      'users': [],
+      'status': 'accepted'
+    };
+    angular.forEach($scope.subset, function(applicant, index) {
+      data.users.push(applicant.hash);
+    });
+    $http.put('/update-many/', data)
+      .then(function success(res) {
+        console.log('updated!');
+      }, function error(res) {
+        console.log('error in update.');
+      });
+  };
+}]);

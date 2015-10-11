@@ -61,3 +61,5 @@ npm-debug.log
 # Hide the development db
 db/development
 
+# Don't share the applicants
+public/js/controllers/applications.json
