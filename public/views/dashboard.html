@@ -31,7 +31,7 @@
           <td>Traveling From</td>
           <!-- application -->
           <td>Blurb</td>
-          <td>Links</td>
+          <!-- <td>Links</td> -->
           <td>Teammates</td>
         </th>
         <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | orderBy:'last_cache_time':true | filter: { school:searchTerm })) track by $index">
@@ -59,7 +59,7 @@
           <td>{{application.travel}}</td>
           <!-- application -->
           <td>{{application['why-do-you-want-to-come']}}</td>
-          <td><a ng-href="{{application.github}}">GitHub</a>|<a ng-href="{{application.website}}">Website</a></td>
+          <!-- <td><a ng-href="{{application.github}}">GitHub</a>|<a ng-href="{{application.website}}">Website</a></td> -->
           <td>{{application.teammates}}</td>
         </tr>
       </table> <!-- TABLE OF APPLICATIONS -->
