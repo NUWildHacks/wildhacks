@@ -125,6 +125,11 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.status = res.data
   })
 
+  $http.get('/application-session/' + hash)
+  .then(function success(res) {
+    $scope.user = res.data;
+  })
+
   $scope.submitRsvp = function(response) {
     var data = { rsvp: response }
 
