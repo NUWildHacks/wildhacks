@@ -42,27 +42,6 @@ router.get('/applications', whTeamAuth, function (req, res) {
   });
 });
 
-router.put('/update-many/', whTeamAuth, function(req, res) {
-  var status = req.body.status;
-  var keyList = req.body.users;
-  for (var i = 0; i < keyList.length; i++) {
-    var key = keyList[i];
-    db.get(keyList[i], function(err, object) {
-      if (err) res.json(err);
-      else {
-        object['status'] = status;
-        db.put(key, object, function(err) {
-          if (err) {
-            res.json(err);
-          } else {
-            res.json({'status': 'ok'});
-          }
-        });
-      }
-    });
-  }
-});
-
 // Application session logic
 router.get('/application-session/exists/:email', function (req, res) {
   var email = req.params.email
@@ -115,23 +94,19 @@ router.get('/application-status/:hash', function (req, res) {
   })
 })
 
-router.put('/application-status/:hash', whTeamAuth, function (req, res) {
+router.put('/application-status', whTeamAuth, function (req, res) {
   var hash = req.params.hash
-    , status = req.body.status
+    , newStatuses = req.body
 
-  if (!hash)
-    res.status(422).send('Hash no good.')
-
-  db.get(hash, function (err, value) {
-    if (err) res.status(400).send('Applicant ID does not exist.')
-    db.get('statuses', function (err, statuses) {
+  db.get('statuses', function (err, statuses) {
+    if (err) res.json(err)
+    if (!statuses) statuses = { }
+    for (var id in newStatuses) {
+      statuses[id] = newStatuses[id];
+    }
+    db.put('statuses', statuses, function (err) {
       if (err) res.json(err)
-      if (!statuses) statuses = { }
-      statuses[hash] = status
-      db.put('statuses', statuses, function (err) {
-        if (err) res.json(err)
-        else res.status(200).end()
-      })
+      else res.status(200).end()
     })
   })
 })
