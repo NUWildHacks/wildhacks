@@ -73,7 +73,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope,
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];
       angular.forEach(res.data, function(application, hash) {
-        if (application.email) {
+        if (application['first-name']) {
           application.complete = appStatusUtils.isFinished(application)
           application.hash = hash;
           $http.get('/application-status/' + hash)
