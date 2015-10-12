@@ -24,11 +24,7 @@ router.get('/applications',
   });
 });
 
-<<<<<<< HEAD
 router.get('/dashboard', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
-=======
-router.get('/dashboard', function(req, res) {
->>>>>>> 7b5c427a47168af7a9425c5ea76a81ca344bf9d7
   res.render('dashboard.html');
 });
 
@@ -67,19 +63,6 @@ router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), f
   var status = req.body.status;
   var keyList = req.body.users;
   for (var i = 0; i < keyList.length; i++) {
-<<<<<<< HEAD
-    var key = keyList[i];
-    db.get(keyList[i], function(err, object) {
-      if (err) res.json(err);
-      else {
-        object['status'] = status;
-        db.put(key, object, function(err) {
-          if (err) {
-            res.json(err);
-          } else {
-            res.json({'status': 'ok'});
-          }
-=======
     db.get(keyList[i], function(err, object) {
       if (err) res.json(err);
       else {
@@ -87,7 +70,6 @@ router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), f
         db.put(keyList[i], object, function(err) {
           if (err) res.json(err);
           else res.json({'status': 'ok'});
->>>>>>> 7b5c427a47168af7a9425c5ea76a81ca344bf9d7
         });
       }
     });
