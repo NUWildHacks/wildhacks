@@ -1,5 +1,31 @@
 var wildhacks = angular.module('wildhacks', []);
 
+function parseUrlParams(url) {
+  var index = url.indexOf('email') + 6;
+  var email = '';
+  for (var i = index; i < url.length; i++) {
+    if (url[i] === '&') {
+      break;
+    }
+    email += url[i];
+  }
+
+
+  index = url.indexOf('key') + 4;
+  var hash = '';
+  for (var i = index; i < url.length; i++) {
+    if (url[i] == '#') {
+      break;
+    }
+    hash += url[i]
+  }
+
+  return {
+    'email': email,
+    'hash': hash
+  };
+}
+
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
   $scope.showRegister = true;
@@ -18,7 +44,15 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
           // There's already an application
           alert('It looks like you already have an application! Check your password and try again. If you are certain this is a mistake, email us at tech@nuisepic.com and we\'ll get you figured.');
         } else {
-          var url = "/apply#" + email + ":" + hash;
+          var urlRoot;
+          var user = $http.get('/application-session/' + hash);
+          // if (user.status === 'accepted' || user.status === 'rejected' || user.status === 'waitlist') {
+          //   urlRoot = '/rsvp';
+          // } else {
+          //   urlRoot = '/apply';
+          // }
+          var urlRoot = '/rsvp'
+          var url = urlRoot + '?email=' + email + '&key=' + hash;
           $window.location.href = url;
         }
       }, function failure (err) {
@@ -55,88 +89,112 @@ wildhacks.directive('equals', function() {
 
 
 // DASHBOARD CONTROLLER
-wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+  // CONSTRUCTOR FUNCTIONS
+  var isComplete = function(application) {
+    return !!(application['first-name'] &&
+            application['last-name'] &&
+            application.school &&
+            application.year &&
+            application.major &&
+            application.travel &&
+            application.gender &&
+            application.shirt &&
+            application.hackathons &&
+            application['18yet'] &&
+            application['mlh-code-of-conduct'] &&
+            application['why-do-you-want-to-come']);
+  };
   $http.get('/applications')
     .then(function success(res) {
-      $scope.data = [];
-      $scope.acceptedCounter = 0;
-      $scope.reverse = false;
-
-      angular.forEach(res.data, function(element, key) {
-        // assign a temporary variable for if the application is complete
-        var finished = true;
-        var numFinished = 0;
-        if (!(element.email) && (Object.keys(element).length >= 17)) {
-          numFinished += 1;
-        } else if (element.email && (Object.keys(element).length > 17)) {
-          numFinished += 1;
-        } else {
-          finished = false;
-        }
-        element.finished = finished;
-
-        // store the hash in the object, for later
-        element.hash = key;
-
-        if (element.status === "accepted") {
-          $scope.acceptedCounter += 1;
-        }
-
-        $scope.data.push(element);
+      // populate the $scope variable with applications, adding validity and hash as properties (for later use)
+      $scope.applications = [];
+      angular.forEach(res.data, function(application, hash) {
+        application.complete = isComplete(application);
+        application.hash = hash;
+        $scope.applications.push(application);
       });
+      console.log(res.status);
     }, function error(res) {
-      console.log("failure");
+      console.log(res.status);
     });
 
-  var orderBy = $filter('orderBy');
-  $scope.order = function(predicate, reverse) {
-    $scope.data = orderBy($scope.data, predicate, reverse);
+  // TOGGLE STATUS FUNCTION
+  $scope.toggleStatus = function(application, status) {
+    var data = {
+      'users': [application.hash],
+      'status': status || application.status
+    };
+    $http.put('/update-many/', data)
+      .then(function success(res) {
+        console.log(res.status);
+      }, function error(res) {
+        console.log(res.status);
+      });
   };
 
-  $scope.$watch('subset', function(newVal, oldVal) {
-    if (!newVal) {
-      return;
-    }
+  // ACCEPT ALL BUTTON FUNCTION
+  $scope.acceptAll = function() {
+    console.log("its happening");
+    angular.forEach($scope.filteredApps, function(application, idx) {
+      application.status = 'accepted';
+      $scope.toggleStatus(application, 'accepted');
+    });
+  };
 
-    $scope.accepted = 0;
+  $scope.$watch('filteredApps', function(newVal) {
+    if (!newVal) return;
+    $scope.numApplications = newVal.length;
+    $scope.numAccepted = 0;
     for (var i = 0; i < newVal.length; i++) {
       if (newVal[i].status === 'accepted') {
-        $scope.accepted++;
+        $scope.numAccepted++;
       }
     }
-    $scope.applicants = newVal.length;
-  });
+  }, true);
+}]);
 
-  $scope.searchTerm = "";
-  $scope.toggle = function(applicant) {
-    var data = {
-      'users': [applicant.hash],
-      'status': applicant.status
-    };
-    $http.put('/update-many/', data)
-      .then(function success(res) {
-        console.log(res);
-        console.log('updated!');
-      }, function error(res) {
-        console.log('error in update.');
-      });
-  };
+// RSVP CONTROLLER
+wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  var url = $window.location.href;
+  var params = parseUrlParams(url);
+  $scope.restrictions = '';
+  var user;
+  $http.get('/application-session/' + params.hash)
+    .then(function success(response) {
+      user = response.data;
+      $scope.status = user.status;
 
-  $scope.acceptAll = function() {
-    var data = {
-      'users': [],
-      'status': 'accepted'
-    };
-    angular.forEach($scope.subset, function(applicant, index) {
-      applicant.status = "accepted";
-      data.users.push(applicant.hash);
+    }, function error(response) {
+      $scope.status = 'waitlist';
     });
 
-    $http.put('/update-many/', data)
-      .then(function success(res) {
-        console.log('updated!');
-      }, function error(res) {
-        console.log('error in update.');
+  $scope.submitRsvp = function(status) {
+    var data = user;
+    data.rsvp = status
+    $http.put('/user/' + params.hash, data)
+      .then(function success(response) {
+        console.log('RSVPed!');
+        if (status === 'not coming') {
+          alert('We\'ll miss you!');
+          $window.location.href = '/';
+        }
+      }, function error(response) {
+        console.log('RSVP failed!');
+      }
+    );
+  }
+
+  $scope.submitDietaryRestrictions = function(restrictions) {
+    var data = user;
+    data.dietaryRestrictions = restrictions;
+    $http.put('/user/' + params.hash, data)
+      .then(function success(response) {
+        alert('Thanks! Looking forward to seeing you!');
+        $window.location.href = '/';
+        console.log('Dietary restrictions saved!');
+      }, function error(response) {
+        console.log('Dietary restrictions not saved!');
       });
-  };
+  }
 }]);
