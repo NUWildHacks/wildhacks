@@ -69,7 +69,7 @@ router.get('/application-session/exists/:email', function (req, res) {
 
   db.get(email, function (err, value) {
     if (err) res.json(false)
-    res.json(true)
+    res.json(value)
   })
 })
 

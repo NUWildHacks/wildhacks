@@ -14,20 +14,22 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
     $http.get('/application-session/exists/' + email)
     .then(function success (res) {
       var exists = res.data
-      if (exists) {
+      console.log(exists)
+      if (exists && hash != exists) {
         alert('It looks like you already have an application!' +
               ' Check your password and try again. If you are certain' +
               ' this is a mistake, email us at tech@nuisepic.com and' +
               ' we\'ll get you figured.');
       } else {
-        $http.get('/application-session/' + hash)
+        $http.get('/application-status/' + hash)
         .then(function success (res) {
-          var user = res.data
-            , userStatusIsValid = user.status == 'pending'
-                               || user.status == 'accepted'
-                               || user.status == 'waitlisted'
-            , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
-            , url = urlRoot + '#' + email + ':' + hash
+          var status = res.data
+          , userStatusIsValid = status == 'pending'
+                             || status == 'accepted'
+                             || status == 'waitlist'
+                             || status == 'rejected'
+          , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
+          , url = urlRoot + '#' + email + ':' + hash
 
           $window.location.href = url;
         })
