@@ -4,6 +4,16 @@ var express   = require('express')
   , db        = require('../db.js')
   , basicAuth = require('basic-auth-connect')
 
+var whTeamAuth = basicAuth('wh-team', process.env.REVIEW_PASSWORD)
+
+function redirectIfInvalid (hash, res) {
+  if (!hash) {
+    res.redirect('/')
+  }
+}
+
+// Views
+
 router.get('/', function(req, res) {
   res.render('index.html');
 });
@@ -12,9 +22,17 @@ router.get('/apply', function (req, res) {
   res.render('application.html');
 });
 
-router.get('/applications',
-           basicAuth('wh-team', process.env.REVIEW_PASSWORD),
-           function (req, res) {
+router.get('/rsvp', function (req, res) {
+  res.render('rsvp.html');
+});
+
+router.get('/dashboard', whTeamAuth, function(req, res) {
+  res.render('dashboard.html');
+});
+
+// Admin Logic
+
+router.get('/applications', whTeamAuth, function (req, res) {
   var applications = { };
   db.createReadStream()
     .on('data', function (data) {
@@ -24,42 +42,7 @@ router.get('/applications',
   });
 });
 
-router.get('/dashboard', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
-  res.render('dashboard.html');
-});
-
-router.get('/application-session/exists/:email', function (req, res) {
-  var email = req.params.email;
-  db.get(email, function (err, value) {
-    if (err) res.json(false);
-    else res.json(value);
-  });
-});
-
-router.get('/application-session/:hash', function (req, res) {
-  var key = req.params.hash;
-  db.get(key, function (err, value) {
-    if (err) res.json({});
-    else res.json(value);
-  });
-});
-
-router.put('/application-session/:hash', function (req, res) {
-  var key = req.params.hash
-    , email = req.body.email
-  console.log(req.body);
-  db.put(key, req.body, function (err) {
-    if(err) res.json(err);
-    else {
-      db.put(email, key, function (err) {
-        if (err) res.json(err);
-        else res.send('okay!');
-      });
-    }
-  });
-});
-
-router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
+router.put('/update-many/', whTeamAuth, function(req, res) {
   var status = req.body.status;
   var keyList = req.body.users;
   for (var i = 0; i < keyList.length; i++) {
@@ -78,6 +61,36 @@ router.put('/update-many/', basicAuth('wh-team', process.env.REVIEW_PASSWORD), f
       }
     });
   }
+});
+
+// Generic application logic
+
+router.get('/application-session/:hash', function (req, res) {
+  var hash = req.params.hash
+
+  redirectIfInvalid(hash, res)
+
+  db.get(hash, function (err, value) {
+    if (err) res.json({});
+    else res.json(value);
+  });
+});
+
+router.put('/application-session/:hash', function (req, res) {
+  var hash = req.params.hash
+    , email = req.body.email
+
+  redirectIfInvalid(hash, res)
+
+  db.put(hash, req.body, function (err) {
+    if(err) res.json(err);
+    else {
+      db.put(email, hash, function (err) {
+        if (err) res.json(err);
+        else res.send('okay!');
+      });
+    }
+  });
 });
 
 module.exports = router;

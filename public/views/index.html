@@ -91,7 +91,7 @@
         <br/>NOVEMBER 21-22</h2>
       <div class="sponsor-button-container">
         <a href="#apply-section" target='_blank'>
-          <button type="button" name="apply" class='sponsor-button btn btn-embossed btn-primary'>REGISTER</button>
+          <button type="button" name="apply" class='sponsor-button btn btn-embossed btn-primary'>LOG IN</button>
         </a>
         <a href='mailto:sponsor@wildhacks.org' target='_blank'>
           <button type="button" name="sponsor" class='sponsor-button btn btn-embossed btn-primary'>SPONSOR</button>
@@ -129,13 +129,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 description">
+          <div ng-show='showLogin' class="col-md-6 description">
+            <p>Let's get you logged in!</p>
+          </div>
+          <div ng-hide='showLogin' class="col-md-6 description">
             <p>Let's get you registered!</p>
           </div>
         </div>
 
         <!-- REGISTRATION PAGE -->
-        <form ng-show="showRegister" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && authenticate()">
+        <form ng-hide="showLogin" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && authenticate()">
           <div class='row input-container'>
             <div class="col-md-6">
               <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email*" autocomplete="off" required/>
@@ -167,19 +170,19 @@
 
 
           <!-- TOGGLE BETWEEN THE TWO -->
-          <a ng-click="showRegister = !showRegister" class='register-status'>Login</a>
+          <a ng-click="showLogin = !showLogin" class='register-status'>Login</a>
 
           <div class="row">
             <div class="col-md-6 submit-button-container">
               <button ng-disabled="registerForm.$invalid" type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'>
-                SUBMIT
+                REGISTER
               </button>
             </div>
           </div>
         </form>
 
         <!-- LOGIN PAGE -->
-        <form ng-hide="showRegister" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && authenticate()">
+        <form ng-show="showLogin" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && authenticate()">
           <div class='row input-container'>
             <div class="col-md-6">
               <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email" autocomplete="off" required/>
@@ -200,12 +203,12 @@
           </div>
 
           <!-- TOGGLE BETWEEN THE TWO -->
-          <a ng-click="showRegister = !showRegister" class='register-status'>Register</a>
+          <a ng-click="showLogin = !showLogin" class='register-status'>Register</a>
 
           <div class="row">
             <div class="col-md-6 submit-button-container">
               <button ng-disabled="loginForm.$invalid" type="submit" class='submit-button btn btn-hg btn-embossed btn-primary'>
-                SUBMIT
+                LOG IN
               </button>
             </div>
           </div>
@@ -227,7 +230,7 @@
           <div class="col-xs-6 col-md-8 col-md-offset-2">
             <img src="../images/logos/sponsors/tier5/trustwave.png">
           </div>
-        
+
         </div>
         <div class="row sponsor-row" id="tier4">
           <div class="col-xs-6 col-md-4">
@@ -367,8 +370,8 @@
             <h2>FAQ</h2>
           </div>
         </div>
-        
-        
+
+
         <div class="row faq">
           <div class="col-md-4 col-sm-12 faq-item">
             <h3 class='question'>What is WildHacks?</h3>
@@ -389,8 +392,8 @@
             </p>
           </div>
         </div>
-        
-        
+
+
         <div class="row faq">
           <div class="col-md-4 col-sm-12 faq-item">
             <h3 class='question'>What should I bring?</h3>
@@ -411,8 +414,8 @@
             </p>
           </div>
         </div>
-        
-        
+
+
         <div class="row faq">
           <div class="col-md-4 col-sm-12 faq-item">
             <h3 class='question'>How do teams work?</h3>
@@ -433,8 +436,8 @@
             </p>
           </div>
         </div>
-        
-        
+
+
         <div class="row faq">
           <div class="col-md-4 col-sm-12 faq-item">
             <h3 class='question'>Will there be hardware provided?</h3>
@@ -455,8 +458,8 @@
             </p>
           </div>
         </div>
-        
-        
+
+
         <div class="row faq-bottom">
           <br>
         </div>

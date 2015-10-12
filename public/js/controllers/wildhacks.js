@@ -2,7 +2,7 @@ var wildhacks = angular.module('wildhacks', []);
 
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
-  $scope.showRegister = true;
+  $scope.showLogin = true;
 
   $scope.authenticate = function() {
     var email = $scope.user.email;
@@ -11,18 +11,32 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
     var out = (new sjcl.misc.hmac(key, sjcl.hash.sha256)).mac($scope.user.password);
     var hash = sjcl.codec.hex.fromBits(out);
 
-    $http.get('/application-session/exists/' + email)
+    $http.get('/application-session/' + hash)
       .then(function success (res) {
         var data = res.data;
-        if (data && data != hash) {
-          // There's already an application
-          alert('It looks like you already have an application! Check your password and try again. If you are certain this is a mistake, email us at tech@nuisepic.com and we\'ll get you figured.');
+
+        if (Object.keys(data).length > 0) {
+          // NOTE(jordan): There's already an application
+          alert('It looks like you already have an application!' +
+                ' Check your password and try again. If you are certain' +
+                ' this is a mistake, email us at tech@nuisepic.com and' +
+                ' we\'ll get you figured.');
         } else {
-          var url = "/apply#" + email + ":" + hash;
-          $window.location.href = url;
+          $http.get('/application-session/' + hash)
+            .then(function success (response) {
+              var user = response.data
+                , userStatusIsValid = user.status == 'pending'
+                                   || user.status == 'accepted'
+                                   || user.status == 'waitlisted'
+                , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
+                , url = urlRoot + '#' + email + ':' + hash
+
+              $window.location.href = url;
+          })
         }
       }, function failure (err) {
-        alert('Whoops, something is very wrong. Try refreshing the page and trying again.');
+        alert('Whoops, something is very wrong. Try refreshing' +
+              ' the page and trying again.');
       });
   };
 
@@ -115,7 +129,6 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($s
     };
     $http.put('/update-many/', data)
       .then(function success(res) {
-        console.log(res);
         console.log('updated!');
       }, function error(res) {
         console.log('error in update.');
@@ -139,4 +152,48 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($s
         console.log('error in update.');
       });
   };
+}]);
+
+wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  var url = $window.location.href;
+  var params = parseUrlParams(url);
+  $scope.restrictions = '';
+  var user;
+  $http.get('/application-session/' + params.hash)
+    .then(function success(response) {
+      user = response.data;
+      $scope.status = user.status;
+
+    }, function error(response) {
+      $scope.status = 'waitlist';
+    });
+
+  $scope.submitRsvp = function(status) {
+    var data = user;
+    data.rsvp = status
+    $http.put('/application-session/' + params.hash, data)
+      .then(function success(response) {
+        console.log('RSVPed!');
+        if (status === 'not coming') {
+          alert('We\'ll miss you!');
+          $window.location.href = '/';
+        }
+      }, function error(response) {
+        console.log('RSVP failed!');
+      }
+    );
+  }
+
+  $scope.submitDietaryRestrictions = function(restrictions) {
+    var data = user;
+    data.dietaryRestrictions = restrictions;
+    $http.put('/application-session/' + params.hash, data)
+      .then(function success(response) {
+        alert('Thanks! Looking forward to seeing you!');
+        $window.location.href = '/';
+        console.log('Dietary restrictions saved!');
+      }, function error(response) {
+        console.log('Dietary restrictions not saved!');
+      });
+  }
 }]);
