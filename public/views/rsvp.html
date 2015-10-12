@@ -17,7 +17,6 @@
 
 <body ng-app='wildhacks'>
   <div ng-controller='RsvpCtrl'>
-    <!-- ng-if='status === "accepted"' -->
     <div class='rsvp-page accepted' ng-if='status === "accepted"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>You're in!</h1>
       <div class="rsvp-blurb">
@@ -33,7 +32,7 @@
       </div>
       <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='rsvp'>
         <p>
-          Awesome! There are just a few more things we need to know:
+          Awesome! There are just a few things to go over:
         </p>
         <form>
           <h6>Dietary Restrictions</h6>
@@ -79,16 +78,17 @@
             </table>
           </div>
         </form>
+        <div class="">
+          <p>
+            Also be sure to check out our WildHacks Attendees Facebook page <a href="https://www.facebook.com/groups/542430769240793/">here!</a>
+          </p>
+        </div>
       </div>
-      <!-- Not required for acceptance -->
-      <!-- <div class="edit-link">
-        <a href="#">Continue editing your application >></a>
-      </div> -->
     </div>
     <div class='rsvp-page waitlist' ng-if='status === "waitlist"'>
-      <h1 ng-class='{"page-clicked" : rsvp}'>Uh... Give us a few</h1>
+      <h1 ng-class='{"page-clicked" : rsvp}'>Wait for it...</h1>
       <div class="rsvp-blurb ">
-        We don't know if we'll have enough room for you right now, but if you'd like you can join the waitlist.
+        We don't know if we'll have enough room for you right now, but if you'd like you can join our waitlist, and if a spot opens up you'll be the <em>n</em>th to know (where n is your place on the waitlist)!
       </div>
       <div class="rsvp-button-container">
         <a ng-click='rsvp = true' target='_blank'>
@@ -100,7 +100,7 @@
       </div>
       <div class="info" ng-if='rsvp'>
         <p>
-          Awesome! There are just a few more things we need to know:
+          Awesome! There are just one more thing we need to know:
         </p>
         <form>
             <h6>Dietary Restrictions</h6>
@@ -109,15 +109,20 @@
             <button ng-click='submitDietaryRestrictions(restrictions)' type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
         </form>
       </div>
-      <div class="edit-link">
-        <a href="#">Continue editing your application >></a>
-      </div>
     </div>
     <div class='rsvp-page declined' ng-if='status === "rejected"'>
       <h1>Sorry :(</h1>
       <div class="rsvp-blurb">
         <p>
           Unfortunately we've gotten more applicants than we have the capacity to accept. Don't worry, there's always next year!
+        </p>
+      </div>
+    </div>
+    <div class='rsvp-page pending' ng-if='status === "pending"'>
+      <h1>Uh... give us a few</h1>
+      <div class="rsvp-blurb">
+        <p>
+          We're still looking at your app, but we'll let you know as soon as possible!
         </p>
       </div>
     </div>
