@@ -35,10 +35,10 @@ var appStatusUtils;
 if (typeof module === 'object' && module.exports) {
   appStatusUtils = module.exports
 } else {
-  appStatusUtils = this.appStatusUtils // NOTE(jordan): this === window
+  appStatusUtils = this.appStatusUtils = { } // NOTE(jordan): this === window
 }
 
-function allFieldsTruthy = function (data, fields) {
+function allFieldsTruthy (data, fields) {
   return fields.every(function (f) {
     return !!data[f]
   })

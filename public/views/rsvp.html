@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/flat-ui.css">
   <script src="js/flat-ui.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
-  <script src="js/a-horrible-hack/application-status-utils.js"></script>
+  <script src="a-horrible-hack/application-status-utils.js"></script>
   <script src="js/controllers/wildhacks.js"></script>
 </head>
 
@@ -96,7 +96,7 @@
           <button type="button" name="apply" ng-click='submitRsvp("on waitlist")' class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
         </a>
         <a ng-click='rsvp = false' target='_blank'>
-          <button type="button" name="sponsor" ng-click='submitRsvp("off waitlist")' class='rsvp-button btn btn-embossed btn-danger'>NO THANKS</button>
+          <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-danger'>NO THANKS</button>
         </a>
       </div>
       <div class="info" ng-if='rsvp'>

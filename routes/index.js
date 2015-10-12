@@ -80,6 +80,26 @@ router.put('/application-session/:hash', function (req, res) {
   });
 });
 
+router.patch('/application-session/:hash', function (req, res) {
+  var hash = req.params.hash
+    , updates = req.body
+
+  redirectIfInvalid(hash, res)
+
+  db.get(hash, function (err, value) {
+    if (err) res.json(err)
+
+    for (var updatedField in updates) {
+      value[updatedField] = updates[updatedField]
+    }
+
+    db.put(hash, value, function (err) {
+      if (err) res.json(err)
+      res.status(200).end()
+    })
+  })
+})
+
 // Application status logic
 
 router.get('/application-status/:hash', function (req, res) {

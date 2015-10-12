@@ -151,46 +151,44 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$filter', function($s
   };
 }]);
 
-wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
-  var url = $window.location.href;
-  var params = parseUrlParams(url);
+wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
+
+  debugger
+  var hash = window.location.hash.split(':')[1]
+
+  if (!hash) window.location.href = '/'
+
   $scope.restrictions = '';
-  var user;
-  $http.get('/application-session/' + params.hash)
-    .then(function success(response) {
-      user = response.data;
-      $scope.status = user.status;
 
-    }, function error(response) {
-      $scope.status = 'waitlist';
-    });
+  $http.get('/application-status/' + hash)
+  .then(function success (res) {
+    $scope.status = res.data
+  })
 
-  $scope.submitRsvp = function(status) {
-    var data = user;
-    data.rsvp = status
-    $http.put('/application-session/' + params.hash, data)
-      .then(function success(response) {
-        console.log('RSVPed!');
-        if (status === 'not coming') {
-          alert('We\'ll miss you!');
-          $window.location.href = '/';
-        }
-      }, function error(response) {
-        console.log('RSVP failed!');
+  $scope.submitRsvp = function(response) {
+    var data = { rsvp: response }
+
+    $http.patch('/application-session/' + hash, data)
+    .then(function success (res) {
+      console.log('RSVPed!')
+      if (response === 'not coming') {
+        alert('We\'ll miss you!')
+        window.location.href = '/'
       }
-    );
+    }, function error(res) {
+      console.log('RSVP failed!')
+    })
   }
 
   $scope.submitDietaryRestrictions = function(restrictions) {
-    var data = user;
-    data.dietaryRestrictions = restrictions;
-    $http.put('/application-session/' + params.hash, data)
-      .then(function success(response) {
-        alert('Thanks! Looking forward to seeing you!');
-        $window.location.href = '/';
-        console.log('Dietary restrictions saved!');
-      }, function error(response) {
-        console.log('Dietary restrictions not saved!');
-      });
+    var data = { dietaryRestrictions: restrictions }
+    $http.patch('/application-session/' + params.hash, data)
+    .then(function success(response) {
+      alert('Thanks! Looking forward to seeing you!');
+      window.location.href = '/';
+      console.log('Dietary restrictions saved!');
+    }, function error(response) {
+      console.log('Dietary restrictions not saved!');
+    });
   }
 }]);
