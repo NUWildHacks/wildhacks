@@ -65,9 +65,13 @@ wildhacks.directive('equals', function() {
 
 
 // DASHBOARD CONTROLLER
-wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
   // get all the applications
-  $http.get('/applications')
+  $scope.loaded = false;
+  $scope.numAccepted = 0;
+  $scope.numApplications = 0;
+
+  $http.get('js/controllers/applications.json')
     .then(function success(res) {
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];
@@ -79,9 +83,14 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
           .then(function success (res) {
             application.status = res.data || 'pending';
             $scope.applications.push(application);
+            // populate the counters
+            if (application.status === 'accepted') $scope.numAccepted++;
+            $scope.numApplications++;
           });
         }
       });
+      // now we're done, so do some housecleaning
+      $scope.loaded = true;
       console.log(res.status);
     }, function error(res) {
       console.log(res.status);
@@ -101,18 +110,23 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
       });
   };
 
-  // watch for changes, either from the initial request or a filter
-  // for this change, reset the counters at the top of the page
-  $scope.$watch('filteredApps', function(newVal) {
-    if (!newVal) return;
-    $scope.numApplications = newVal.length;
-    $scope.numAccepted = 0;
-    for (var i = 0; i < newVal.length; i++) {
-      if (newVal[i].status === 'accepted') {
-        $scope.numAccepted++;
+  // update numbers
+  $scope.updateValue = function(newValue, oldValue) {
+    if (newValue !== "accepted" && oldValue === "accepted") $scope.numAccepted--;
+    if (newValue === "accepted" && oldValue !== "accepted") $scope.numAccepted++;
+  };
+
+  $scope.recount = function() {
+    $timeout(function() {
+      $scope.numApplications = $scope.filteredApps.length;
+      $scope.numAccepted = 0;
+      for (var i = 0; i < $scope.filteredApps.length; i++) {
+        if ($scope.filteredApps[i].status === 'accepted') $scope.numAccepted++;
       }
-    }
-  }, true);
+    }, 1000);
+  };
+
+  
 }]);
 
 wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {

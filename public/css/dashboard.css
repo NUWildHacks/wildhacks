@@ -3,6 +3,11 @@ table, th, td {
   border-collapse: collapse;
 }
 
+/* make lives easier */
+table.floatThead-table {
+    background-color: #FFF;
+}
+
 .accepted { background-color: lightgreen; }
 .rejected { background-color: red; }
 .waitlist { background-color: yellow; }

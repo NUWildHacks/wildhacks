@@ -43,9 +43,6 @@ if (typeof module === 'object' && module.exports) {
 // check if every field in applicationRequired exists in the application
 function allFieldsDefined (data, fields) {
   return fields.every(function (f) {
-    if (data[f] === undefined) {
-      console.log(f);
-    }
     return data[f] !== undefined;
   });
 }
