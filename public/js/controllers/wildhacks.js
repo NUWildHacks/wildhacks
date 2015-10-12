@@ -1,31 +1,5 @@
 var wildhacks = angular.module('wildhacks', []);
 
-function parseUrlParams(url) {
-  var index = url.indexOf('email') + 6;
-  var email = '';
-  for (var i = index; i < url.length; i++) {
-    if (url[i] === '&') {
-      break;
-    }
-    email += url[i];
-  }
-
-
-  index = url.indexOf('key') + 4;
-  var hash = '';
-  for (var i = index; i < url.length; i++) {
-    if (url[i] == '#') {
-      break;
-    }
-    hash += url[i];
-  }
-
-  return {
-    'email': email,
-    'hash': hash
-  };
-}
-
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
   $scope.showLogin = true;
@@ -156,59 +130,11 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
   }, true);
 }]);
 
-// RSVP CONTROLLER
-wildhacks.controller('RsvpCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
-  var url = $window.location.href;
-  var params = parseUrlParams(url);
-  $scope.restrictions = '';
-  var user;
-  $http.get('/application-session/' + params.hash)
-    .then(function success(response) {
-      user = response.data;
-      $scope.status = user.status;
-
-    }, function error(response) {
-      $scope.status = 'waitlist';
-    });
-
-  $scope.submitRsvp = function(status) {
-    var data = user;
-    data.rsvp = status;
-    $http.put('/user/' + params.hash, data)
-      .then(function success(response) {
-        console.log('RSVPed!');
-        if (status === 'not coming') {
-          alert('We\'ll miss you!');
-          $window.location.href = '/';
-        }
-      }, function error(response) {
-        console.log('RSVP failed!');
-      }
-    );
-  };
-
-  $scope.submitDietaryRestrictions = function(restrictions) {
-    var data = user;
-    data.dietaryRestrictions = restrictions;
-    $http.put('/user/' + params.hash, data)
-      .then(function success(response) {
-        alert('Thanks! Looking forward to seeing you!');
-        $window.location.href = '/';
-        console.log('Dietary restrictions saved!');
-      }, function error(response) {
-        console.log('Dietary restrictions not saved!');
-      });
-  };
-}]);
-
 wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
 
-  debugger
   var hash = window.location.hash.split(':')[1]
 
   if (!hash) window.location.href = '/'
-
-  $scope.restrictions = '';
 
   $http.get('/application-status/' + hash)
   .then(function success (res) {
@@ -232,10 +158,9 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.submitDietaryRestrictions = function(restrictions) {
     var data = { dietaryRestrictions: restrictions }
-    $http.patch('/application-session/' + params.hash, data)
+    $http.patch('/application-session/' + hash, data)
     .then(function success(response) {
-      alert('Thanks! Looking forward to seeing you!');
-      window.location.href = '/';
+      alert('Thanks! We\'ll make sure to accommodate your needs. :)');
       console.log('Dietary restrictions saved!');
     }, function error(response) {
       console.log('Dietary restrictions not saved!');
