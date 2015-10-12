@@ -12,7 +12,6 @@
 
       <!-- FILTER BY SCHOOL -->
       <input type="text" ng-model="searchTerm" placeholder="Filter by school" ng-model-options="{ debounce:500 }">
-      <button ng-click="acceptAll()">Accept All</button>
 
       <!-- TABLE OF APPLICATIONS -->
       <table>
@@ -39,11 +38,10 @@
           <td>
             <!-- toggle an application's status here -->
             <form action="">
-              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="accepted">Accept</br>
-              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="rejected">Reject</br>
-              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="waitlisted">Waitlist</br>
-              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="unfinished">Unfinished</br>
-              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="pending">Pending</br>
+              <input type="radio" name="status" ng-model="application.status" ng-click="toggleStatus(application, 'accepted')" value="accepted">Accept</br>
+              <input type="radio" name="status" ng-model="application.status" ng-click="toggleStatus(application, 'rejected')" value="rejected">Reject</br>
+              <input type="radio" name="status" ng-model="application.status" ng-click="toggleStatus(application, 'waitlist')" value="waitlist">Waitlist</br>
+              <input type="radio" name="status" ng-model="application.status" ng-click="toggleStatus(application, 'pending')" value="pending" checked>Pending</br>
             </form>
           <!-- stuff -->
           <td>{{application['18yet']}}</td>

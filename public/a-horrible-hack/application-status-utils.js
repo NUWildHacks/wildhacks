@@ -38,9 +38,9 @@ if (typeof module === 'object' && module.exports) {
   appStatusUtils = this.appStatusUtils = { } // NOTE(jordan): this === window
 }
 
-function allFieldsTruthy (data, fields) {
+function allFieldsDefined (data, fields) {
   return fields.every(function (f) {
-    return !!data[f]
+    return data[f] != undefined
   })
 }
 
@@ -54,11 +54,11 @@ appStatusUtils.isValid = function (appData) {
 // all required app fields truthy
 appStatusUtils.isFinished = function (appData) {
   return appStatusUtils.isValid(appData)
-         && allFieldsTruthy(appData, applicationRequired)
+         && allFieldsDefined(appData, applicationRequired)
 }
 
 // all required rsvp fields truthy
 appStatusUtils.hasRSVPed = function (appData) {
   return appStatusUtils.isValid(appData)
-         && allFieldsTruthy(appData, rsvpRequired)
+         && allFieldsDefined(appData, rsvpRequired)
 }

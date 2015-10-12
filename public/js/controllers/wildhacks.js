@@ -66,30 +66,6 @@ wildhacks.directive('equals', function() {
 
 // DASHBOARD CONTROLLER
 wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
-  // CONSTRUCTOR FUNCTIONS
-  var isComplete = function(application) {
-    return !!(application['first-name'] &&
-            application['last-name'] &&
-            application.school &&
-            application.year &&
-            application.major &&
-            application.travel &&
-            application.gender &&
-            application.shirt &&
-            application.hackathons &&
-            application['18yet'] &&
-            application['mlh-code-of-conduct'] &&
-            application['why-do-you-want-to-come']);
-  };
-
-  // first request GETs the statuses of all the applications
-  $http.get('/application-status')
-    .then(function success(res) {
-      $scope.statuses = res.body;
-      console.log(res.status);
-    }, function error(res) {
-      console.log(res.status);
-    });
 
   // second request GETs all the applications themselves, modifying them a little
   $http.get('/applications')
@@ -97,9 +73,15 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope,
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];
       angular.forEach(res.data, function(application, hash) {
-        application.complete = isComplete(application);
-        application.hash = hash;
-        $scope.applications.push(application);
+        if (application.email) {
+          application.complete = appStatusUtils.isFinished(application)
+          application.hash = hash;
+          $http.get('/application-status/' + hash)
+          .then(function success (res) {
+            application.status = res.data || 'pending'
+            $scope.applications.push(application)
+          })
+        }
       });
       console.log(res.status);
     }, function error(res) {
@@ -108,25 +90,16 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope,
 
   // TOGGLE STATUS FUNCTION
   $scope.toggleStatus = function(application, status) {
-    var data = {
-      'users': [application.hash],
-      'status': status || application.status
-    };
-    $http.put('/update-many/', data)
+    var data = { }
+    data[application.hash] = status
+    application.status = status
+
+    $http.put('/application-status/', data)
       .then(function success(res) {
         console.log(res.status);
       }, function error(res) {
         console.log(res.status);
       });
-  };
-
-  // ACCEPT ALL BUTTON FUNCTION
-  $scope.acceptAll = function() {
-    console.log("its happening");
-    angular.forEach($scope.filteredApps, function(application, idx) {
-      application.status = 'accepted';
-      $scope.toggleStatus(application, 'accepted');
-    });
   };
 
   $scope.$watch('filteredApps', function(newVal) {
@@ -169,6 +142,7 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.submitDietaryRestrictions = function(restrictions) {
     var data = { dietaryRestrictions: restrictions }
+
     $http.patch('/application-session/' + hash, data)
     .then(function success(response) {
       alert('Thanks! We\'ll make sure to accommodate your needs. :)');
