@@ -19,8 +19,14 @@
   <div ng-controller='RsvpCtrl'>
     <div class='rsvp-page accepted' ng-if='status === "accepted"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>You're in!</h1>
-      <div class="rsvp-blurb">
+      <div class="rsvp-blurb" ng-show='!user.rsvp'>
         We'd love to have you at WildHacks this year! Please RSVP so we can make room for you.
+      </div>
+      <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
+        Aw. Well if you ever change your mind we'll be right here!
+      </div>
+      <div class="rsvp-blurb" ng-show='user.rsvp == "coming"'>
+        Yay! We're really looking forward to having you.
       </div>
       <div class="rsvp-button-container">
         <a ng-click='user.rsvp = "coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming"'>
@@ -32,7 +38,7 @@
       </div>
       <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='user.rsvp == "coming"'>
         <p>
-          Awesome! There are just a few things to go over:
+          There are just a few things to go over:
         </p>
         <form>
           <h6>Dietary Restrictions</h6>
@@ -87,8 +93,14 @@
     </div>
     <div class='rsvp-page waitlist' ng-if='status === "waitlist"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>Wait for it...</h1>
-      <div class="rsvp-blurb ">
+      <div class="rsvp-blurb " ng-show='!user.rsvp'>
         We don't know if we'll have enough room for you right now, but if you'd like you can join our waitlist, and if a spot opens up you'll be the <em>n</em>th to know (where n is your place on the waitlist)!
+      </div>
+      <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
+        Aw. Well if you ever change your mind we'll be right here!
+      </div>
+      <div class="rsvp-blurb" ng-show='user.rsvp == "waitlist"'>
+        Sweet! We'll be sure to let you know!
       </div>
       <div class="rsvp-button-container">
         <a target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming"'>
