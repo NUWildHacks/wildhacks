@@ -114,6 +114,13 @@ router.get('/application-status/:hash', function (req, res) {
   })
 })
 
+router.get('/application-status', whTeamAuth, function (req, res) {
+  db.get('statuses', function (err, statuses) {
+    if (err) res.json(err)
+    res.json(statuses)
+  })
+})
+
 router.put('/application-status', whTeamAuth, function (req, res) {
   var hash = req.params.hash
     , newStatuses = req.body
