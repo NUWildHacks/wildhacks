@@ -11,33 +11,28 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
     var out = (new sjcl.misc.hmac(key, sjcl.hash.sha256)).mac($scope.user.password);
     var hash = sjcl.codec.hex.fromBits(out);
 
-    $http.get('/application-session/' + hash)
-      .then(function success (res) {
-        var data = res.data;
+    $http.get('/application-session/exists/' + email)
+    .then(function success (res) {
+      var exists = res.data
+      if (exists) {
+        alert('It looks like you already have an application!' +
+              ' Check your password and try again. If you are certain' +
+              ' this is a mistake, email us at tech@nuisepic.com and' +
+              ' we\'ll get you figured.');
+      } else {
+        $http.get('/application-session/' + hash)
+        .then(function success (res) {
+          var user = res.data
+            , userStatusIsValid = user.status == 'pending'
+                               || user.status == 'accepted'
+                               || user.status == 'waitlisted'
+            , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
+            , url = urlRoot + '#' + email + ':' + hash
 
-        if (Object.keys(data).length > 0) {
-          // NOTE(jordan): There's already an application
-          alert('It looks like you already have an application!' +
-                ' Check your password and try again. If you are certain' +
-                ' this is a mistake, email us at tech@nuisepic.com and' +
-                ' we\'ll get you figured.');
-        } else {
-          $http.get('/application-session/' + hash)
-            .then(function success (response) {
-              var user = response.data
-                , userStatusIsValid = user.status == 'pending'
-                                   || user.status == 'accepted'
-                                   || user.status == 'waitlisted'
-                , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
-                , url = urlRoot + '#' + email + ':' + hash
-
-              $window.location.href = url;
-          })
-        }
-      }, function failure (err) {
-        alert('Whoops, something is very wrong. Try refreshing' +
-              ' the page and trying again.');
-      });
+          $window.location.href = url;
+        })
+      }
+    })
   };
 
 }]);

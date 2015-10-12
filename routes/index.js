@@ -64,6 +64,14 @@ router.put('/update-many/', whTeamAuth, function(req, res) {
 });
 
 // Application session logic
+router.get('/application-session/exists/:email', function (req, res) {
+  var email = req.params.email
+
+  db.get(email, function (err, value) {
+    if (err) res.json(false)
+    res.json(true)
+  })
+})
 
 router.get('/application-session/:hash', function (req, res) {
   var hash = req.params.hash
