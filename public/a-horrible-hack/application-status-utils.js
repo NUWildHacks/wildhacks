@@ -1,6 +1,6 @@
 var rsvpRequired = [
   'rsvp'
-]
+];
 
 var applicationRequired = [
   'first-name',
@@ -14,51 +14,56 @@ var applicationRequired = [
   'hackathons',
   '18yet',
   'mlh-code-of-conduct',
-  'why-do-you-want-to-come'
-]
+  'why-do-you-want-to-come',
+  'last_cache_time'
+];
 
 var optionalFields = [
   'github',
   'website',
+  'resume',
   'teammates',
   'dietaryRestriction',
   'waitlist-rsvp'
-]
+];
 
 var allowedFields =
     [].concat(optionalFields)
       .concat(applicationRequired)
-      .concat(rsvpRequired)
+      .concat(rsvpRequired);
 
 var appStatusUtils;
 
 if (typeof module === 'object' && module.exports) {
-  appStatusUtils = module.exports
+  appStatusUtils = module.exports;
 } else {
-  appStatusUtils = this.appStatusUtils = { } // NOTE(jordan): this === window
+  appStatusUtils = this.appStatusUtils = { }; // NOTE(jordan): this === window
 }
 
+// check if every field in applicationRequired exists in the application
 function allFieldsDefined (data, fields) {
   return fields.every(function (f) {
-    return data[f] != undefined
-  })
+    if (data[f] === undefined) {
+      console.log(f);
+    }
+    return data[f] !== undefined;
+  });
 }
 
-// only allowedFields
+// check if every field in an application is also in allowedFields
 appStatusUtils.isValid = function (appData) {
   return Object.keys(appData).every(function (k) {
-    return !!~allowedFields.indexOf(k)
-  })
-}
+    return !!~allowedFields.indexOf(k);
+  });
+};
 
 // all required app fields truthy
 appStatusUtils.isFinished = function (appData) {
-  return appStatusUtils.isValid(appData)
-         && allFieldsDefined(appData, applicationRequired)
-}
+  console.log('testing');
+  return appStatusUtils.isValid(appData) && allFieldsDefined(appData, applicationRequired);
+};
 
 // all required rsvp fields truthy
 appStatusUtils.hasRSVPed = function (appData) {
-  return appStatusUtils.isValid(appData)
-         && allFieldsDefined(appData, rsvpRequired)
-}
+  return appStatusUtils.isValid(appData) && allFieldsDefined(appData, rsvpRequired);
+};

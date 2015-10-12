@@ -65,22 +65,21 @@ wildhacks.directive('equals', function() {
 
 
 // DASHBOARD CONTROLLER
-wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
-
-  // second request GETs all the applications themselves, modifying them a little
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+  // get all the applications
   $http.get('/applications')
     .then(function success(res) {
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];
       angular.forEach(res.data, function(application, hash) {
         if (application['first-name']) {
-          application.complete = appStatusUtils.isFinished(application)
+          application.complete = appStatusUtils.isFinished(application);
           application.hash = hash;
           $http.get('/application-status/' + hash)
           .then(function success (res) {
-            application.status = res.data || 'pending'
-            $scope.applications.push(application)
-          })
+            application.status = res.data || 'pending';
+            $scope.applications.push(application);
+          });
         }
       });
       console.log(res.status);
@@ -90,9 +89,9 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope,
 
   // TOGGLE STATUS FUNCTION
   $scope.toggleStatus = function(application, status) {
-    var data = { }
-    data[application.hash] = status
-    application.status = status
+    var data = { };
+    data[application.hash] = status;
+    application.status = status;
 
     $http.put('/application-status/', data)
       .then(function success(res) {
@@ -102,6 +101,8 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope,
       });
   };
 
+  // watch for changes, either from the initial request or a filter
+  // for this change, reset the counters at the top of the page
   $scope.$watch('filteredApps', function(newVal) {
     if (!newVal) return;
     $scope.numApplications = newVal.length;
