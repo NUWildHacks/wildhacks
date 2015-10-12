@@ -65,7 +65,7 @@ wildhacks.directive('equals', function() {
 
 
 // DASHBOARD CONTROLLER
-wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http) {
+wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
   // CONSTRUCTOR FUNCTIONS
   var isComplete = function(application) {
     return !!(application['first-name'] &&
@@ -81,6 +81,17 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', function($scope, $http
             application['mlh-code-of-conduct'] &&
             application['why-do-you-want-to-come']);
   };
+
+  // first request GETs the statuses of all the applications
+  $http.get('/application-status')
+    .then(function success(res) {
+      $scope.statuses = res.body;
+      console.log(res.status);
+    }, function error(res) {
+      console.log(res.status);
+    });
+
+  // second request GETs all the applications themselves, modifying them a little
   $http.get('/applications')
     .then(function success(res) {
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
