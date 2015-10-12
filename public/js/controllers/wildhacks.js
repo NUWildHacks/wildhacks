@@ -24,11 +24,12 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
         $http.get('/application-status/' + hash)
         .then(function success (res) {
           var status = res.data
-          , userStatusIsValid = status == 'pending'
-                             || status == 'accepted'
+          , userStatusIsValid = status == 'accepted'
                              || status == 'waitlist'
                              || status == 'rejected'
+                             // || status == 'pending'
           , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
+          // , urlRoot = '/apply'
           , url = urlRoot + '#' + email + ':' + hash
           $window.location.href = url;
         })
@@ -71,7 +72,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($
   $scope.numAccepted = 0;
   $scope.numApplications = 0;
 
-  $http.get('js/controllers/applications.json')
+  $http.get('/applications')
     .then(function success(res) {
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];

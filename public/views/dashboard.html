@@ -24,6 +24,7 @@
         <thead>
           <tr>
             <!-- stuff -->
+            <th>Status</th>
             <th>18+?</th>
             <th>Completed?</th>
             <th>Submission Date</th>
@@ -45,7 +46,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | orderBy:'last_cache_time':false | filter: { school:searchTerm })) track by $index">
+          <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | orderBy:'last_cache_time':true | filter: { school:searchTerm })) track by $index">
             <td>
               <!-- toggle an application's status here -->
               <form action="">
