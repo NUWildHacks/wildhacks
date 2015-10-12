@@ -42,14 +42,7 @@ router.get('/applications', whTeamAuth, function (req, res) {
   });
 });
 
-<<<<<<< HEAD
 // Application session logic
-=======
-router.get('/dashboard', basicAuth('wh-team', process.env.REVIEW_PASSWORD), function(req, res) {
-  res.render('dashboard.html');
-});
-
->>>>>>> dashboard
 router.get('/application-session/exists/:email', function (req, res) {
   var email = req.params.email
 
