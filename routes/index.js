@@ -63,7 +63,7 @@ router.put('/update-many/', whTeamAuth, function(req, res) {
   }
 });
 
-// Generic application logic
+// Application session logic
 
 router.get('/application-session/:hash', function (req, res) {
   var hash = req.params.hash
@@ -92,5 +92,39 @@ router.put('/application-session/:hash', function (req, res) {
     }
   });
 });
+
+// Application status logic
+
+router.get('/application-status/:hash', function (req, res) {
+  var hash = req.params.hash
+
+  if (!hash)
+    res.status(422).send('Hash no good.')
+
+  db.get('statuses', function (err, statuses) {
+    if (err) res.json(err)
+    else res.json(statuses[hash])
+  })
+})
+
+router.put('/application-status/:hash', whTeamAuth, function (req, res) {
+  var hash = req.params.hash
+    , status = req.body
+
+  if (!hash)
+    res.status(422).send('Hash no good.')
+
+  db.get(hash, function (err, value) {
+    if (err) res.status(400).send('Applicant ID does not exist.')
+    db.get('statuses', function (err, statuses) {
+      if (err) res.json(err)
+      statuses[hash] = status
+      db.put('statuses', statuses, function (err) {
+        if (err) res.json(err)
+        else res.status(200).end()
+      })
+    })
+  })
+})
 
 module.exports = router;
