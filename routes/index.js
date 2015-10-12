@@ -109,7 +109,7 @@ router.get('/application-status/:hash', function (req, res) {
 
 router.put('/application-status/:hash', whTeamAuth, function (req, res) {
   var hash = req.params.hash
-    , status = req.body
+    , status = req.body.status
 
   if (!hash)
     res.status(422).send('Hash no good.')
@@ -118,6 +118,7 @@ router.put('/application-status/:hash', whTeamAuth, function (req, res) {
     if (err) res.status(400).send('Applicant ID does not exist.')
     db.get('statuses', function (err, statuses) {
       if (err) res.json(err)
+      if (!statuses) statuses = { }
       statuses[hash] = status
       db.put('statuses', statuses, function (err) {
         if (err) res.json(err)
