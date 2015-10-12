@@ -8,50 +8,62 @@
   </head>
   <body ng-app="wildhacks">
     <div ng-controller="DashboardCtrl">
-      <h1>Applicants Accepted: {{accepted}}/{{applicants}}</h1>
-      <input type="text" ng-model="searchTerm" placeholder="School name..." ng-model-options="{ debounce:500 }">
+      <h1>Applicants Accepted: {{numAccepted}}/{{numApplications}}</h1>
+
+      <!-- FILTER BY SCHOOL -->
+      <input type="text" ng-model="searchTerm" placeholder="Filter by school" ng-model-options="{ debounce:500 }">
       <button ng-click="acceptAll()">Accept All</button>
 
-      <table id="applicants">
+      <!-- TABLE OF APPLICATIONS -->
+      <table>
         <th>
-          <td>Over 18?</td>
+          <!-- stuff -->
+          <td>18+?</td>
           <td>Completed?</td>
+          <td>Submission Date</td>
+          <!-- basic info -->
           <td>Name</td>
-          <td ng-click="reverse=!reverse;order('last_cache_time', reverse)">Submission Date</td>
-          <td>School</td>
-          <td>Year</td>
-          <td>Travel</td>
-          <td>Major</td>
-          <td>Links</td>
           <td>Gender</td>
           <td>Hackathons</td>
+          <!-- educational/geographical info -->
+          <td>School</td>
+          <td>Year</td>
+          <td>Major</td>
+          <td>Traveling From</td>
+          <!-- application -->
           <td>Blurb</td>
+          <!-- <td>Links</td> -->
           <td>Teammates</td>
         </th>
-        <tr class={{applicant.status}} ng-repeat="applicant in (subset = (data | filter:{ school:searchTerm })) track by $index">
+        <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | orderBy:'last_cache_time':true | filter: { school:searchTerm })) track by $index">
           <td>
+            <!-- toggle an application's status here -->
             <form action="">
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="accepted">Accept</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="rejected">Reject</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="waitlisted">Waitlist</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="unfinished">Unfinished</br>
-              <input type="radio" name="status" ng-model="applicant.status" ng-change="toggle(applicant)" value="pending">Pending</br>
+              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="accepted">Accept</br>
+              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="rejected">Reject</br>
+              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="waitlisted">Waitlist</br>
+              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="unfinished">Unfinished</br>
+              <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application)" value="pending">Pending</br>
             </form>
-          <td>{{applicant['18yet']}}</td>
-          <td>{{applicant.finished}}</td>
-          <td>{{applicant['first-name']}} {{applicant['last-name']}}</td>
-          <td>{{applicant['last_cache_time'] | date:'MM/dd h:mm a' }}</td>
-          <td>{{applicant.school}}</td>
-          <td>{{applicant.year}}</td>
-          <td>{{applicant.travel}}</td>
-          <td>{{applicant.major}}</td>
-          <td><a ng-show="'{{applicant.github}}'" href="{{applicant.github}}">GitHub</a>|<a ng-show="'{{applicant.website}}'" href="{{applicant.website}}">Website</a></td>
-          <td>{{applicant.gender}}</td>
-          <td>{{applicant.hackathons}}</td>
-          <td class="blurb">{{applicant['why-do-you-want-to-come']}}</td>
-          <td>{{applicant.teammates}}</td>
+          <!-- stuff -->
+          <td>{{application['18yet']}}</td>
+          <td>{{application.complete}}</td>
+          <td>{{application.last_cache_time | date:'MM/dd h:mm a' }}</td>
+          <!-- basic info -->
+          <td>{{application['first-name']}} {{application['last-name']}}</td>
+          <td>{{application.gender}}</td>
+          <td>{{application.hackathons}}</td>
+          <!-- educational/geographical info -->
+          <td>{{application.school}}</td>
+          <td>{{application.year}}</td>
+          <td>{{application.major}}</td>
+          <td>{{application.travel}}</td>
+          <!-- application -->
+          <td>{{application['why-do-you-want-to-come']}}</td>
+          <!-- <td><a ng-href="{{application.github}}">GitHub</a>|<a ng-href="{{application.website}}">Website</a></td> -->
+          <td>{{application.teammates}}</td>
         </tr>
-      </table>
+      </table> <!-- TABLE OF APPLICATIONS -->
     </div>
   </body>
 </html>

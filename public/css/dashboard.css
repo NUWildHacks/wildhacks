@@ -3,18 +3,8 @@ table, th, td {
   border-collapse: collapse;
 }
 
-.accepted {
-  background-color: lightgreen;
-}
-.rejected {
-  background-color: red;
-}
-.waitlisted {
-  background-color: yellow;
-}
-.unfinished {
-  background-color: gray;
-}
-.pending {
-  background-color: lightblue;
-}
+.accepted { background-color: lightgreen; }
+.rejected { background-color: red; }
+.waitlisted { background-color: yellow; }
+.unfinished { background-color: gray; }
+.pending { background-color: lightblue; }
