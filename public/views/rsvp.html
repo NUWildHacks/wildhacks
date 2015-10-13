@@ -19,7 +19,7 @@
   <div ng-controller='RsvpCtrl'>
     <div class='rsvp-page accepted' ng-if='status === "accepted"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>You're in!</h1>
-      <div class="rsvp-blurb" ng-show='!user.rsvp'>
+      <div class="rsvp-blurb" ng-show='!user.rsvp || user.rsvp == "waitlist"'>
         We'd love to have you at WildHacks this year! Please RSVP so we can make room for you.
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
@@ -29,10 +29,10 @@
         Yay! We're really looking forward to having you.
       </div>
       <div class="rsvp-button-container">
-        <a ng-click='user.rsvp = "coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming"'>
+        <a ng-click='user.rsvp = "coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming" || user.rsvp == "waitlist"'>
           <button type="button" name="apply" ng-click='submitRsvp("coming")' class='rsvp-button btn btn-embossed btn-primary'>YES, I'M COMING!</button>
         </a>
-        <a ng-click='user.rsvp = "not coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "coming"'>
+        <a ng-click='user.rsvp = "not coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "coming" || user.rsvp == "waitlist"'>
           <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-danger' ng-hide=''>NO, I CAN'T MAKE IT</button>
         </a>
       </div>
@@ -45,15 +45,16 @@
           <label for='diet'></label>
           <input type='text' name='restrictions' ng-model='restrictions' class='diet' placeholder="Allergies, special considerations, etc."/>
           <button ng-click='submitDietaryRestrictions(restrictions)' type="button" name="button" class='btn btn-embossed btn-primary'>Submit</button>
+          <h6>Buses</h6>
+          <p>
+            We are providing select buses to nearby schools:
+          </p>
+          <p>
+            If you're coming from either <a href="https://www.eventbrite.com/e/wildhacks-2015-purdue-bus-tickets-18926217827?aff=es2">Purdue University</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-michigan-bus-tickets-18926289040?aff=es2">University of Wisconsin-Madison</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-uiuc-bus-tickets-18926007197?aff=es2">UIUC</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-wisconsin-madison-bus-tickets-18926303082?aff=es2">Univeristy of Michigan-Ann Arbor or Michigan State University</a>, or <a href="https://www.eventbrite.com/e/wildhacks-2015-canada-bus-tickets-19053019093?aff=es2">Canada</a> we'll be providing buses for transportation. Limited seats will be given on a first come first serve basis, so follow the appropriate link to your school's Eventbrite page to get your ticket.
+          </p>
           <h6>Travel Reimbursements</h6>
           <p>
-            If you're traveling, here are the reimbursements we offer:
-          </p>
-          <p>
-            If you're coming from either <a href="https://www.eventbrite.com/e/wildhacks-2015-purdue-bus-tickets-18926217827?aff=es2">Purdue University</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-michigan-bus-tickets-18926289040?aff=es2">University of Wisconsin-Madison</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-uiuc-bus-tickets-18926007197?aff=es2">UIUC</a>, <a href="https://www.eventbrite.com/e/wildhacks-2015-university-of-wisconsin-madison-bus-tickets-18926303082?aff=es2">Univeristy of Michigan-Ann Arbor</a>, or <a href="https://www.eventbrite.com/e/wildhacks-2015-canada-bus-tickets-19053019093?aff=es2">Canada</a> we'll be providing buses for transportation. Limited seats will be given on a first come first serve basis, so follow the appropriate link to your school's Eventbrite page to get your ticket.
-          </p>
-          <p>
-            Check back soon for detailed travel reimbursement details, but for now basic travel reimbursements will be as follows:
+            If you're traveling, here are the reimbursements we offer. Check back soon for detailed travel reimbursement details, but for now basic travel reimbursements will be as follows:
           </p>
           <div class="reimbursement-wrapper">
             <table class='reimbursement'>
@@ -94,7 +95,7 @@
     <div class='rsvp-page waitlist' ng-if='status === "waitlist"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>Wait for it...</h1>
       <div class="rsvp-blurb " ng-show='!user.rsvp'>
-        We don't know if we'll have enough room for you right now, but if you'd like you can join our waitlist, and if a spot opens up you'll be the <em>n</em>th to know (where n is your place on the waitlist)!
+        We don't know if we'll have enough room for you right now, but if you'd like you can join our waitlist, and we'll let you know your status during the next round of applications!
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
         Aw. Well if you ever change your mind we'll be right here!
