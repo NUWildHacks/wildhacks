@@ -23,10 +23,11 @@
         We'd love to have you at WildHacks this year! Please RSVP so we can make room for you.
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
-        Aw. Well if you ever change your mind we'll be right here!
+        Aw. Looks like you can't make it to WildHacks. If you ever change your mind we'll be right here!
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "coming"'>
-        Yay! We're really looking forward to having you.
+        Yay! We're really looking forward to having you at WildHacks this year. <br> <a href="https://www.facebook.com/groups/542430769240793/">Join our WildHacks Attendees Facebook page here.</a>
+
       </div>
       <div class="rsvp-button-container">
         <a ng-click='user.rsvp = "coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming" || user.rsvp == "waitlist"'>
@@ -85,11 +86,6 @@
             </table>
           </div>
         </form>
-        <div class="">
-          <p>
-            Also be sure to check out our WildHacks Attendees Facebook page <a href="https://www.facebook.com/groups/542430769240793/">here!</a>
-          </p>
-        </div>
       </div>
     </div>
     <div class='rsvp-page waitlist' ng-if='status === "waitlist"'>
@@ -98,22 +94,22 @@
         We don't know if we'll have enough room for you right now, but if you'd like you can join our waitlist, and we'll let you know your status during the next round of applications!
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "not coming"'>
-        Aw. Well if you ever change your mind we'll be right here!
+        Aw. You opted out of the waitlist. If you ever change your mind we'll be right here!
       </div>
       <div class="rsvp-blurb" ng-show='user.rsvp == "waitlist"'>
-        Sweet! We'll be sure to let you know!
+        Sweet! You're on the waitlist. We'll be sure to let you know if spots open!
       </div>
       <div class="rsvp-button-container">
-        <a target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming"'>
+        <a ng-click='user.rsvp = "waitlist"' target='_blank' ng-show='!user.rsvp || user.rsvp == "not coming"' >
           <button type="button" name="apply" ng-click='submitRsvp("waitlist")' class='rsvp-button btn btn-embossed btn-primary'>PUT ME ON THE WAITLIST</button>
         </a>
-        <a target='_blank' ng-show='!user.rsvp || user.rsvp == "waitlist"'>
+        <a ng-click='user.rsvp = "not coming"' target='_blank' ng-show='!user.rsvp || user.rsvp == "waitlist"'>
           <button type="button" name="sponsor" ng-click='submitRsvp("not coming")' class='rsvp-button btn btn-embossed btn-danger'>NO THANKS</button>
         </a>
       </div>
-      <div class="info" ng-if='rsvp'>
+      <div class="info" ng-class='{"info-clicked" : rsvp}' ng-if='user.rsvp == "waitlist"'>
         <p>
-          Awesome! There are just one more thing we need to know:
+          There are just one more thing we need to know:
         </p>
         <form>
             <h6>Dietary Restrictions</h6>

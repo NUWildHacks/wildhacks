@@ -16,6 +16,8 @@
   <body ng-app="wildhacks">
     <div ng-controller="DashboardCtrl">
       <h1 ng-show="loaded">Applicants Accepted: {{numAccepted}}/{{numApplications}}</h1>
+      <h1 ng-show="loaded">RSVP -- Coming:{{numRSVPComing}}  |  Waitlist:{{numRSVPWaitlist}}  |  Not Coming:{{numRSVPNotComing}}</h1>
+  
       <!-- FILTER BY SCHOOL -->
       <input type="text" ng-model="searchTerm" placeholder="Filter by school" ng-model-options="{ debounce:500 }"  ng-change="recount()">
 
@@ -25,6 +27,7 @@
           <tr>
             <!-- stuff -->
             <th>Status</th>
+            <th>RSVP</th>
             <th>18+?</th>
             <th>Completed?</th>
             <th>Submission Date</th>
@@ -55,6 +58,8 @@
                 <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application, 'waitlist');updateValue(application.status, '{{application.status}}')" value="waitlist">Waitlist</br>
                 <input type="radio" name="status" ng-model="application.status" ng-change="toggleStatus(application, 'pending');updateValue(application.status, '{{application.status}}')" value="pending" checked>Pending</br>
               </form>
+            </td>
+            <td>{{application.rsvp}}</td>
             <!-- stuff -->
             <td>{{application['18yet']}}</td>
             <td>{{application.complete}}</td>

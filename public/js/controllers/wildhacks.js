@@ -71,6 +71,10 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($
   $scope.loaded = false;
   $scope.numAccepted = 0;
   $scope.numApplications = 0;
+  $scope.numRSVPComing = 0;
+  $scope.numRSVPWaitlist = 0;
+  $scope.numRSVPNotComing = 0;
+  
 
   $http.get('/applications')
     .then(function success(res) {
@@ -80,6 +84,13 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($
         if (application['first-name']) {
           application.complete = appStatusUtils.isFinished(application);
           application.hash = hash;
+
+          if (application['rsvp']) {
+            if (application['rsvp'] === 'coming') $scope.numRSVPComing++;
+            if (application['rsvp'] === 'waitlist') $scope.numRSVPWaitlist++;
+            if (application['rsvp'] === 'not coming') $scope.numRSVPNotComing++;
+          }
+
           $http.get('/application-status/' + hash)
           .then(function success (res) {
             application.status = res.data || 'pending';
