@@ -17,7 +17,7 @@
     <div ng-controller="DashboardCtrl">
       <h1 ng-show="loaded">Applicants Accepted: {{numAccepted}}/{{numApplications}}</h1>
       <h1 ng-show="loaded">RSVP -- Coming:{{numRSVPComing}}  |  Waitlist:{{numRSVPWaitlist}}  |  Not Coming:{{numRSVPNotComing}}</h1>
-  
+
       <!-- FILTER BY SCHOOL -->
       <input type="text" ng-model="searchTerm" placeholder="Filter by school" ng-model-options="{ debounce:500 }"  ng-change="recount()">
 
@@ -49,7 +49,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | orderBy:'last_cache_time':true | filter: { school:searchTerm })) track by $index">
+          <tr class={{application.status}} ng-repeat="application in (filteredApps = (applications | limitTo:limit | orderBy:'last_cache_time':true | filter: { school:searchTerm })) track by $index">
             <td>
               <!-- toggle an application's status here -->
               <form action="">
@@ -82,6 +82,7 @@
           </tr>
         </tbody>
       </table> <!-- TABLE OF APPLICATIONS -->
+      <button ng-click='incLimit()'>Load more.</button>
     </div>
   </body>
 </html>
