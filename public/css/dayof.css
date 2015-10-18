@@ -1,0 +1,39 @@
+body {
+  margin: 0 0 0 0;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.navbar-nav li a {
+  line-height: 53px;
+}
+
+.section-header {
+  text-align: center;
+}
+
+.table-header {
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.hacking-row {
+  color: white;
+  border-radius: 8px;
+}
+
+.hacking-row-begin {
+  background-color: #1abc9c;
+}
+
+.hacking-row-end {
+  background-color: #E74C3C;
+}
+
+@media screen and (min-width: 768px){
+  .navbar-brand {
+    line-height: 56px;
+  }
+}
