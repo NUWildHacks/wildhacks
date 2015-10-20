@@ -74,15 +74,24 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($
   $scope.numRSVPComing = 0;
   $scope.numRSVPWaitlist = 0;
   $scope.numRSVPNotComing = 0;
-  
 
+
+  $scope.limit = 200;
+
+  $scope.incLimit = function () {
+    $scope.limit = $scope.limit + 200;
+    if ($scope.limit > $scope.applications.length)
+      $scope.limit = $scope.applications.length;
+  }
+
+  // second request GETs all the applications themselves, modifying them a little
   $http.get('/applications')
     .then(function success(res) {
       // populate the $scope variable with applications, adding validity and hash as properties (for later use)
       $scope.applications = [];
       angular.forEach(res.data, function(application, hash) {
         if (application['first-name']) {
-          application.complete = appStatusUtils.isFinished(application);
+          application.complete = appStatusUtils.dirtyIsFinished(application)
           application.hash = hash;
 
           if (application['rsvp']) {
@@ -138,7 +147,7 @@ wildhacks.controller('DashboardCtrl', ['$scope', '$http', '$timeout', function($
     }, 1000);
   };
 
-  
+
 }]);
 
 wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
@@ -184,3 +193,8 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
     });
   }
 }]);
+
+wildhacks.controller('DayofCtrl', ['$scope', function($scope) {
+  $scope.section = "faq";
+
+}])

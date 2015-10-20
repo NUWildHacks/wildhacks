@@ -54,11 +54,16 @@ appStatusUtils.isValid = function (appData) {
   });
 };
 
-// all required app fields truthy
+// all required app fields truthy and no disallowed fields
 appStatusUtils.isFinished = function (appData) {
   console.log('testing');
   return appStatusUtils.isValid(appData) && allFieldsDefined(appData, applicationRequired);
 };
+
+// all required fields truthy, but wrong fields can exist
+appStatusUtils.dirtyIsFinished = function (appData) {
+  return allFieldsDefined(appData, applicationRequired)
+}
 
 // all required rsvp fields truthy
 appStatusUtils.hasRSVPed = function (appData) {

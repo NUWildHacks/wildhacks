@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WildHacks 2015 Application</title>
+  <meta name="description" content="WildHacks 2015 Day-Of Schedule">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- vendor.css is currently empty-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/flat-ui.css">
+  <link rel="stylesheet" href="css/dayof.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+  <script src="js/controllers/wildhacks.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/flat-ui.js"></script>
+</head>
+
+<body ng-app='wildhacks'>
+  <div ng-controller='DayofCtrl'>
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+          <span class="sr-only"></span>
+        </button>
+        <a class="navbar-brand" href="#">WildHacks 2015</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-01">
+        <ul class="nav navbar-nav">
+          <li><a href='#' ng-click='section = "general"'>General Info</a></li>
+          <li><a href='#' ng-click='section = "schedule"'>Schedule</a></li>
+          <li><a href='#' ng-click='section = "directions"'>Directions</a></li>
+          <li><a href='#' ng-click='section = "prizes"'>Prize List</a></li>
+          <li><a href='#' ng-click='section = "faq"'>FAQ</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class='general' ng-if='section == "general"'>
+      <h1 class='section-header'>Welcome Party People!</h1>
+    </section>
+    <section class='schedule' ng-if='section == "schedule"'>
+      <h1 class='section-header'>Schedule of Events</h1 class='section-header'>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1 col-xs-offset-1 schedule-table">
+            <table class='table table-striped'>
+              <tr>
+                <h5 class='table-header'>Saturday, November 21</h5>
+              </tr>
+              <tr>
+                <td>
+                  Start
+                </td>
+                <td>
+                  End
+                </td>
+                <td>
+                  Event
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  7:00am
+                </td>
+                <td>
+                  9:00am
+                </td>
+                <td>
+                  Sponsor Check-In and Setup
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  8:30am
+                </td>
+                <td>
+                  10:00am
+                </td>
+                <td>
+                  Participant Check-In
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  10:30am
+                </td>
+                <td>
+                  11:30am
+                </td>
+                <td>
+                  Opening Ceremony
+                </td>
+              </tr>
+              <tr class='hacking-row hacking-row-begin'>
+                <td>
+                  11:30am
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  HACKING BEGINS
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  12:30pm
+                </td>
+                <td>
+                  1:30pm
+                </td>
+                <td>
+                  Lunch (sponsored by IMC)
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  2:00pm
+                </td>
+                <td>
+                  2:30pm
+                </td>
+                <td>
+                  HP Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  2:45pm
+                </td>
+                <td>
+                  3:15pm
+                </td>
+                <td>
+                  IBM Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  3:30pm
+                </td>
+                <td>
+                  4:00pm
+                </td>
+                <td>
+                  Microsoft Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  4:15pm
+                </td>
+                <td>
+                  4:45pm
+                </td>
+                <td>
+                  Paypal Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  7:00pm
+                </td>
+                <td>
+                  8:00pm
+                </td>
+                <td>
+                  Dinner
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  8:15pm
+                </td>
+                <td>
+                  8:45pm
+                </td>
+                <td>
+                  T-Mobile Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  9:00pm
+                </td>
+                <td>
+                  9:30pm
+                </td>
+                <td>
+                  Trustwave Tech Talk
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  12:00am
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  Snack Time (sponsored by Groupon)
+                </td>
+              </tr>
+            </table>
+        </div>
+        <div class="col-md-5 col-md-offset-0 col-xs-offset-1 schedule-table">
+          <table class='table table-striped'>
+            <tr>
+              <h5 class='table-header'>Sunday, November 22</h5>
+            </tr>
+            <tr>
+              <td>
+                Start
+              </td>
+              <td>
+                End
+              </td>
+              <td>
+                Event
+              </td>
+            </tr>
+            <tr>
+              <td>
+                8:00am
+              </td>
+              <td>
+                9:00am
+              </td>
+              <td>
+                Breakfast (sponsored by Tanvas)
+              </td>
+            </tr>
+            <tr class='hacking-row hacking-row-end'>
+              <td>
+                11:30am
+              </td>
+              <td>
+                -
+              </td>
+              <td>
+                HACKING ENDS
+              </td>
+            </tr>
+            <tr>
+              <td>
+                12:00pm
+              </td>
+              <td>
+                1:00pm
+              </td>
+              <td>
+                Lunch (sponsored by Paypal/Braintree)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                1:00pm
+              </td>
+              <td>
+                2:30pm
+              </td>
+              <td>
+                Science Fair/Expo
+              </td>
+            </tr>
+            <tr>
+              <td>
+                2:00pm
+              </td>
+              <td>
+                2:30pm
+              </td>
+              <td>
+                Judge Deliberation 1
+              </td>
+            </tr>
+            <tr>
+              <td>
+                2:30pm
+              </td>
+              <td>
+                3:30pm
+              </td>
+              <td>
+                Final Presentations
+              </td>
+            </tr>
+            <tr>
+              <td>
+                3:30pm
+              </td>
+              <td>
+                4:00pm
+              </td>
+              <td>
+                Prizes
+              </td>
+            </tr>
+            <tr>
+              <td>
+                4:00pm
+              </td>
+              <td>
+                4:30pm
+              </td>
+              <td>
+                Closing Ceremonies/Thank Yous
+              </td>
+            </tr>
+            <tr>
+              <td>
+                4:30pm
+              </td>
+              <td>
+                5:00pm
+              </td>
+              <td>
+                Buses Leave
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class='directions' ng-if='section == "directions"'>
+      <h1 class='section-header'>Directions</h1>
+    </section>
+    <section class='prizes' ng-if='section == "prizes"'>
+      <h1 class='section-header'>Prizes</h1>
+    </section>
+    <section class='faq' ng-if='section == "faq"'>
+      <h1 class='section-header'>FAQ</h1>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <h4>How do I connect to the wifi?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+        <div class="col-md-5">
+          <h4>Where can I go to sleep?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <h4>Who can I ask technical questions?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+        <div class="col-md-5">
+          <h4>Where can I get something to eat?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <h4>When is the deadline for submissions?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+        <div class="col-md-5">
+          <h4>How does judging work?</h4>
+          <p>
+            Answer
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-67298926-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>

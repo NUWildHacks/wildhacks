@@ -26,6 +26,10 @@ router.get('/rsvp', function (req, res) {
   res.render('rsvp.html');
 });
 
+router.get('/dayof', function (req, res) {
+  res.render('dayof.html');
+});
+
 router.get('/dashboard', whTeamAuth, function(req, res) {
   res.render('dashboard.html');
 });
