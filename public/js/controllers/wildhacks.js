@@ -25,14 +25,14 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
         $http.get('/application-status/' + hash)
         .then(function success (res) {
           var status = res.data
-          , userStatusIsValid = status == 'accepted'
+        , userStatusIsValid = status == 'accepted'
                              || status == 'waitlist'
                              || status == 'rejected'
-                             // || status == 'pending'
-          , urlRoot = userStatusIsValid ? '/rsvp#' + email + ':' + hash : '/closed'
+                             || status == 'pending'
+          , urlRoot = userStatusIsValid ? '/rsvp' : '/northwestern-application'
 //           , urlRoot = '/rsvp'
           , url = urlRoot + '#' + email + ':' + hash
-          $window.location.href = urlRoot;
+          $window.location.href = url;
         })
       }
     })

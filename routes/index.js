@@ -19,11 +19,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/apply', function (req, res) {
-  res.redirect('/closed')
+  res.redirect('/closed');
 });
 
-router.get('/apply-northwestern', function (req, res) {
-  res.render('northwestern-apply.html')
+router.get('/northwestern-apply', function (req, res) {
+  res.render('northwestern-apply.html');
+});
+
+router.get('/northwestern-application', function(req, res) {
+  res.render('application.html');
 });
 
 router.get('/rsvp', function (req, res) {
@@ -59,7 +63,7 @@ router.get('/application-session/exists/:email', function (req, res) {
   var email = req.params.email
 
   db.get(email, function (err, value) {
-    if (err) res.json(false)
+    if (err) return res.json(false)
     res.json(value)
   })
 })
