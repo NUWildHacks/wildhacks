@@ -32,8 +32,16 @@ body {
   background-color: #E74C3C;
 }
 
+.faq .row {
+  margin-left: 20px;
+}
+
 @media screen and (min-width: 768px){
   .navbar-brand {
     line-height: 56px;
+  }
+
+  .faq .row {
+    margin-left: 0px;
   }
 }
