@@ -92,6 +92,7 @@
         </form>
       </div>
     </div>
+<!--
     <div class='rsvp-page waitlist' ng-if='status === "waitlist"'>
       <h1 ng-class='{"page-clicked" : rsvp}'>Wait for it...</h1>
       <div class="rsvp-blurb " ng-show='!user.rsvp'>
@@ -123,7 +124,8 @@
         </form>
       </div>
     </div>
-    <div class='rsvp-page declined' ng-if='status === "rejected"'>
+-->
+    <div class='rsvp-page declined' ng-if='status === "rejected" || status === "waitlist"'>
       <h1>Sorry :(</h1>
       <div class="rsvp-blurb">
         <p>

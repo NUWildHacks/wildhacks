@@ -28,10 +28,10 @@ wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($sc
                              || status == 'waitlist'
                              || status == 'rejected'
                              // || status == 'pending'
-          , urlRoot = userStatusIsValid ? '/rsvp' : '/apply'
-          // , urlRoot = '/apply'
+          , urlRoot = userStatusIsValid ? '/rsvp#' + email + ':' + hash : '/closed'
+//           , urlRoot = '/rsvp'
           , url = urlRoot + '#' + email + ':' + hash
-          $window.location.href = url;
+          $window.location.href = urlRoot;
         })
       }
     })
