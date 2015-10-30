@@ -264,6 +264,34 @@ h2 {
   text-align: left !important;
 }
 
+.table-header {
+  font-weight: bold;
+  color: #2C3E50;
+}
+
+.schedule-table {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 40px;
+}
+
+.hacking-row {
+  color: white;
+  border-radius: 8px;
+}
+
+.hacking-row-begin {
+  background-color: #1abc9c;
+}
+
+.hacking-row-end {
+  background-color: #E74C3C !important;
+}
+
+.table-time {
+  width: 20%;
+}
+
 td h3 {
   margin-top: 15px;
   margin-bottom: 5px;
