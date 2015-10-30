@@ -59,13 +59,14 @@
     <form ng-hide="showLogin" class="application" name="registerForm" novalidate ng-submit="registerForm.$valid && authenticate()">
       <div class='row input-container'>
         <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-          <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email*" autocomplete="off" required/>
-          <span ng-if="!registerForm.email.$touched">
+          <input ng-model="user.email" ng-pattern='/northwestern\.edu/' ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email*" autocomplete="off" required/>
+          <span ng-if="!registerForm.email.$touched || !registerForm.email.$invalid">
             <br>
           </span>
           <span class="error" ng-show="registerForm.email.$touched && registerForm.email.$invalid">
             <span class="text-danger" ng-show="registerForm.email.$error.required">An email is required.</span>
             <span class="text-danger" ng-show="registerForm.email.$error.email">Invalid email address.</span>
+            <span class="text-danger" ng-show="!registerForm.email.$error.email && registerForm.email.$error.pattern">Northwestern emails only. Sorry!</span>
           </span>
         </div>
       </div>
@@ -73,7 +74,7 @@
       <div class='row input-container'>
         <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
           <input type="password" ng-model="user.password" ng-model-options="{ updateOn: 'blur' }" equals="{{user.password2}}" class="form-control input-hg" name="password" placeholder="Password*" required>
-          <span ng-if="!registerForm.password.$touched">
+          <span ng-if="!registerForm.password.$touched || !registerForm.password.$invalid || registerForm.password.$error.equals">
             <br>
           </span>
           <span class="error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
@@ -85,7 +86,7 @@
       <div class='row input-container'>
         <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
           <input type="password" ng-model="user.password2" ng-model-options="{ updateOn: 'blur' }" equals="{{user.password}}" class="form-control input-hg" name="confirmPassword" placeholder="Confirm Password*" required>
-          <span ng-if="!registerForm.confirmPassword.$touched">
+          <span ng-if="!registerForm.confirmPassword.$touched || !registerForm.confirmPassword.$invalid">
             <br>
           </span>
           <span class="error" ng-show="registerForm.confirmPassword.$touched && registerForm.confirmPassword.$invalid">
@@ -118,13 +119,14 @@
     <form ng-show="showLogin" class="application" name="loginForm" novalidate ng-submit="loginForm.$valid && authenticate()">
       <div class='row input-container'>
         <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-          <input ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email" autocomplete="off" required/>
-          <span ng-if="!loginForm.email.$touched">
+          <input ng-model="user.email" ng-pattern='/northwestern\.edu/' ng-model-options="{ updateOn: 'blur' }" type="email" class="form-control input-hg" name="email" placeholder="Email" autocomplete="off" required/>
+          <span ng-if="!loginForm.email.$touched || !loginForm.email.$invalid">
             <br>
           </span>
           <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
             <span class="text-danger" ng-show="loginForm.email.$error.required">An email is required.</span>
-            <span class="text-danger" ng-show="loginForm.email.$error.email">Invalid email address.</span>
+            <span class="text-danger" ng-show="loginForm.email.$error.email">Invalid email address. </span>
+            <span class="text-danger" ng-show="!loginForm.email.$error.email && loginForm.email.$error.pattern">Northwestern emails only. Sorry!</span>
           </span>
         </div>
       </div>
@@ -132,7 +134,7 @@
       <div class='row input-container'>
         <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
           <input type="password" ng-model="user.password" ng-model-options="{ updateOn: 'blur' }" class="form-control input-hg" name="password" placeholder="Password" required>
-          <span ng-if="!loginForm.password.$touched">
+          <span ng-if="!registerForm.password.$touched || !registerForm.password.$invalid">
             <br>
           </span>
           <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">

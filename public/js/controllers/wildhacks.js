@@ -3,6 +3,7 @@ var wildhacks = angular.module('wildhacks', []);
 wildhacks.controller('RegisterCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   // if true, display the login page, otherwise display the registration page
   $scope.showLogin = true;
+  $scope.regex = /northwestern\.edu/;
 
   $scope.authenticate = function() {
     var email = $scope.user.email;
