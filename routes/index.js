@@ -19,11 +19,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/apply', function (req, res) {
-  res.render('application.html');
+  res.redirect('/closed')
 });
 
 router.get('/rsvp', function (req, res) {
   res.render('rsvp.html');
+});
+
+router.get('/closed', function (req, res) {
+  res.render('applications-closed.html');
 });
 
 router.get('/dayof', function (req, res) {
