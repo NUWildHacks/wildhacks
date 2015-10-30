@@ -22,6 +22,10 @@ router.get('/apply', function (req, res) {
   res.redirect('/closed')
 });
 
+router.get('/apply-northwestern', function (req, res) {
+  res.render('northwestern-apply.html')
+});
+
 router.get('/rsvp', function (req, res) {
   res.render('rsvp.html');
 });

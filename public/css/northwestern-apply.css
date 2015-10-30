@@ -1,3 +1,29 @@
 body {
   margin: 0 0 0 0;
+  background-color: #d7ede8;
+}
+
+.apply-section {
+  margin-top: 10%;
+}
+
+.apply-header {
+  color: #34495e;
+}
+
+.already-registered, .no-wait {
+  color: #34495e;
+  font-size: 2em;
+}
+
+.already-registered:hover, .no-wait:hover {
+  cursor: pointer;
+}
+
+.submit-button-container {
+  text-align: center;
+}
+
+.register-status:hover {
+  cursor: pointer;
 }
