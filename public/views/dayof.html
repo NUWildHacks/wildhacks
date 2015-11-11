@@ -33,6 +33,7 @@
           <li><a href='#' ng-click='section = "schedule"'>Schedule</a></li>
           <li><a href='#' ng-click='section = "directions"'>Directions</a></li>
           <li><a href='#' ng-click='section = "prizes"'>Prize List</a></li>
+          <li><a href='#' ng-click='section = "gear"'>Gear</a></li>
           <li><a href='#' ng-click='section = "faq"'>FAQ</a></li>
         </ul>
       </div>
@@ -325,9 +326,17 @@
     </section>
     <section class='directions' ng-if='section == "directions"'>
       <h1 class='section-header'>Directions</h1>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <img class='directions-map' src="../images/map.png" alt="" />
+        </div>
+      </div>
     </section>
     <section class='prizes' ng-if='section == "prizes"'>
       <h1 class='section-header'>Prizes</h1>
+    </section>
+    <section class='gear' ng-if='section == "gear"'>
+      <h1 class='section-header'>Gear</h1>
     </section>
     <section class='faq' ng-if='section == "faq"'>
       <h1 class='section-header'>FAQ</h1>

@@ -32,6 +32,10 @@ body {
   background-color: #E74C3C;
 }
 
+.directions-map {
+  width: 100%;
+}
+
 .faq .row {
   margin-left: 20px;
 }
