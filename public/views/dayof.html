@@ -31,15 +31,16 @@
         <ul class="nav navbar-nav">
           <li><a href='#' ng-click='section = "general"'>General Info</a></li>
           <li><a href='#' ng-click='section = "schedule"'>Schedule</a></li>
-          <li><a href='#' ng-click='section = "directions"'>Directions</a></li>
+          <li><a href='#' ng-click='section = "maps"'>Maps</a></li>
           <li><a href='#' ng-click='section = "prizes"'>Prize List</a></li>
-          <li><a href='#' ng-click='section = "gear"'>Gear</a></li>
+          <li><a href='#' ng-click='section = "hardware"'>Hardware</a></li>
           <li><a href='#' ng-click='section = "faq"'>FAQ</a></li>
         </ul>
       </div>
     </nav>
     <section class='general' ng-if='section == "general"'>
       <h1 class='section-header'>Welcome Party People!</h1>
+
     </section>
     <section class='schedule' ng-if='section == "schedule"'>
       <h1 class='section-header'>Schedule of Events</h1 class='section-header'>
@@ -324,19 +325,49 @@
         </div>
       </div>
     </section>
-    <section class='directions' ng-if='section == "directions"'>
-      <h1 class='section-header'>Directions</h1>
+    <section class='directions' ng-if='section == "maps"'>
+      <h1 class='section-header'>Maps</h1>
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <img class='directions-map' src="../images/map.png" alt="" />
+          <h3>Campus Map</h3>
+          <img class='directions-map' src="../images/maps/map.png" alt="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h3>Norris Maps</h3>
+          <img class='directions-map' src="../images/maps/norris-2.jpg" alt="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <img class='directions-map' src="../images/maps/norris-1.jpg" alt="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <img class='directions-map' src="../images/maps/norris-g.jpg" alt="" />
         </div>
       </div>
     </section>
     <section class='prizes' ng-if='section == "prizes"'>
       <h1 class='section-header'>Prizes</h1>
     </section>
-    <section class='gear' ng-if='section == "gear"'>
-      <h1 class='section-header'>Gear</h1>
+    <section class='hardware' ng-if='section == "hardware"'>
+      <h1 class='section-header'>Hardware</h1>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 hardware-info">
+          <p>
+            All hardware is provided for by MLH. To check out a piece of hardware you will need to present a government ID.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <table>
+          </table>
+        </div>
+      </div>
     </section>
     <section class='faq' ng-if='section == "faq"'>
       <h1 class='section-header'>FAQ</h1>

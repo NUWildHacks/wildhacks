@@ -2,6 +2,10 @@ body {
   margin: 0 0 0 0;
 }
 
+section {
+  overflow-x: hidden;
+}
+
 .navbar {
   border-radius: 0;
 }
@@ -34,6 +38,10 @@ body {
 
 .directions-map {
   width: 100%;
+}
+
+.hardware-info p {
+  text-align: center;
 }
 
 .faq .row {
