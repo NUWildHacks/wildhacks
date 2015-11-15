@@ -49,6 +49,11 @@ section {
   text-align: center;
 }
 
+.hardware ul {
+  list-style-type: none;
+  text-align: center;
+}
+
 .faq .row {
   margin-left: 20px;
 }
@@ -81,6 +86,10 @@ section {
   .prizes .col-md-6{
     margin-left: 25%;
     margin-right: 25%;
+  }
+
+  .hardware {
+    margin-left: 0;
   }
 
 }
