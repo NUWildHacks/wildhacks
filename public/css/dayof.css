@@ -14,6 +14,7 @@ section {
 
 .navbar {
   border-radius: 0;
+  margin: 0;
 }
 
 .navbar-nav li a {
@@ -24,9 +25,18 @@ section {
   text-align: center;
 }
 
+.header-photo {
+  position: absolute;
+}
+
 .general .links {
   margin-left: 10%;
   margin-right: 10%;
+  margin-top: 20%;
+}
+
+.links .col-md-8 {
+  background-color: white;
 }
 
 .table-header {
