@@ -6,6 +6,12 @@ section {
   overflow-x: hidden;
 }
 
+.header-photo {
+  width: 100%;
+  margin-top: 0;
+  text-align: center;
+}
+
 .navbar {
   border-radius: 0;
 }
@@ -101,6 +107,7 @@ section {
 
   .general .links {
     margin-left: 0;
+    margin-right: 0;
   }
 
 }
