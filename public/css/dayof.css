@@ -18,6 +18,11 @@ section {
   text-align: center;
 }
 
+.general .links {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .table-header {
   font-weight: bold;
   color: #2C3E50;
@@ -55,7 +60,8 @@ section {
 }
 
 .faq .row {
-  margin-left: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .prizes h5{
@@ -76,6 +82,7 @@ section {
 
   .faq .row {
     margin-left: 0px;
+    margin-right: 0px;
   }
 
   .maps h3,
@@ -89,6 +96,10 @@ section {
   }
 
   .hardware {
+    margin-left: 0;
+  }
+
+  .general .links {
     margin-left: 0;
   }
 
