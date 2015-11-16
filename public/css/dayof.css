@@ -2,6 +2,10 @@ body {
   margin: 0 0 0 0;
 }
 
+section {
+  overflow-x: hidden;
+}
+
 .navbar {
   border-radius: 0;
 }
@@ -12,6 +16,11 @@ body {
 
 .section-header {
   text-align: center;
+}
+
+.general .links {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .table-header {
@@ -33,8 +42,38 @@ body {
   background-color: #E74C3C;
 }
 
+.directions-map {
+  width: 100%;
+}
+
+.maps h3,
+.maps h5 {
+  margin-left: 10%;
+}
+
+.hardware-info p {
+  text-align: center;
+}
+
+.hardware ul {
+  list-style-type: none;
+  text-align: center;
+}
+
 .faq .row {
-  margin-left: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.prizes h5{
+  font-size: 24px;
+  color: #1abc9c;
+}
+
+.prizes .col-md-6{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 50px;
 }
 
 @media screen and (min-width: 768px){
@@ -44,5 +83,25 @@ body {
 
   .faq .row {
     margin-left: 0px;
+    margin-right: 0px;
   }
+
+  .maps h3,
+  .maps h5 {
+    margin-left: 0px;
+  }
+
+  .prizes .col-md-6{
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .hardware {
+    margin-left: 0;
+  }
+
+  .general .links {
+    margin-left: 0;
+  }
+
 }

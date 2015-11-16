@@ -198,5 +198,5 @@ wildhacks.controller('RsvpCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 wildhacks.controller('DayofCtrl', ['$scope', function($scope) {
-  $scope.section = "faq";
+  $scope.section = "general";
 }])
