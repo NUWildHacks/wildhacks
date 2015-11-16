@@ -270,14 +270,17 @@ h2 {
 }
 
 .schedule-table {
-  background-color: white;
+  background-color: rgba(255,255,255,.5);
   border-radius: 7px;
   margin-bottom: 40px;
 }
 
 .hacking-row {
+/*
   color: white;
   border-radius: 8px;
+*/
+  color: #1abc9c;
 }
 
 .hacking-row-begin {
@@ -287,6 +290,7 @@ h2 {
 .hacking-row-end {
   background-color: #E74C3C !important;
 }
+
 
 .table-time {
   width: 20%;
